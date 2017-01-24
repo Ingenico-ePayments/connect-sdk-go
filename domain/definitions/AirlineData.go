@@ -1,0 +1,33 @@
+// This class was auto-generated from the API references found at
+// https://developer.globalcollect.com/documentation/api/server/
+
+package definitions
+
+// AirlineData represents class AirlineData
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_AirlineData
+type AirlineData struct {
+	AgentNumericCode     *string             `json:"agentNumericCode,omitempty"`
+	Code                 *string             `json:"code,omitempty"`
+	FlightDate           *string             `json:"flightDate,omitempty"`
+	FlightLegs           *[]AirlineFlightLeg `json:"flightLegs,omitempty"`
+	InvoiceNumber        *string             `json:"invoiceNumber,omitempty"`
+	IsETicket            *bool               `json:"isETicket,omitempty"`
+	IsRegisteredCustomer *bool               `json:"isRegisteredCustomer,omitempty"`
+	IsRestrictedTicket   *bool               `json:"isRestrictedTicket,omitempty"`
+	IsThirdParty         *bool               `json:"isThirdParty,omitempty"`
+	IssueDate            *string             `json:"issueDate,omitempty"`
+	MerchantCustomerID   *string             `json:"merchantCustomerId,omitempty"`
+	Name                 *string             `json:"name,omitempty"`
+	PassengerName        *string             `json:"passengerName,omitempty"`
+	PlaceOfIssue         *string             `json:"placeOfIssue,omitempty"`
+	PNR                  *string             `json:"pnr,omitempty"`
+	PointOfSale          *string             `json:"pointOfSale,omitempty"`
+	PosCityCode          *string             `json:"posCityCode,omitempty"`
+	TicketDeliveryMethod *string             `json:"ticketDeliveryMethod,omitempty"`
+	TicketNumber         *string             `json:"ticketNumber,omitempty"`
+}
+
+// NewAirlineData constructs a new AirlineData
+func NewAirlineData() *AirlineData {
+	return &AirlineData{}
+}
