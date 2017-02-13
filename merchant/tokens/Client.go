@@ -18,7 +18,7 @@ type Client struct {
 
 // Create represents the resource /{merchantId}/tokens
 // Create token
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__tokens_post
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
@@ -75,7 +75,7 @@ func (c *Client) Create(body token.CreateRequest, context communication.CallCont
 
 // Delete represents the resource /{merchantId}/tokens/{tokenId}
 // Delete token
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__tokens__tokenId__delete
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
@@ -135,7 +135,7 @@ func (c *Client) Delete(tokenID string, query DeleteParams, context communicatio
 
 // Get represents the resource /{merchantId}/tokens/{tokenId}
 // Get token
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__tokens__tokenId__get
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
@@ -196,7 +196,7 @@ func (c *Client) Get(tokenID string, context communication.CallContext) (token.R
 
 // Update represents the resource /{merchantId}/tokens/{tokenId}
 // Update token
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__tokens__tokenId__put
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
@@ -256,7 +256,7 @@ func (c *Client) Update(tokenID string, body token.UpdateRequest, context commun
 
 // Approvesepadirectdebit represents the resource /{merchantId}/tokens/{tokenId}/approvesepadirectdebit
 // Approve SEPA DD mandate
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__tokens__tokenId__approvesepadirectdebit_post
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)

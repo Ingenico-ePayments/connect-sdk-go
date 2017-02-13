@@ -18,7 +18,7 @@ type Client struct {
 
 // Find represents the resource /{merchantId}/productgroups
 // Get payment product groups
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__productgroups_get
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
@@ -75,7 +75,7 @@ func (c *Client) Find(query FindParams, context communication.CallContext) (prod
 
 // Get represents the resource /{merchantId}/productgroups/{paymentProductGroupId}
 // Get payment product group
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__productgroups__paymentProductGroupId__get
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)

@@ -18,7 +18,7 @@ type Client struct {
 
 // Get represents the resource /{merchantId}/refunds/{refundId}
 // Get refund
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__refunds__refundId__get
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
@@ -79,7 +79,7 @@ func (c *Client) Get(refundID string, context communication.CallContext) (refund
 
 // Approve represents the resource /{merchantId}/refunds/{refundId}/approve
 // Approve refund
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__refunds__refundId__approve_post
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
@@ -139,7 +139,7 @@ func (c *Client) Approve(refundID string, body refund.ApproveRequest, context co
 
 // Cancel represents the resource /{merchantId}/refunds/{refundId}/cancel
 // Cancel refund
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__refunds__refundId__cancel_post
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
@@ -199,7 +199,7 @@ func (c *Client) Cancel(refundID string, context communication.CallContext) erro
 
 // Cancelapproval represents the resource /{merchantId}/refunds/{refundId}/cancelapproval
 // Undo approve refund
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__refunds__refundId__cancelapproval_post
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)

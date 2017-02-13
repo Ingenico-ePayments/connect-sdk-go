@@ -22,7 +22,7 @@ type Client struct {
 
 // Create represents the resource /{merchantId}/payments
 // Create payment
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__payments_post
 //
 // Can return any of the following errors:
 // DeclinedPaymentError if the GlobalCollect platform declined / rejected the payment. The payment result will be available from the exception.
@@ -130,7 +130,7 @@ func (c *Client) Create(body payment.CreateRequest, context communication.CallCo
 
 // Get represents the resource /{merchantId}/payments/{paymentId}
 // Get payment
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__payments__paymentId__get
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
@@ -191,7 +191,7 @@ func (c *Client) Get(paymentID string, context communication.CallContext) (payme
 
 // Approve represents the resource /{merchantId}/payments/{paymentId}/approve
 // Capture payment
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__payments__paymentId__approve_post
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
@@ -252,7 +252,7 @@ func (c *Client) Approve(paymentID string, body payment.ApproveRequest, context 
 
 // Cancel represents the resource /{merchantId}/payments/{paymentId}/cancel
 // Cancel payment
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__payments__paymentId__cancel_post
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
@@ -313,7 +313,7 @@ func (c *Client) Cancel(paymentID string, context communication.CallContext) (pa
 
 // Cancelapproval represents the resource /{merchantId}/payments/{paymentId}/cancelapproval
 // Undo capture payment request
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__payments__paymentId__cancelapproval_post
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
@@ -374,7 +374,7 @@ func (c *Client) Cancelapproval(paymentID string, context communication.CallCont
 
 // Processchallenged represents the resource /{merchantId}/payments/{paymentId}/processchallenged
 // Approves challenged payment
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__payments__paymentId__processchallenged_post
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
@@ -435,7 +435,7 @@ func (c *Client) Processchallenged(paymentID string, context communication.CallC
 
 // Refund represents the resource /{merchantId}/payments/{paymentId}/refund
 // Create refund
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__payments__paymentId__refund_post
 //
 // Can return any of the following errors:
 // DeclinedRefundError if the GlobalCollect platform declined / rejected the refund. The refund result will be available from the exception.
@@ -517,7 +517,7 @@ func (c *Client) Refund(paymentID string, body refund.Request, context communica
 
 // Tokenize represents the resource /{merchantId}/payments/{paymentId}/tokenize
 // Create a token from payment
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__payments__paymentId__tokenize_post
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)

@@ -18,7 +18,7 @@ type Client struct {
 
 // Create represents the resource /{merchantId}/hostedcheckouts
 // Create hosted checkout
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__hostedcheckouts_post
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
@@ -75,7 +75,7 @@ func (c *Client) Create(body hostedcheckout.CreateRequest, context communication
 
 // Get represents the resource /{merchantId}/hostedcheckouts/{hostedCheckoutId}
 // Get hosted checkout status
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__hostedcheckouts__hostedCheckoutId__get
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)

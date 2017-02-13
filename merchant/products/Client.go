@@ -21,7 +21,7 @@ type Client struct {
 
 // Find represents the resource /{merchantId}/products
 // Get payment products
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__products_get
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
@@ -78,7 +78,7 @@ func (c *Client) Find(query FindParams, context communication.CallContext) (prod
 
 // Get represents the resource /{merchantId}/products/{paymentProductId}
 // Get payment product
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__products__paymentProductId__get
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
@@ -139,7 +139,7 @@ func (c *Client) Get(paymentProductID int32, query GetParams, context communicat
 
 // Directory represents the resource /{merchantId}/products/{paymentProductId}/directory
 // Get payment product directory
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__products__paymentProductId__directory_get
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
@@ -200,7 +200,7 @@ func (c *Client) Directory(paymentProductID int32, query DirectoryParams, contex
 
 // Networks represents the resource /{merchantId}/products/{paymentProductId}/networks
 // Get payment product networks
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__products__paymentProductId__networks_get
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
@@ -261,7 +261,7 @@ func (c *Client) Networks(paymentProductID int32, query NetworksParams, context 
 
 // PublicKey represents the resource /{merchantId}/products/{paymentProductId}/publicKey
 // Get payment product specific public key
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__products__paymentProductId__publicKey_get
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)

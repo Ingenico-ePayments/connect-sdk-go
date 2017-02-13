@@ -18,7 +18,7 @@ type Client struct {
 
 // Create represents the resource /{merchantId}/sessions
 // Create Session
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__sessions_post
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)

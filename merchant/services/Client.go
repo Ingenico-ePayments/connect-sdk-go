@@ -18,7 +18,7 @@ type Client struct {
 
 // ConvertAmount represents the resource /{merchantId}/services/convert/amount
 // Convert amount
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__services_convert_amount_get
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
@@ -75,7 +75,7 @@ func (c *Client) ConvertAmount(query ConvertAmountParams, context communication.
 
 // Bankaccount represents the resource /{merchantId}/services/convert/bankaccount
 // Convert Bankaccount
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__services_convert_bankaccount_post
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
@@ -132,7 +132,7 @@ func (c *Client) Bankaccount(body services.BankDetailsRequest, context communica
 
 // GetIINdetails represents the resource /{merchantId}/services/getIINdetails
 // Get IIN details
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__services_getIINdetails_post
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
@@ -189,7 +189,7 @@ func (c *Client) GetIINdetails(body services.GetIINDetailsRequest, context commu
 
 // Testconnection represents the resource /{merchantId}/services/testconnection
 // Test connection
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__services_testconnection_get
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)

@@ -20,7 +20,7 @@ type Client struct {
 
 // Create represents the resource /{merchantId}/payouts
 // Create payout
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__payouts_post
 //
 // Can return any of the following errors:
 // DeclinedPayoutError if the GlobalCollect platform declined / rejected the payout. The payout result will be available from the exception.
@@ -88,7 +88,7 @@ func (c *Client) Create(body payout.CreateRequest, context communication.CallCon
 
 // Get represents the resource /{merchantId}/payouts/{payoutId}
 // Get payout
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__payouts__payoutId__get
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
@@ -149,7 +149,7 @@ func (c *Client) Get(payoutID string, context communication.CallContext) (payout
 
 // Approve represents the resource /{merchantId}/payouts/{payoutId}/approve
 // Approve payout
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__payouts__payoutId__approve_post
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
@@ -210,7 +210,7 @@ func (c *Client) Approve(payoutID string, body payout.ApproveRequest, context co
 
 // Cancel represents the resource /{merchantId}/payouts/{payoutId}/cancel
 // Cancel payout
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__payouts__payoutId__cancel_post
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
@@ -270,7 +270,7 @@ func (c *Client) Cancel(payoutID string, context communication.CallContext) erro
 
 // Cancelapproval represents the resource /{merchantId}/payouts/{payoutId}/cancelapproval
 // Undo approve payout
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__payouts__payoutId__cancelapproval_post
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)

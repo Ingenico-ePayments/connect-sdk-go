@@ -18,7 +18,7 @@ type Client struct {
 
 // Bankaccounts represents the resource /{merchantId}/riskassessments/bankaccounts
 // Risk-assess bank account
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__riskassessments_bankaccounts_post
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
@@ -75,7 +75,7 @@ func (c *Client) Bankaccounts(body riskassessments.RiskAssessmentBankAccount, co
 
 // Cards represents the resource /{merchantId}/riskassessments/cards
 // Risk-assess card
-// Documentation can be found at $devportal_call_uri($overload)
+// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__riskassessments_cards_post
 //
 // Can return any of the following errors:
 // ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)

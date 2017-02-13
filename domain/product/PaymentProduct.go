@@ -10,6 +10,7 @@ type PaymentProduct struct {
 	AllowsRecurring           *bool                       `json:"allowsRecurring,omitempty"`
 	AllowsTokenization        *bool                       `json:"allowsTokenization,omitempty"`
 	AutoTokenized             *bool                       `json:"autoTokenized,omitempty"`
+	CanBeIframed              *bool                       `json:"canBeIframed,omitempty"`
 	DisplayHints              *PaymentProductDisplayHints `json:"displayHints,omitempty"`
 	Fields                    *[]PaymentProductField      `json:"fields,omitempty"`
 	ID                        *int32                      `json:"id,omitempty"`
