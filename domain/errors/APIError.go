@@ -6,8 +6,10 @@ package errors
 // APIError represents class APIError
 // Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_APIError
 type APIError struct {
+	Category       *string `json:"category,omitempty"`
 	Code           *string `json:"code,omitempty"`
 	HTTPStatusCode *int32  `json:"httpStatusCode,omitempty"`
+	ID             *string `json:"id,omitempty"`
 	Message        *string `json:"message,omitempty"`
 	PropertyName   *string `json:"propertyName,omitempty"`
 	RequestID      *string `json:"requestId,omitempty"`

@@ -20,6 +20,7 @@ type CardPaymentMethodSpecificInput struct {
 	SkipAuthentication                   *bool                                 `json:"skipAuthentication,omitempty"`
 	SkipFraudService                     *bool                                 `json:"skipFraudService,omitempty"`
 	Token                                *string                               `json:"token,omitempty"`
+	Tokenize                             *bool                                 `json:"tokenize,omitempty"`
 }
 
 // NewCardPaymentMethodSpecificInput constructs a new CardPaymentMethodSpecificInput

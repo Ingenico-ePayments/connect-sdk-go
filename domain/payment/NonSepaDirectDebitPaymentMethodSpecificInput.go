@@ -13,6 +13,7 @@ type NonSepaDirectDebitPaymentMethodSpecificInput struct {
 	PaymentProductID                  *int32                                            `json:"paymentProductId,omitempty"`
 	RecurringPaymentSequenceIndicator *string                                           `json:"recurringPaymentSequenceIndicator,omitempty"`
 	Token                             *string                                           `json:"token,omitempty"`
+	Tokenize                          *bool                                             `json:"tokenize,omitempty"`
 }
 
 // NewNonSepaDirectDebitPaymentMethodSpecificInput constructs a new NonSepaDirectDebitPaymentMethodSpecificInput
