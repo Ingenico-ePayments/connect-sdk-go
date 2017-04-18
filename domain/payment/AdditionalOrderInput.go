@@ -9,6 +9,7 @@ import "github.com/Ingenico-ePayments/connect-sdk-go/domain/definitions"
 // Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_AdditionalOrderInput
 type AdditionalOrderInput struct {
 	AirlineData          *definitions.AirlineData `json:"airlineData,omitempty"`
+	// Deprecated: Use Order.shoppingCart instead
 	Level3SummaryData    *Level3SummaryData       `json:"level3SummaryData,omitempty"`
 	NumberOfInstallments *int64                   `json:"numberOfInstallments,omitempty"`
 	OrderDate            *string                  `json:"orderDate,omitempty"`

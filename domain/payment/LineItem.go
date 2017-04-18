@@ -10,7 +10,9 @@ import "github.com/Ingenico-ePayments/connect-sdk-go/domain/definitions"
 type LineItem struct {
 	AmountOfMoney                *definitions.AmountOfMoney            `json:"amountOfMoney,omitempty"`
 	InvoiceData                  *LineItemInvoiceData                  `json:"invoiceData,omitempty"`
+	// Deprecated: Use orderLineDetails instead
 	Level3InterchangeInformation *LineItemLevel3InterchangeInformation `json:"level3InterchangeInformation,omitempty"`
+	OrderLineDetails             *OrderLineDetails                     `json:"orderLineDetails,omitempty"`
 }
 
 // NewLineItem constructs a new LineItem

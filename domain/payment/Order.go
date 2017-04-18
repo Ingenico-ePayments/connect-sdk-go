@@ -13,6 +13,7 @@ type Order struct {
 	Customer        *Customer                  `json:"customer,omitempty"`
 	Items           *[]LineItem                `json:"items,omitempty"`
 	References      *OrderReferences           `json:"references,omitempty"`
+	ShoppingCart    *ShoppingCart              `json:"shoppingCart,omitempty"`
 }
 
 // NewOrder constructs a new Order

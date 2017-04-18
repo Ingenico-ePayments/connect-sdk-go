@@ -6,6 +6,7 @@ package payment
 // RedirectPaymentMethodSpecificInput represents class RedirectPaymentMethodSpecificInput
 // Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_RedirectPaymentMethodSpecificInput
 type RedirectPaymentMethodSpecificInput struct {
+	ExpirationPeriod                  *int32                                  `json:"expirationPeriod,omitempty"`
 	IsRecurring                       *bool                                   `json:"isRecurring,omitempty"`
 	PaymentProduct809SpecificInput    *RedirectPaymentProduct809SpecificInput `json:"paymentProduct809SpecificInput,omitempty"`
 	PaymentProduct816SpecificInput    *RedirectPaymentProduct816SpecificInput `json:"paymentProduct816SpecificInput,omitempty"`
