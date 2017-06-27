@@ -1,10 +1,9 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package payment
 
 // CreationOutput represents class PaymentCreationOutput
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_PaymentCreationOutput
 type CreationOutput struct {
 	AdditionalReference *string `json:"additionalReference,omitempty"`
 	ExternalReference   *string `json:"externalReference,omitempty"`

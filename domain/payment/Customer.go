@@ -1,12 +1,11 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package payment
 
 import "github.com/Ingenico-ePayments/connect-sdk-go/domain/definitions"
 
 // Customer represents class Customer
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_Customer
 type Customer struct {
 	BillingAddress      *definitions.Address            `json:"billingAddress,omitempty"`
 	CompanyInformation  *definitions.CompanyInformation `json:"companyInformation,omitempty"`

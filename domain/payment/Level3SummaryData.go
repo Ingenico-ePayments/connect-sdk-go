@@ -1,18 +1,17 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package payment
 
 // Level3SummaryData represents class Level3SummaryData
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_Level3SummaryData
 //
-// Deprecated: Use ShoppingCart instead
+// Deprecated: Use Order.shoppingCart instead
 type Level3SummaryData struct {
-	// Deprecated: Use ShoppingCart.discountAmount instead
+	// Deprecated: Use ShoppingCart.amountbreakdown with type DISCOUNT instead
 	DiscountAmount *int64 `json:"discountAmount,omitempty"`
-	// Deprecated: Use ShoppingCart.dutyAmount instead
+	// Deprecated: Use ShoppingCart.amountbreakdown with type DUTY instead
 	DutyAmount     *int64 `json:"dutyAmount,omitempty"`
-	// Deprecated: Use ShoppingCart.shippingAmount instead
+	// Deprecated: Use ShoppingCart.amountbreakdown with type SHIPPING instead
 	ShippingAmount *int64 `json:"shippingAmount,omitempty"`
 }
 

@@ -23,19 +23,19 @@ func TestToRequestParameters(t *testing.T) {
 	paramRequestCmp(t, lParams, paramList)
 
 	{
-		lParams.Amount = new(int64)
-		*lParams.Amount = 1000
+		lParams.Target = new(string)
+		*lParams.Target = "USD"
 
-		param, _ := communicator.NewRequestParam("amount", "1000")
+		param, _ := communicator.NewRequestParam("target", "USD")
 		paramList = append(paramList, *param)
 	}
 	paramRequestCmp(t, lParams, paramList)
 
 	{
-		lParams.Target = new(string)
-		*lParams.Target = "USD"
+		lParams.Amount = new(int64)
+		*lParams.Amount = 1000
 
-		param, _ := communicator.NewRequestParam("target", "USD")
+		param, _ := communicator.NewRequestParam("amount", "1000")
 		paramList = append(paramList, *param)
 	}
 	paramRequestCmp(t, lParams, paramList)

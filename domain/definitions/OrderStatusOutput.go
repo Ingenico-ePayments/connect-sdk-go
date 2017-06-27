@@ -1,12 +1,11 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package definitions
 
 import "github.com/Ingenico-ePayments/connect-sdk-go/domain/errors"
 
 // OrderStatusOutput represents class OrderStatusOutput
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_OrderStatusOutput
 type OrderStatusOutput struct {
 	Errors                   *[]errors.APIError `json:"errors,omitempty"`
 	IsCancellable            *bool              `json:"isCancellable,omitempty"`

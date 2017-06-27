@@ -1,10 +1,9 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package hostedcheckout
 
 // SpecificInput represents class HostedCheckoutSpecificInput
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_HostedCheckoutSpecificInput
 type SpecificInput struct {
 	IsRecurring           *bool                                `json:"isRecurring,omitempty"`
 	Locale                *string                              `json:"locale,omitempty"`

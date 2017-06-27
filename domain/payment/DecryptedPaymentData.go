@@ -1,10 +1,9 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package payment
 
 // DecryptedPaymentData represents class DecryptedPaymentData
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_DecryptedPaymentData
 type DecryptedPaymentData struct {
 	CardholderName *string `json:"cardholderName,omitempty"`
 	Cryptogram     *string `json:"cryptogram,omitempty"`

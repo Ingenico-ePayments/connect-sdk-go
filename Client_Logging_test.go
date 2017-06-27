@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"net/url"
 	"strconv"
+	"strings"
 	"testing"
 	"time"
 
@@ -24,6 +25,50 @@ var testConnectionJSON = `{
 var convertAmountJSON = `{
 	"convertedAmount": 4547504
 }`
+
+var createPaymentUnicodeJSON = `{
+    "creationOutput": {
+        "additionalReference": "00000012341000059598",
+        "externalReference": "000000123410000595980000100001"
+    },
+    "payment": {
+        "id": "000000123410000595980000100001",
+        "paymentOutput": {
+            "amountOfMoney": {
+                "amount": 2345,
+                "currencyCode": "CAD"
+            },
+            "references": {
+                "paymentReference": "0"
+            },
+            "paymentMethod": "redirect",
+            "redirectPaymentMethodSpecificOutput":{
+               "paymentProductId":840,
+               "paymentProduct840SpecificOutput":{
+                  "customerAccount":{
+                     "firstName":"Theresa",
+                     "surname":"Schröder"
+                  },
+                  "customerAddress":{
+                     "city":"sittensen",
+                     "countryCode":"DE",
+                     "street":"Westerberg 25",
+                     "zip":"27419"
+                  }
+               }
+            }
+        },
+        "status": "PENDING_APPROVAL",
+        "statusOutput": {
+            "isCancellable": true,
+            "statusCategory": "PENDING_MERCHANT",
+            "statusCode": 600,
+            "statusCodeChangeDateTime": "20160310094054",
+            "isAuthorized": true
+        }
+    }
+}
+`
 
 var createPaymentJSON = `{
 	"creationOutput": {
@@ -525,6 +570,167 @@ func TestDeleteToken(t *testing.T) {
 	}
 }
 
+func TestLoggingCreatePaymentUnicode(t *testing.T) {
+	logPrefix := "TestLoggingCreatePayment"
+
+	responseHeaders := map[string]string{
+		"Content-Type": "application/json",
+		"Dummy":        "dummy",
+		"Location":     "http://localhost/v1/1234/payments/000000123410000595980000100001",
+	}
+	requestHeaders := map[string][]string{}
+
+	listener, sl, client, err := createTestEnvironment(
+		"/v1/1234/payments",
+		createRecordRequest(http.StatusCreated, createPaymentUnicodeJSON, responseHeaders, requestHeaders))
+	if err != nil {
+		t.Fatalf("%v: %v", logPrefix, err)
+	}
+	defer listener.Close()
+	defer sl.Close()
+	defer client.Close()
+
+	logger := &testLogger{}
+	client.EnableLogging(logger)
+
+	var card definitions.Card
+	card.CardNumber = newString("1234567890123456")
+	card.Cvv = newString("123")
+	card.ExpiryDate = newString("1220")
+
+	var cardPaymentMethodSpecificInput payment.CardPaymentMethodSpecificInput
+	cardPaymentMethodSpecificInput.Card = &card
+	cardPaymentMethodSpecificInput.PaymentProductID = newInt32(1)
+
+	var amountOfMoney definitions.AmountOfMoney
+	amountOfMoney.Amount = newInt64(2345)
+	amountOfMoney.CurrencyCode = newString("CAD")
+
+	var billingAddress definitions.Address
+	billingAddress.CountryCode = newString("CA")
+
+	var customer payment.Customer
+	customer.BillingAddress = &billingAddress
+
+	var order payment.Order
+	order.AmountOfMoney = &amountOfMoney
+	order.Customer = &customer
+
+	var reqBody payment.CreateRequest
+	reqBody.CardPaymentMethodSpecificInput = &cardPaymentMethodSpecificInput
+	reqBody.Order = &order
+
+	response, err := client.Merchant("1234").Payments().Create(reqBody, nil)
+	if err != nil {
+		t.Fatalf("%v: %v", logPrefix, err)
+	}
+
+	if len(logger.entries) != 2 {
+		t.Fatalf("%v: loggerEntries %v", logPrefix, len(logger.entries))
+	}
+
+	if response.Payment == nil {
+		t.Fatalf("%v: responsePayment nil", logPrefix)
+	}
+	if response.Payment.ID == nil {
+		t.Fatalf("%v: responsePaymentID nil", logPrefix)
+	}
+
+	firstEntry := logger.entries[0]
+	if firstEntry.request == nil {
+		t.Fatalf("%v: firstEntryRequest %v", logPrefix, firstEntry.request)
+	}
+	if firstEntry.request.Method() != "POST" {
+		t.Fatalf("%v: firstEntryRequestMethod %v", logPrefix, firstEntry.request.Method())
+	}
+	if firstEntry.request.URL().Path != "/v1/1234/payments" {
+		t.Fatalf("%v: firstEntryRequestURL %v", logPrefix, firstEntry.request.URL().Path)
+	}
+	if firstEntry.request.Headers() == nil {
+		t.Fatalf("%v: firstEntryRequestHeaders %v", logPrefix, firstEntry.request.Headers())
+	}
+	foundDate, foundMetainfo := false, false
+	for k, v := range firstEntry.request.Headers() {
+		switch k {
+		case "Authorization":
+			{
+				if v[0] != "********" {
+					t.Fatalf("%v: authorizationHeader %v", logPrefix, v)
+				}
+
+				break
+			}
+		case "Date":
+			{
+				foundDate = true
+
+				break
+			}
+		case "X-GCS-ServerMetaInfo":
+			{
+				foundMetainfo = true
+
+				break
+			}
+		}
+	}
+	if !foundDate {
+		t.Fatalf("%v: date header not found", logPrefix)
+	}
+	if !foundMetainfo {
+		t.Fatalf("%v: meta info header not found", logPrefix)
+	}
+	if firstEntry.err != nil {
+		t.Fatalf("%v: firstEntryErr %v", logPrefix, firstEntry.err)
+	}
+
+	secondEntry := logger.entries[1]
+	if !strings.Contains(secondEntry.response.Body(), "Schröder") {
+		t.Fatalf("%v: secondEntryResponse %v", logPrefix, secondEntry.response)
+	}
+	if secondEntry.response == nil {
+		t.Fatalf("%v: secondEntryResponse %v", logPrefix, secondEntry.response)
+	}
+	if secondEntry.response.StatusCode() != http.StatusCreated {
+		t.Fatalf("%v: secondEntryResponseStatusCode %v", logPrefix, secondEntry.response.StatusCode())
+	}
+	if secondEntry.response.ContentType() != "application/json" {
+		t.Fatalf("%v: secondEntryResponseContentType %v", logPrefix, secondEntry.response.ContentType())
+	}
+	if secondEntry.response.Headers() == nil {
+		t.Fatalf("%v: secondEntryResponseHeaders %v", logPrefix, secondEntry.response.Headers())
+	}
+	if secondEntry.response.Body() == "" {
+		t.Fatalf("%v: secondEntryResponseBody %v", logPrefix, secondEntry.response.Body())
+	}
+
+	foundDate, foundDummy := false, false
+	for k := range secondEntry.response.Headers() {
+		switch k {
+		case "Date":
+			{
+				foundDate = true
+
+				break
+			}
+		case "Dummy":
+			{
+				foundDummy = true
+
+				break
+			}
+		}
+	}
+	if !foundDate {
+		t.Fatalf("%v: date header not found", logPrefix)
+	}
+	if !foundDummy {
+		t.Fatalf("%v: dummy header not found", logPrefix)
+	}
+	if secondEntry.err != nil {
+		t.Fatalf("%v: secondEntryErr %v", logPrefix, secondEntry.err)
+	}
+}
 func TestLoggingCreatePayment(t *testing.T) {
 	logPrefix := "TestLoggingCreatePayment"
 

@@ -1,10 +1,9 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package token
 
 // UpdateRequest represents class UpdateTokenRequest
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_UpdateTokenRequest
 type UpdateRequest struct {
 	Card               *Card                           `json:"card,omitempty"`
 	EWallet            *EWallet                        `json:"eWallet,omitempty"`

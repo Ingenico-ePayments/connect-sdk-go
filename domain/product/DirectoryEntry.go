@@ -1,10 +1,9 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package product
 
 // DirectoryEntry represents class DirectoryEntry
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_DirectoryEntry
 type DirectoryEntry struct {
 	CountryNames *[]string `json:"countryNames,omitempty"`
 	IssuerID     *string   `json:"issuerId,omitempty"`

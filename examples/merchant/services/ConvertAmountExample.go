@@ -1,5 +1,5 @@
 // This file was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package examples
 
@@ -23,8 +23,8 @@ func convertAmountExample() {
 
 	var query services.ConvertAmountParams
 	query.Source = newString("EUR")
-	query.Amount = newInt64(100)
 	query.Target = newString("USD")
+	query.Amount = newInt64(100)
 
 	response, err := client.Merchant("merchantId").Services().ConvertAmount(query, nil)
 

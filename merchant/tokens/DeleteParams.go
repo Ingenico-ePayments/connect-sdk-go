@@ -1,5 +1,5 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package tokens
 
@@ -8,7 +8,7 @@ import (
 )
 
 // DeleteParams represents query parameters for Delete token
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__tokens__tokenId__delete
+// Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/tokens/delete.html
 type DeleteParams struct {
 	MandateCancelDate *string
 }

@@ -1,23 +1,27 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package definitions
 
 // FraudFields represents class FraudFields
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_FraudFields
 type FraudFields struct {
-	CustomerIPAddress      *string   `json:"customerIpAddress,omitempty"`
-	DefaultFormFill        *string   `json:"defaultFormFill,omitempty"`
-	GiftCardType           *string   `json:"giftCardType,omitempty"`
-	GiftMessage            *string   `json:"giftMessage,omitempty"`
-	HasForgottenPwd        *bool     `json:"hasForgottenPwd,omitempty"`
-	HasPassword            *bool     `json:"hasPassword,omitempty"`
-	IsPreviousCustomer     *bool     `json:"isPreviousCustomer,omitempty"`
-	OrderTimezone          *string   `json:"orderTimezone,omitempty"`
-	ShipComments           *string   `json:"shipComments,omitempty"`
-	ShipmentTrackingNumber *string   `json:"shipmentTrackingNumber,omitempty"`
-	UserData               *[]string `json:"userData,omitempty"`
-	Website                *string   `json:"website,omitempty"`
+	AddressesAreIdentical  *bool                       `json:"addressesAreIdentical,omitempty"`
+	BlackListData          *string                     `json:"blackListData,omitempty"`
+	CardOwnerAddress       *Address                    `json:"cardOwnerAddress,omitempty"`
+	CustomerIPAddress      *string                     `json:"customerIpAddress,omitempty"`
+	DefaultFormFill        *string                     `json:"defaultFormFill,omitempty"`
+	FingerPrintActivated   *bool                       `json:"fingerPrintActivated,omitempty"`
+	GiftCardType           *string                     `json:"giftCardType,omitempty"`
+	GiftMessage            *string                     `json:"giftMessage,omitempty"`
+	HasForgottenPwd        *bool                       `json:"hasForgottenPwd,omitempty"`
+	HasPassword            *bool                       `json:"hasPassword,omitempty"`
+	IsPreviousCustomer     *bool                       `json:"isPreviousCustomer,omitempty"`
+	OrderTimezone          *string                     `json:"orderTimezone,omitempty"`
+	ShipComments           *string                     `json:"shipComments,omitempty"`
+	ShipmentTrackingNumber *string                     `json:"shipmentTrackingNumber,omitempty"`
+	ShippingDetails        *FraudFieldsShippingDetails `json:"shippingDetails,omitempty"`
+	UserData               *[]string                   `json:"userData,omitempty"`
+	Website                *string                     `json:"website,omitempty"`
 }
 
 // NewFraudFields constructs a new FraudFields

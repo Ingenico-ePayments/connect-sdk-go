@@ -1,5 +1,5 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package products
 
@@ -8,18 +8,18 @@ import (
 )
 
 // DirectoryParams represents query parameters for Get payment product directory
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__products__paymentProductId__directory_get
+// Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/products/directory.html
 type DirectoryParams struct {
-	CurrencyCode *string
 	CountryCode  *string
+	CurrencyCode *string
 }
 
 // ToRequestParameters converts the query to communicator.RequestParams
 func (params *DirectoryParams) ToRequestParameters() communicator.RequestParams {
 	reqParams := communicator.RequestParams{}
 
-	communicator.AddRequestParameter(&reqParams, "currencyCode", params.CurrencyCode)
 	communicator.AddRequestParameter(&reqParams, "countryCode", params.CountryCode)
+	communicator.AddRequestParameter(&reqParams, "currencyCode", params.CurrencyCode)
 
 	return reqParams
 }

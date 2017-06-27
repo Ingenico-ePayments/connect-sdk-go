@@ -1,10 +1,9 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package definitions
 
 // AirlineFlightLeg represents class AirlineFlightLeg
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_AirlineFlightLeg
 type AirlineFlightLeg struct {
 	AirlineClass   *string `json:"airlineClass,omitempty"`
 	ArrivalAirport *string `json:"arrivalAirport,omitempty"`

@@ -1,10 +1,9 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package hostedcheckout
 
 // CreateResponse represents class CreateHostedCheckoutResponse
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_CreateHostedCheckoutResponse
 type CreateResponse struct {
 	RETURNMAC          *string   `json:"RETURNMAC,omitempty"`
 	HostedCheckoutID   *string   `json:"hostedCheckoutId,omitempty"`

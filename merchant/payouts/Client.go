@@ -1,5 +1,5 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package payouts
 
@@ -20,19 +20,19 @@ type Client struct {
 
 // Create represents the resource /{merchantId}/payouts
 // Create payout
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__payouts_post
+// Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/payouts/create.html
 //
 // Can return any of the following errors:
-// DeclinedPayoutError if the GlobalCollect platform declined / rejected the payout. The payout result will be available from the exception.
-// ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
-// AuthorizationError if the request was not allowed (HTTP status code 403)
-// IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
-// ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
-//            or there was a conflict (HTTP status code 404, 409 or 410)
-// GlobalCollectError if something went wrong at the GlobalCollect platform,
-//            the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
-//            or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
-// APIError if the GlobalCollect platform returned any other error
+// * DeclinedPayoutError if the GlobalCollect platform declined / rejected the payout. The payout result will be available from the exception.
+// * ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
+// * AuthorizationError if the request was not allowed (HTTP status code 403)
+// * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
+// * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
+// or there was a conflict (HTTP status code 404, 409 or 410)
+// * GlobalCollectError if something went wrong at the GlobalCollect platform,
+// the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
+// or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
+// * APIError if the GlobalCollect platform returned any other error
 func (c *Client) Create(body payout.CreateRequest, context communication.CallContext) (payout.Response, error) {
 	var resultObject payout.Response
 
@@ -88,18 +88,18 @@ func (c *Client) Create(body payout.CreateRequest, context communication.CallCon
 
 // Get represents the resource /{merchantId}/payouts/{payoutId}
 // Get payout
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__payouts__payoutId__get
+// Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/payouts/get.html
 //
 // Can return any of the following errors:
-// ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
-// AuthorizationError if the request was not allowed (HTTP status code 403)
-// IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
-// ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
-//            or there was a conflict (HTTP status code 404, 409 or 410)
-// GlobalCollectError if something went wrong at the GlobalCollect platform,
-//            the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
-//            or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
-// APIError if the GlobalCollect platform returned any other error
+// * ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
+// * AuthorizationError if the request was not allowed (HTTP status code 403)
+// * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
+// * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
+// or there was a conflict (HTTP status code 404, 409 or 410)
+// * GlobalCollectError if something went wrong at the GlobalCollect platform,
+// the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
+// or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
+// * APIError if the GlobalCollect platform returned any other error
 func (c *Client) Get(payoutID string, context communication.CallContext) (payout.Response, error) {
 	var resultObject payout.Response
 
@@ -120,17 +120,10 @@ func (c *Client) Get(payoutID string, context communication.CallContext) (payout
 		if isResponseError {
 			var errorObject interface{}
 
-			switch responseError.StatusCode() {
-			default:
-				{
-					errorObject = &errors.ErrorResponse{}
-					err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
-					if err != nil {
-						return resultObject, err
-					}
-
-					break
-				}
+			errorObject = &errors.ErrorResponse{}
+			err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
+			if err != nil {
+				return resultObject, err
 			}
 
 			err, createErr := sdkErrors.CreateAPIError(responseError.StatusCode(), responseError.Body(), errorObject, context)
@@ -149,18 +142,18 @@ func (c *Client) Get(payoutID string, context communication.CallContext) (payout
 
 // Approve represents the resource /{merchantId}/payouts/{payoutId}/approve
 // Approve payout
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__payouts__payoutId__approve_post
+// Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/payouts/approve.html
 //
 // Can return any of the following errors:
-// ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
-// AuthorizationError if the request was not allowed (HTTP status code 403)
-// IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
-// ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
-//            or there was a conflict (HTTP status code 404, 409 or 410)
-// GlobalCollectError if something went wrong at the GlobalCollect platform,
-//            the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
-//            or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
-// APIError if the GlobalCollect platform returned any other error
+// * ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
+// * AuthorizationError if the request was not allowed (HTTP status code 403)
+// * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
+// * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
+// or there was a conflict (HTTP status code 404, 409 or 410)
+// * GlobalCollectError if something went wrong at the GlobalCollect platform,
+// the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
+// or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
+// * APIError if the GlobalCollect platform returned any other error
 func (c *Client) Approve(payoutID string, body payout.ApproveRequest, context communication.CallContext) (payout.Response, error) {
 	var resultObject payout.Response
 
@@ -181,17 +174,10 @@ func (c *Client) Approve(payoutID string, body payout.ApproveRequest, context co
 		if isResponseError {
 			var errorObject interface{}
 
-			switch responseError.StatusCode() {
-			default:
-				{
-					errorObject = &errors.ErrorResponse{}
-					err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
-					if err != nil {
-						return resultObject, err
-					}
-
-					break
-				}
+			errorObject = &errors.ErrorResponse{}
+			err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
+			if err != nil {
+				return resultObject, err
 			}
 
 			err, createErr := sdkErrors.CreateAPIError(responseError.StatusCode(), responseError.Body(), errorObject, context)
@@ -210,18 +196,18 @@ func (c *Client) Approve(payoutID string, body payout.ApproveRequest, context co
 
 // Cancel represents the resource /{merchantId}/payouts/{payoutId}/cancel
 // Cancel payout
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__payouts__payoutId__cancel_post
+// Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/payouts/cancel.html
 //
 // Can return any of the following errors:
-// ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
-// AuthorizationError if the request was not allowed (HTTP status code 403)
-// IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
-// ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
-//            or there was a conflict (HTTP status code 404, 409 or 410)
-// GlobalCollectError if something went wrong at the GlobalCollect platform,
-//            the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
-//            or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
-// APIError if the GlobalCollect platform returned any other error
+// * ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
+// * AuthorizationError if the request was not allowed (HTTP status code 403)
+// * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
+// * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
+// or there was a conflict (HTTP status code 404, 409 or 410)
+// * GlobalCollectError if something went wrong at the GlobalCollect platform,
+// the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
+// or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
+// * APIError if the GlobalCollect platform returned any other error
 func (c *Client) Cancel(payoutID string, context communication.CallContext) error {
 	pathContext := map[string]string{
 		"payoutId": payoutID,
@@ -241,17 +227,10 @@ func (c *Client) Cancel(payoutID string, context communication.CallContext) erro
 		if isResponseError {
 			var errorObject interface{}
 
-			switch responseError.StatusCode() {
-			default:
-				{
-					errorObject = &errors.ErrorResponse{}
-					err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
-					if err != nil {
-						return err
-					}
-
-					break
-				}
+			errorObject = &errors.ErrorResponse{}
+			err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
+			if err != nil {
+				return err
 			}
 
 			err, createErr := sdkErrors.CreateAPIError(responseError.StatusCode(), responseError.Body(), errorObject, context)
@@ -270,18 +249,18 @@ func (c *Client) Cancel(payoutID string, context communication.CallContext) erro
 
 // Cancelapproval represents the resource /{merchantId}/payouts/{payoutId}/cancelapproval
 // Undo approve payout
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__payouts__payoutId__cancelapproval_post
+// Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/payouts/cancelapproval.html
 //
 // Can return any of the following errors:
-// ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
-// AuthorizationError if the request was not allowed (HTTP status code 403)
-// IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
-// ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
-//            or there was a conflict (HTTP status code 404, 409 or 410)
-// GlobalCollectError if something went wrong at the GlobalCollect platform,
-//            the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
-//            or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
-// APIError if the GlobalCollect platform returned any other error
+// * ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
+// * AuthorizationError if the request was not allowed (HTTP status code 403)
+// * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
+// * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
+// or there was a conflict (HTTP status code 404, 409 or 410)
+// * GlobalCollectError if something went wrong at the GlobalCollect platform,
+// the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
+// or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
+// * APIError if the GlobalCollect platform returned any other error
 func (c *Client) Cancelapproval(payoutID string, context communication.CallContext) error {
 	pathContext := map[string]string{
 		"payoutId": payoutID,
@@ -301,17 +280,10 @@ func (c *Client) Cancelapproval(payoutID string, context communication.CallConte
 		if isResponseError {
 			var errorObject interface{}
 
-			switch responseError.StatusCode() {
-			default:
-				{
-					errorObject = &errors.ErrorResponse{}
-					err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
-					if err != nil {
-						return err
-					}
-
-					break
-				}
+			errorObject = &errors.ErrorResponse{}
+			err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
+			if err != nil {
+				return err
 			}
 
 			err, createErr := sdkErrors.CreateAPIError(responseError.StatusCode(), responseError.Body(), errorObject, context)

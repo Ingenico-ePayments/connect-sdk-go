@@ -1,10 +1,9 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package payment
 
 // RedirectPaymentMethodSpecificInputBase represents class RedirectPaymentMethodSpecificInputBase
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_RedirectPaymentMethodSpecificInputBase
 type RedirectPaymentMethodSpecificInputBase struct {
 	ExpirationPeriod                  *int32  `json:"expirationPeriod,omitempty"`
 	PaymentProductID                  *int32  `json:"paymentProductId,omitempty"`

@@ -1,5 +1,5 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package services
 
@@ -8,11 +8,11 @@ import (
 )
 
 // ConvertAmountParams represents query parameters for Convert amount
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__services_convert_amount_get
+// Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/services/convertAmount.html
 type ConvertAmountParams struct {
 	Source *string
-	Amount *int64
 	Target *string
+	Amount *int64
 }
 
 // ToRequestParameters converts the query to communicator.RequestParams
@@ -20,8 +20,8 @@ func (params *ConvertAmountParams) ToRequestParameters() communicator.RequestPar
 	reqParams := communicator.RequestParams{}
 
 	communicator.AddRequestParameter(&reqParams, "source", params.Source)
-	communicator.AddRequestParameter(&reqParams, "amount", params.Amount)
 	communicator.AddRequestParameter(&reqParams, "target", params.Target)
+	communicator.AddRequestParameter(&reqParams, "amount", params.Amount)
 
 	return reqParams
 }

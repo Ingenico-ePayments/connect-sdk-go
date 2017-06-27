@@ -1,5 +1,5 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package products
 
@@ -8,7 +8,7 @@ import (
 )
 
 // NetworksParams represents query parameters for Get payment product networks
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__products__paymentProductId__networks_get
+// Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/products/networks.html
 type NetworksParams struct {
 	CountryCode  *string
 	CurrencyCode *string

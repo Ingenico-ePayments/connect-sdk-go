@@ -1,10 +1,9 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package payment
 
 // Product840CustomerAccount represents class PaymentProduct840CustomerAccount
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_PaymentProduct840CustomerAccount
 type Product840CustomerAccount struct {
 	AccountID             *string `json:"accountId,omitempty"`
 	BillingAgreementID    *string `json:"billingAgreementId,omitempty"`

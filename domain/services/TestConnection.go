@@ -1,10 +1,9 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package services
 
 // TestConnection represents class TestConnection
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_TestConnection
 type TestConnection struct {
 	Result *string `json:"result,omitempty"`
 }

@@ -1,10 +1,9 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package product
 
 // PaymentProductFieldDisplayHints represents class PaymentProductFieldDisplayHints
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_PaymentProductFieldDisplayHints
 type PaymentProductFieldDisplayHints struct {
 	AlwaysShow         *bool                           `json:"alwaysShow,omitempty"`
 	DisplayOrder       *int32                          `json:"displayOrder,omitempty"`

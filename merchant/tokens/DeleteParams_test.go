@@ -1,6 +1,7 @@
 package tokens
 
 import (
+	"runtime"
 	"testing"
 
 	"github.com/Ingenico-ePayments/connect-sdk-go/communicator"
@@ -34,7 +35,9 @@ func paramRequestCmp(t *testing.T, a communicator.ParamRequest, b communicator.R
 	params := a.ToRequestParameters()
 
 	if requestParamsCmp(params, b) == false {
-		t.Fatal("paramRequestCmp failed on equality")
+		buf := make([]byte, 1<<16)
+		runtime.Stack(buf, true)
+		t.Fatal("paramRequestCmp failed on equality", params, b, string(buf))
 	}
 }
 

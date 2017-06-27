@@ -1,12 +1,11 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package payment
 
 import "github.com/Ingenico-ePayments/connect-sdk-go/domain/definitions"
 
 // Output represents class PaymentOutput
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_PaymentOutput
 type Output struct {
 	AmountOfMoney                              *definitions.AmountOfMoney                     `json:"amountOfMoney,omitempty"`
 	AmountPaid                                 *int64                                         `json:"amountPaid,omitempty"`

@@ -1,10 +1,9 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package product
 
 // AccountOnFileDisplayHints represents class AccountOnFileDisplayHints
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_AccountOnFileDisplayHints
 type AccountOnFileDisplayHints struct {
 	LabelTemplate *[]LabelTemplateElement `json:"labelTemplate,omitempty"`
 	Logo          *string                 `json:"logo,omitempty"`

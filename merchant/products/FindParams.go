@@ -1,5 +1,5 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package products
 
@@ -8,14 +8,14 @@ import (
 )
 
 // FindParams represents query parameters for Get payment products
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__products_get
+// Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/products/find.html
 type FindParams struct {
-	Amount       *int64
-	Hide         []string
-	IsRecurring  *bool
 	CountryCode  *string
-	Locale       *string
 	CurrencyCode *string
+	Locale       *string
+	Amount       *int64
+	IsRecurring  *bool
+	Hide         []string
 }
 
 // AddHide adds an element to the Hide array.
@@ -28,12 +28,12 @@ func (params *FindParams) AddHide(value string) {
 func (params *FindParams) ToRequestParameters() communicator.RequestParams {
 	reqParams := communicator.RequestParams{}
 
-	communicator.AddRequestParameter(&reqParams, "amount", params.Amount)
-	communicator.AddRequestParameter(&reqParams, "hide", params.Hide)
-	communicator.AddRequestParameter(&reqParams, "isRecurring", params.IsRecurring)
 	communicator.AddRequestParameter(&reqParams, "countryCode", params.CountryCode)
-	communicator.AddRequestParameter(&reqParams, "locale", params.Locale)
 	communicator.AddRequestParameter(&reqParams, "currencyCode", params.CurrencyCode)
+	communicator.AddRequestParameter(&reqParams, "locale", params.Locale)
+	communicator.AddRequestParameter(&reqParams, "amount", params.Amount)
+	communicator.AddRequestParameter(&reqParams, "isRecurring", params.IsRecurring)
+	communicator.AddRequestParameter(&reqParams, "hide", params.Hide)
 
 	return reqParams
 }

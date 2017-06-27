@@ -1,5 +1,5 @@
 // This file was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package examples
 
@@ -22,8 +22,8 @@ func getDirectoryExample() {
 	// The code for this helper function can be found in file Helper.go
 
 	var query products.DirectoryParams
-	query.CurrencyCode = newString("EUR")
 	query.CountryCode = newString("NL")
+	query.CurrencyCode = newString("EUR")
 
 	response, err := client.Merchant("merchantId").Products().Directory(809, query, nil)
 

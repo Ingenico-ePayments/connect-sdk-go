@@ -1,10 +1,9 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package payment
 
 // CashPaymentMethodSpecificInput represents class CashPaymentMethodSpecificInput
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_CashPaymentMethodSpecificInput
 type CashPaymentMethodSpecificInput struct {
 	PaymentProduct1503SpecificInput *CashPaymentProduct1503SpecificInput `json:"paymentProduct1503SpecificInput,omitempty"`
 	PaymentProduct1504SpecificInput *CashPaymentProduct1504SpecificInput `json:"paymentProduct1504SpecificInput,omitempty"`

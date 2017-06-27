@@ -1,10 +1,9 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package payment
 
 // OrderLineDetails represents class OrderLineDetails
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_OrderLineDetails
 type OrderLineDetails struct {
 	DiscountAmount  *int64  `json:"discountAmount,omitempty"`
 	LineAmountTotal *int64  `json:"lineAmountTotal,omitempty"`

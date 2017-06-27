@@ -1,10 +1,9 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package token
 
 // MandateNonSepaDirectDebit represents class MandateNonSepaDirectDebit
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_MandateNonSepaDirectDebit
 type MandateNonSepaDirectDebit struct {
 	PaymentProduct705SpecificData *NonSepaDirectDebitPaymentProduct705SpecificData `json:"paymentProduct705SpecificData,omitempty"`
 }

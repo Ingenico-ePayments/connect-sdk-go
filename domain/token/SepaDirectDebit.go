@@ -1,10 +1,9 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package token
 
 // SepaDirectDebit represents class TokenSepaDirectDebit
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_TokenSepaDirectDebit
 type SepaDirectDebit struct {
 	Alias    *string                          `json:"alias,omitempty"`
 	Customer *CustomerTokenWithContactDetails `json:"customer,omitempty"`

@@ -1,10 +1,9 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package definitions
 
 // Address represents class Address
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_Address
 type Address struct {
 	AdditionalInfo *string `json:"additionalInfo,omitempty"`
 	City           *string `json:"city,omitempty"`

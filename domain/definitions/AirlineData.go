@@ -1,10 +1,9 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package definitions
 
 // AirlineData represents class AirlineData
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_AirlineData
 type AirlineData struct {
 	AgentNumericCode     *string             `json:"agentNumericCode,omitempty"`
 	Code                 *string             `json:"code,omitempty"`

@@ -1,10 +1,11 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package merchant
 
 import (
 	"github.com/Ingenico-ePayments/connect-sdk-go/internal/apiresource"
+	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/captures"
 	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/hostedcheckouts"
 	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/payments"
 	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/payouts"
@@ -22,16 +23,16 @@ type Client struct {
 	apiResource *apiresource.APIResource
 }
 
-// Hostedcheckouts represents the resource /{merchantId}/hostedcheckouts
-// Create new hosted checkout
-func (c *Client) Hostedcheckouts() *hostedcheckouts.Client {
-	return hostedcheckouts.NewClient(c.apiResource, nil)
-}
-
 // Payments represents the resource /{merchantId}/payments
 // Create, cancel and approve payments
 func (c *Client) Payments() *payments.Client {
 	return payments.NewClient(c.apiResource, nil)
+}
+
+// Captures represents the resource /{merchantId}/captures
+// Get capture
+func (c *Client) Captures() *captures.Client {
+	return captures.NewClient(c.apiResource, nil)
 }
 
 // Payouts represents the resource /{merchantId}/payouts
@@ -40,16 +41,16 @@ func (c *Client) Payouts() *payouts.Client {
 	return payouts.NewClient(c.apiResource, nil)
 }
 
-// Productgroups represents the resource /{merchantId}/productgroups
-// Get information about payment product groups
-func (c *Client) Productgroups() *productgroups.Client {
-	return productgroups.NewClient(c.apiResource, nil)
-}
-
 // Products represents the resource /{merchantId}/products
 // Get information about payment products
 func (c *Client) Products() *products.Client {
 	return products.NewClient(c.apiResource, nil)
+}
+
+// Productgroups represents the resource /{merchantId}/productgroups
+// Get information about payment product groups
+func (c *Client) Productgroups() *productgroups.Client {
+	return productgroups.NewClient(c.apiResource, nil)
 }
 
 // Refunds represents the resource /{merchantId}/refunds
@@ -80,6 +81,12 @@ func (c *Client) Sessions() *sessions.Client {
 // Create, delete and update tokens
 func (c *Client) Tokens() *tokens.Client {
 	return tokens.NewClient(c.apiResource, nil)
+}
+
+// Hostedcheckouts represents the resource /{merchantId}/hostedcheckouts
+// Create new hosted checkout
+func (c *Client) Hostedcheckouts() *hostedcheckouts.Client {
+	return hostedcheckouts.NewClient(c.apiResource, nil)
 }
 
 // NewClient constructs a Merchant Client

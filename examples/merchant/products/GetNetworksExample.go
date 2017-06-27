@@ -1,5 +1,5 @@
 // This file was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package examples
 
@@ -22,8 +22,8 @@ func getNetworksExample() {
 	// The code for these helper functions can be found in file Helper.go
 
 	var query products.NetworksParams
-	query.CountryCode = newString("NL")
-	query.CurrencyCode = newString("EUR")
+	query.CountryCode = newString("US")
+	query.CurrencyCode = newString("USD")
 	query.Amount = newInt64(1000)
 	query.IsRecurring = newBool(true)
 

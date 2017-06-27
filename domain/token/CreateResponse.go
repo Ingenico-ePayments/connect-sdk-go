@@ -1,10 +1,9 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package token
 
 // CreateResponse represents class CreateTokenResponse
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_CreateTokenResponse
 type CreateResponse struct {
 	IsNewToken *bool   `json:"isNewToken,omitempty"`
 	Token      *string `json:"token,omitempty"`

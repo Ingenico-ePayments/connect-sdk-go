@@ -1,10 +1,9 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package payment
 
 // PersonalInformation represents class PersonalInformation
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_PersonalInformation
 type PersonalInformation struct {
 	DateOfBirth *string       `json:"dateOfBirth,omitempty"`
 	Gender      *string       `json:"gender,omitempty"`

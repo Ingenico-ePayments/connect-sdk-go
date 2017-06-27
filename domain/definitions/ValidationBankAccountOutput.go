@@ -1,10 +1,9 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package definitions
 
 // ValidationBankAccountOutput represents class ValidationBankAccountOutput
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_ValidationBankAccountOutput
 type ValidationBankAccountOutput struct {
 	Checks                   *[]ValidationBankAccountCheck `json:"checks,omitempty"`
 	NewBankName              *string                       `json:"newBankName,omitempty"`

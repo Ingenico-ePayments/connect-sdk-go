@@ -1,10 +1,9 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package payment
 
 // RefundMethodSpecificOutput represents class RefundMethodSpecificOutput
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_RefundMethodSpecificOutput
 type RefundMethodSpecificOutput struct {
 	TotalAmountPaid     *int64 `json:"totalAmountPaid,omitempty"`
 	TotalAmountRefunded *int64 `json:"totalAmountRefunded,omitempty"`

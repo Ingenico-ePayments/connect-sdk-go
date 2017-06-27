@@ -1,5 +1,5 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package refund
 
@@ -9,7 +9,6 @@ import (
 )
 
 // Customer represents class RefundCustomer
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_RefundCustomer
 type Customer struct {
 	Address            *payment.AddressPersonal        `json:"address,omitempty"`
 	CompanyInformation *definitions.CompanyInformation `json:"companyInformation,omitempty"`

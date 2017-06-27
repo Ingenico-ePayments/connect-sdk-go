@@ -1,5 +1,5 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package services
 
@@ -18,18 +18,18 @@ type Client struct {
 
 // ConvertAmount represents the resource /{merchantId}/services/convert/amount
 // Convert amount
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__services_convert_amount_get
+// Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/services/convertAmount.html
 //
 // Can return any of the following errors:
-// ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
-// AuthorizationError if the request was not allowed (HTTP status code 403)
-// IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
-// ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
-//            or there was a conflict (HTTP status code 404, 409 or 410)
-// GlobalCollectError if something went wrong at the GlobalCollect platform,
-//            the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
-//            or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
-// APIError if the GlobalCollect platform returned any other error
+// * ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
+// * AuthorizationError if the request was not allowed (HTTP status code 403)
+// * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
+// * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
+// or there was a conflict (HTTP status code 404, 409 or 410)
+// * GlobalCollectError if something went wrong at the GlobalCollect platform,
+// the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
+// or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
+// * APIError if the GlobalCollect platform returned any other error
 func (c *Client) ConvertAmount(query ConvertAmountParams, context communication.CallContext) (services.ConvertAmount, error) {
 	var resultObject services.ConvertAmount
 
@@ -46,17 +46,10 @@ func (c *Client) ConvertAmount(query ConvertAmountParams, context communication.
 		if isResponseError {
 			var errorObject interface{}
 
-			switch responseError.StatusCode() {
-			default:
-				{
-					errorObject = &errors.ErrorResponse{}
-					err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
-					if err != nil {
-						return resultObject, err
-					}
-
-					break
-				}
+			errorObject = &errors.ErrorResponse{}
+			err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
+			if err != nil {
+				return resultObject, err
 			}
 
 			err, createErr := sdkErrors.CreateAPIError(responseError.StatusCode(), responseError.Body(), errorObject, context)
@@ -74,19 +67,19 @@ func (c *Client) ConvertAmount(query ConvertAmountParams, context communication.
 }
 
 // Bankaccount represents the resource /{merchantId}/services/convert/bankaccount
-// Convert Bankaccount
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__services_convert_bankaccount_post
+// Convert bankaccount
+// Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/services/bankaccount.html
 //
 // Can return any of the following errors:
-// ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
-// AuthorizationError if the request was not allowed (HTTP status code 403)
-// IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
-// ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
-//            or there was a conflict (HTTP status code 404, 409 or 410)
-// GlobalCollectError if something went wrong at the GlobalCollect platform,
-//            the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
-//            or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
-// APIError if the GlobalCollect platform returned any other error
+// * ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
+// * AuthorizationError if the request was not allowed (HTTP status code 403)
+// * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
+// * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
+// or there was a conflict (HTTP status code 404, 409 or 410)
+// * GlobalCollectError if something went wrong at the GlobalCollect platform,
+// the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
+// or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
+// * APIError if the GlobalCollect platform returned any other error
 func (c *Client) Bankaccount(body services.BankDetailsRequest, context communication.CallContext) (services.BankDetailsResponse, error) {
 	var resultObject services.BankDetailsResponse
 
@@ -103,17 +96,10 @@ func (c *Client) Bankaccount(body services.BankDetailsRequest, context communica
 		if isResponseError {
 			var errorObject interface{}
 
-			switch responseError.StatusCode() {
-			default:
-				{
-					errorObject = &errors.ErrorResponse{}
-					err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
-					if err != nil {
-						return resultObject, err
-					}
-
-					break
-				}
+			errorObject = &errors.ErrorResponse{}
+			err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
+			if err != nil {
+				return resultObject, err
 			}
 
 			err, createErr := sdkErrors.CreateAPIError(responseError.StatusCode(), responseError.Body(), errorObject, context)
@@ -132,18 +118,18 @@ func (c *Client) Bankaccount(body services.BankDetailsRequest, context communica
 
 // GetIINdetails represents the resource /{merchantId}/services/getIINdetails
 // Get IIN details
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__services_getIINdetails_post
+// Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/services/getIINdetails.html
 //
 // Can return any of the following errors:
-// ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
-// AuthorizationError if the request was not allowed (HTTP status code 403)
-// IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
-// ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
-//            or there was a conflict (HTTP status code 404, 409 or 410)
-// GlobalCollectError if something went wrong at the GlobalCollect platform,
-//            the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
-//            or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
-// APIError if the GlobalCollect platform returned any other error
+// * ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
+// * AuthorizationError if the request was not allowed (HTTP status code 403)
+// * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
+// * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
+// or there was a conflict (HTTP status code 404, 409 or 410)
+// * GlobalCollectError if something went wrong at the GlobalCollect platform,
+// the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
+// or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
+// * APIError if the GlobalCollect platform returned any other error
 func (c *Client) GetIINdetails(body services.GetIINDetailsRequest, context communication.CallContext) (services.GetIINDetailsResponse, error) {
 	var resultObject services.GetIINDetailsResponse
 
@@ -160,17 +146,10 @@ func (c *Client) GetIINdetails(body services.GetIINDetailsRequest, context commu
 		if isResponseError {
 			var errorObject interface{}
 
-			switch responseError.StatusCode() {
-			default:
-				{
-					errorObject = &errors.ErrorResponse{}
-					err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
-					if err != nil {
-						return resultObject, err
-					}
-
-					break
-				}
+			errorObject = &errors.ErrorResponse{}
+			err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
+			if err != nil {
+				return resultObject, err
 			}
 
 			err, createErr := sdkErrors.CreateAPIError(responseError.StatusCode(), responseError.Body(), errorObject, context)
@@ -189,18 +168,18 @@ func (c *Client) GetIINdetails(body services.GetIINDetailsRequest, context commu
 
 // Testconnection represents the resource /{merchantId}/services/testconnection
 // Test connection
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#__merchantId__services_testconnection_get
+// Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/services/testconnection.html
 //
 // Can return any of the following errors:
-// ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
-// AuthorizationError if the request was not allowed (HTTP status code 403)
-// IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
-// ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
-//            or there was a conflict (HTTP status code 404, 409 or 410)
-// GlobalCollectError if something went wrong at the GlobalCollect platform,
-//            the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
-//            or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
-// APIError if the GlobalCollect platform returned any other error
+// * ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
+// * AuthorizationError if the request was not allowed (HTTP status code 403)
+// * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
+// * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
+// or there was a conflict (HTTP status code 404, 409 or 410)
+// * GlobalCollectError if something went wrong at the GlobalCollect platform,
+// the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
+// or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
+// * APIError if the GlobalCollect platform returned any other error
 func (c *Client) Testconnection(context communication.CallContext) (services.TestConnection, error) {
 	var resultObject services.TestConnection
 
@@ -217,17 +196,10 @@ func (c *Client) Testconnection(context communication.CallContext) (services.Tes
 		if isResponseError {
 			var errorObject interface{}
 
-			switch responseError.StatusCode() {
-			default:
-				{
-					errorObject = &errors.ErrorResponse{}
-					err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
-					if err != nil {
-						return resultObject, err
-					}
-
-					break
-				}
+			errorObject = &errors.ErrorResponse{}
+			err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
+			if err != nil {
+				return resultObject, err
 			}
 
 			err, createErr := sdkErrors.CreateAPIError(responseError.StatusCode(), responseError.Body(), errorObject, context)

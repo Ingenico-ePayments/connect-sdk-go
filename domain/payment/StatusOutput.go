@@ -1,12 +1,11 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package payment
 
 import "github.com/Ingenico-ePayments/connect-sdk-go/domain/errors"
 
 // StatusOutput represents class PaymentStatusOutput
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_PaymentStatusOutput
 type StatusOutput struct {
 	Errors                   *[]errors.APIError `json:"errors,omitempty"`
 	IsAuthorized             *bool              `json:"isAuthorized,omitempty"`

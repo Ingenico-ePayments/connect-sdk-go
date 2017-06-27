@@ -1,12 +1,11 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package payment
 
 import "github.com/Ingenico-ePayments/connect-sdk-go/domain/definitions"
 
 // LineItem represents class LineItem
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_LineItem
 type LineItem struct {
 	AmountOfMoney                *definitions.AmountOfMoney            `json:"amountOfMoney,omitempty"`
 	InvoiceData                  *LineItemInvoiceData                  `json:"invoiceData,omitempty"`

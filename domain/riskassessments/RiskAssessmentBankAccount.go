@@ -1,12 +1,11 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package riskassessments
 
 import "github.com/Ingenico-ePayments/connect-sdk-go/domain/definitions"
 
 // RiskAssessmentBankAccount represents class RiskAssessmentBankAccount
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_RiskAssessmentBankAccount
 type RiskAssessmentBankAccount struct {
 	BankAccountBban  *definitions.BankAccountBban `json:"bankAccountBban,omitempty"`
 	BankAccountIban  *definitions.BankAccountIban `json:"bankAccountIban,omitempty"`

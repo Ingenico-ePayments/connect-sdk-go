@@ -1,10 +1,9 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package product
 
 // PaymentProductGroupResponse represents class PaymentProductGroupResponse
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_PaymentProductGroupResponse
 type PaymentProductGroupResponse struct {
 	AccountsOnFile *[]AccountOnFile            `json:"accountsOnFile,omitempty"`
 	DisplayHints   *PaymentProductDisplayHints `json:"displayHints,omitempty"`

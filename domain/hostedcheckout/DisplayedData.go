@@ -1,12 +1,11 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package hostedcheckout
 
 import "github.com/Ingenico-ePayments/connect-sdk-go/domain/definitions"
 
 // DisplayedData represents class DisplayedData
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_DisplayedData
 type DisplayedData struct {
 	DisplayedDataType *string                     `json:"displayedDataType,omitempty"`
 	RenderingData     *string                     `json:"renderingData,omitempty"`

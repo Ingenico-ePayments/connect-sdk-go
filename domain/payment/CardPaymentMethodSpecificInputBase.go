@@ -1,10 +1,9 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package payment
 
 // CardPaymentMethodSpecificInputBase represents class CardPaymentMethodSpecificInputBase
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_CardPaymentMethodSpecificInputBase
 type CardPaymentMethodSpecificInputBase struct {
 	AuthorizationMode                 *string `json:"authorizationMode,omitempty"`
 	CustomerReference                 *string `json:"customerReference,omitempty"`
@@ -15,6 +14,7 @@ type CardPaymentMethodSpecificInputBase struct {
 	SkipFraudService                  *bool   `json:"skipFraudService,omitempty"`
 	Token                             *string `json:"token,omitempty"`
 	Tokenize                          *bool   `json:"tokenize,omitempty"`
+	TransactionChannel                *string `json:"transactionChannel,omitempty"`
 }
 
 // NewCardPaymentMethodSpecificInputBase constructs a new CardPaymentMethodSpecificInputBase

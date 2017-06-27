@@ -1,10 +1,9 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package definitions
 
 // Card represents class Card
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_Card
 type Card struct {
 	CardNumber     *string `json:"cardNumber,omitempty"`
 	CardholderName *string `json:"cardholderName,omitempty"`

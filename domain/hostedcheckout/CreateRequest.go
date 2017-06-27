@@ -1,5 +1,5 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package hostedcheckout
 
@@ -9,7 +9,6 @@ import (
 )
 
 // CreateRequest represents class CreateHostedCheckoutRequest
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_CreateHostedCheckoutRequest
 type CreateRequest struct {
 	BankTransferPaymentMethodSpecificInput *payment.BankTransferPaymentMethodSpecificInputBase `json:"bankTransferPaymentMethodSpecificInput,omitempty"`
 	CardPaymentMethodSpecificInput         *payment.CardPaymentMethodSpecificInputBase         `json:"cardPaymentMethodSpecificInput,omitempty"`

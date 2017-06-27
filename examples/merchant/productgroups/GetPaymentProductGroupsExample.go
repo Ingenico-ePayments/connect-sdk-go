@@ -1,5 +1,5 @@
 // This file was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package examples
 
@@ -22,11 +22,11 @@ func getPaymentProductGroupsExample() {
 	// The code for these helper functions can be found in file Helper.go
 
 	var query productgroups.FindParams
+	query.CountryCode = newString("US")
+	query.CurrencyCode = newString("USD")
+	query.Locale = newString("en_US")
 	query.Amount = newInt64(1000)
 	query.IsRecurring = newBool(true)
-	query.CountryCode = newString("NL")
-	query.Locale = newString("en_US")
-	query.CurrencyCode = newString("EUR")
 	query.AddHide("fields")
 
 	response, err := client.Merchant("merchantId").Productgroups().Find(query, nil)

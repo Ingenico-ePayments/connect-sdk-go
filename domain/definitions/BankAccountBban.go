@@ -1,10 +1,9 @@
 // This class was auto-generated from the API references found at
-// https://developer.globalcollect.com/documentation/api/server/
+// https://epayments-api.developer-ingenico.com/s2sapi/v1/
 
 package definitions
 
 // BankAccountBban represents class BankAccountBban
-// Documentation can be found at https://developer.globalcollect.com/documentation/api/server/#schema_BankAccountBban
 type BankAccountBban struct {
 	AccountHolderName *string `json:"accountHolderName,omitempty"`
 	AccountNumber     *string `json:"accountNumber,omitempty"`
