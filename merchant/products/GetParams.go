@@ -10,12 +10,13 @@ import (
 // GetParams represents query parameters for Get payment product
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/products/get.html
 type GetParams struct {
-	CountryCode  *string
-	CurrencyCode *string
-	Locale       *string
-	Amount       *int64
-	IsRecurring  *bool
-	Hide         []string
+	CountryCode    *string
+	CurrencyCode   *string
+	Locale         *string
+	Amount         *int64
+	IsRecurring    *bool
+	Hide           []string
+	ForceBasicFlow *bool
 }
 
 // AddHide adds an element to the Hide array.
@@ -34,6 +35,7 @@ func (params *GetParams) ToRequestParameters() communicator.RequestParams {
 	communicator.AddRequestParameter(&reqParams, "amount", params.Amount)
 	communicator.AddRequestParameter(&reqParams, "isRecurring", params.IsRecurring)
 	communicator.AddRequestParameter(&reqParams, "hide", params.Hide)
+	communicator.AddRequestParameter(&reqParams, "forceBasicFlow", params.ForceBasicFlow)
 
 	return reqParams
 }

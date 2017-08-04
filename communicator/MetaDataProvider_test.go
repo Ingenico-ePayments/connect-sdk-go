@@ -29,9 +29,34 @@ func TestGetServerMetaDataHeadersNoAdditionalHeaders(t *testing.T) {
 }
 
 func TestServerMetaDataHeadersFull(t *testing.T) {
-	shoppingCartExtension, err := metadata.NewShoppingCartExtension("Ingenico.creator", "Extension", "1.0")
+	shoppingCartExtension, err := metadata.NewShoppingCartExtensionWithExtensionID("Ingenico.creator", "Extension", "1.0", "ExtensionID")
 	if err != nil {
 		t.Fatalf("TestServerMetaDataHeadersFull : %v", err)
+	}
+
+	integrator := "Ingenico"
+	metaDataProviderBuilder := NewMetaDataProviderBuilder(integrator)
+	metaDataProviderBuilder.ShoppingCartExtension = shoppingCartExtension
+	metaDataProvider, err := metaDataProviderBuilder.Build()
+	if err != nil {
+		t.Fatalf("TestServerMetaDataHeadersFull : %v", err)
+	}
+
+	requestHeaders := metaDataProvider.MetaDataHeaders()
+	if len(requestHeaders) != 1 {
+		t.Fatal("TestServerMetaDataHeadersFull : len != 1")
+	}
+
+	AssertServerMetaInfo("TestServerMetaDataHeadersFull",
+		t, metaDataProvider, integrator, requestHeaders[0])
+	AssertShoppingCard("TestServerMetaDataHeadersFull",
+		t, metaDataProvider, shoppingCartExtension)
+}
+
+func TestServerMetaDataHeadersFullNewShoppingCartExtensionWithExtensionID(t *testing.T) {
+	shoppingCartExtension, err := metadata.NewShoppingCartExtension("Ingenico.creator", "Extension", "1.0")
+	if err != nil {
+		t.Fatalf("TestServerMetaDataHeadersFullNewShoppingCartExtensionWithExtensionID : %v", err)
 	}
 
 	integrator := "Ingenico"
@@ -173,5 +198,9 @@ func AssertShoppingCard(prefix string, t *testing.T, metaDataProvider *MetaDataP
 	if serverMetaInfo.ShoppingCartExtension.Version != shoppingCard.Version {
 		t.Fatalf("[%s]AssertShoppingCard : Version '%s' != '%s'", prefix,
 			serverMetaInfo.ShoppingCartExtension.Version, shoppingCard.Version)
+	}
+	if serverMetaInfo.ShoppingCartExtension.ExtensionID != shoppingCard.ExtensionID {
+		t.Fatalf("[%s]AssertShoppingCard : ExtensionID '%s' != '%s'", prefix,
+			serverMetaInfo.ShoppingCartExtension.ExtensionID, shoppingCard.ExtensionID)
 	}
 }
