@@ -6,6 +6,7 @@ package payment
 // ShoppingCart represents class ShoppingCart
 type ShoppingCart struct {
 	AmountBreakdown *[]AmountBreakdown `json:"amountBreakdown,omitempty"`
+	Items           *[]LineItem        `json:"items,omitempty"`
 }
 
 // NewShoppingCart constructs a new ShoppingCart

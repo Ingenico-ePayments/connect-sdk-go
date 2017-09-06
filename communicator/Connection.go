@@ -8,7 +8,7 @@ import (
 	"github.com/Ingenico-ePayments/connect-sdk-go/logging"
 )
 
-// Connection represents a pooled connection to the GlobalCollect platform server.
+// Connection represents a pooled connection to the Ingenico ePayments platform server.
 // Instead of setting up a new HTTP connection for each request, this
 // connection uses a pool of HTTP connections.
 // Thread-safe
@@ -24,16 +24,16 @@ type Connection interface {
 
 	//IMPLEMENTATION Connection INTERFACE
 
-	// Get sends a GET request to the GlobalCollect platform and return the response.
+	// Get sends a GET request to the Ingenico ePayments platform and return the response.
 	Get(resourceURI url.URL, requestHeaders []communication.Header) (*communication.Response, error)
 
-	// Delete sends a DELETE request to the GlobalCollect platform and return the response.
+	// Delete sends a DELETE request to the Ingenico ePayments platform and return the response.
 	Delete(resourceURI url.URL, requestHeaders []communication.Header) (*communication.Response, error)
 
-	// Post sends a POST request to the GlobalCollect platform and return the response.
+	// Post sends a POST request to the Ingenico ePayments platform and return the response.
 	Post(resourceURI url.URL, requestHeaders []communication.Header, body string) (*communication.Response, error)
 
-	// Put sends a PUT request to the GlobalCollect platform and return the response.
+	// Put sends a PUT request to the Ingenico ePayments platform and return the response.
 	Put(resourceURI url.URL, requestHeaders []communication.Header, body string) (*communication.Response, error)
 
 	//IMPLEMENTATION logging.Capable INTERFACE

@@ -6,7 +6,7 @@ import (
 	"github.com/Ingenico-ePayments/connect-sdk-go/domain/errors"
 )
 
-// AuthorizationError represents an error response from the GlobalCollect platform when authorization failed.
+// AuthorizationError represents an error response from the Ingenico ePayments platform when authorization failed.
 type AuthorizationError struct {
 	errorMessage string
 	statusCode   int
@@ -63,7 +63,7 @@ func (ae *AuthorizationError) Error() string {
 
 // NewAuthorizationError creates an AuthorizationError with the given statusCode, responseBody, errorID and errors
 func NewAuthorizationError(statusCode int, responseBody, errorID string, errors []errors.APIError) (*AuthorizationError, error) {
-	return &AuthorizationError{"the GlobalCollect platform returned an incorrect request error response", statusCode, responseBody, errorID, errors}, nil
+	return &AuthorizationError{"the Ingenico ePayments platform returned an incorrect request error response", statusCode, responseBody, errorID, errors}, nil
 }
 
 // NewAuthorizationErrorVerbose creates an AuthorizationError with the given message, statusCode, responseBody, errorID and errors

@@ -125,26 +125,26 @@ func NewDefaultConnection(socketTimeout, connectTimeout, keepAliveTimeout, idleT
 	return &DefaultConnection{client, transport, nil, proxyAuth}, nil
 }
 
-// Get sends a GET request to the GlobalCollect platform and return the response.
+// Get sends a GET request to the Ingenico ePayments platform and return the response.
 func (c *DefaultConnection) Get(uri url.URL, headerList []communication.Header) (*communication.Response, error) {
 	r := communication.NewRequest("GET", uri, headerList)
 	return c.sendRequest(r, "")
 }
 
-// Delete sends a DELETE request to the GlobalCollect platform and return the response.
+// Delete sends a DELETE request to the Ingenico ePayments platform and return the response.
 func (c *DefaultConnection) Delete(uri url.URL, headerList []communication.Header) (*communication.Response, error) {
 	r := communication.NewRequest("DELETE", uri, headerList)
 	return c.sendRequest(r, "")
 }
 
-// Put sends a PUT request to the GlobalCollect platform and return the response.
+// Put sends a PUT request to the Ingenico ePayments platform and return the response.
 func (c *DefaultConnection) Put(uri url.URL, headerList []communication.Header, body string) (*communication.Response, error) {
 	r := communication.NewRequest("PUT", uri, headerList)
 	r.SetBodyString(body)
 	return c.sendRequest(r, body)
 }
 
-// Post sends a POST request to the GlobalCollect platform and return the response.
+// Post sends a POST request to the Ingenico ePayments platform and return the response.
 func (c *DefaultConnection) Post(uri url.URL, headerList []communication.Header, body string) (*communication.Response, error) {
 	r := communication.NewRequest("POST", uri, headerList)
 	r.SetBodyString(body)

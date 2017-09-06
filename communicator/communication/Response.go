@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-// Response represents a response from the GlobalCollect platform.
+// Response represents a response from the Ingenico ePayments platform.
 type Response struct {
 	statusCode int //see net/http/status.go accessible through http.{status name}
 	body       string
@@ -58,17 +58,17 @@ func (r *Response) GetHeader(headerName string) *Header {
 	return nil
 }
 
-// StatusCode gets The HTTP status code that was returned by the GlobalCollect platform
+// StatusCode gets The HTTP status code that was returned by the Ingenico ePayments platform
 func (r *Response) StatusCode() int {
 	return r.statusCode
 }
 
-// Body gets the raw response body that was returned by the GlobalCollect platform
+// Body gets the raw response body that was returned by the Ingenico ePayments platform
 func (r *Response) Body() string {
 	return r.body
 }
 
-// Headers gets the headers that were returned by the GlobalCollect platform
+// Headers gets the headers that were returned by the Ingenico ePayments platform
 func (r *Response) Headers() []Header {
 	// Return a clone instead of the original slice - immutability insurance
 	return append([]Header{}, r.headers...)

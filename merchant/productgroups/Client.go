@@ -26,10 +26,10 @@ type Client struct {
 // * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
 // * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
 // or there was a conflict (HTTP status code 404, 409 or 410)
-// * GlobalCollectError if something went wrong at the GlobalCollect platform,
-// the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
+// * GlobalCollectError if something went wrong at the Ingenico ePayments platform,
+// the Ingenico ePayments platform was unable to process a message from a downstream partner/acquirer,
 // or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
-// * APIError if the GlobalCollect platform returned any other error
+// * APIError if the Ingenico ePayments platform returned any other error
 func (c *Client) Find(query FindParams, context communication.CallContext) (product.PaymentProductGroups, error) {
 	var resultObject product.PaymentProductGroups
 
@@ -76,10 +76,10 @@ func (c *Client) Find(query FindParams, context communication.CallContext) (prod
 // * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
 // * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
 // or there was a conflict (HTTP status code 404, 409 or 410)
-// * GlobalCollectError if something went wrong at the GlobalCollect platform,
-// the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
+// * GlobalCollectError if something went wrong at the Ingenico ePayments platform,
+// the Ingenico ePayments platform was unable to process a message from a downstream partner/acquirer,
 // or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
-// * APIError if the GlobalCollect platform returned any other error
+// * APIError if the Ingenico ePayments platform returned any other error
 func (c *Client) Get(paymentProductGroupID string, query GetParams, context communication.CallContext) (product.PaymentProductGroupResponse, error) {
 	var resultObject product.PaymentProductGroupResponse
 

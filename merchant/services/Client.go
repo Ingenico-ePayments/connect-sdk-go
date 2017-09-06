@@ -26,10 +26,10 @@ type Client struct {
 // * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
 // * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
 // or there was a conflict (HTTP status code 404, 409 or 410)
-// * GlobalCollectError if something went wrong at the GlobalCollect platform,
-// the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
+// * GlobalCollectError if something went wrong at the Ingenico ePayments platform,
+// the Ingenico ePayments platform was unable to process a message from a downstream partner/acquirer,
 // or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
-// * APIError if the GlobalCollect platform returned any other error
+// * APIError if the Ingenico ePayments platform returned any other error
 func (c *Client) ConvertAmount(query ConvertAmountParams, context communication.CallContext) (services.ConvertAmount, error) {
 	var resultObject services.ConvertAmount
 
@@ -76,10 +76,10 @@ func (c *Client) ConvertAmount(query ConvertAmountParams, context communication.
 // * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
 // * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
 // or there was a conflict (HTTP status code 404, 409 or 410)
-// * GlobalCollectError if something went wrong at the GlobalCollect platform,
-// the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
+// * GlobalCollectError if something went wrong at the Ingenico ePayments platform,
+// the Ingenico ePayments platform was unable to process a message from a downstream partner/acquirer,
 // or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
-// * APIError if the GlobalCollect platform returned any other error
+// * APIError if the Ingenico ePayments platform returned any other error
 func (c *Client) Bankaccount(body services.BankDetailsRequest, context communication.CallContext) (services.BankDetailsResponse, error) {
 	var resultObject services.BankDetailsResponse
 
@@ -126,10 +126,10 @@ func (c *Client) Bankaccount(body services.BankDetailsRequest, context communica
 // * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
 // * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
 // or there was a conflict (HTTP status code 404, 409 or 410)
-// * GlobalCollectError if something went wrong at the GlobalCollect platform,
-// the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
+// * GlobalCollectError if something went wrong at the Ingenico ePayments platform,
+// the Ingenico ePayments platform was unable to process a message from a downstream partner/acquirer,
 // or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
-// * APIError if the GlobalCollect platform returned any other error
+// * APIError if the Ingenico ePayments platform returned any other error
 func (c *Client) GetIINdetails(body services.GetIINDetailsRequest, context communication.CallContext) (services.GetIINDetailsResponse, error) {
 	var resultObject services.GetIINDetailsResponse
 
@@ -176,10 +176,10 @@ func (c *Client) GetIINdetails(body services.GetIINDetailsRequest, context commu
 // * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
 // * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
 // or there was a conflict (HTTP status code 404, 409 or 410)
-// * GlobalCollectError if something went wrong at the GlobalCollect platform,
-// the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
+// * GlobalCollectError if something went wrong at the Ingenico ePayments platform,
+// the Ingenico ePayments platform was unable to process a message from a downstream partner/acquirer,
 // or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
-// * APIError if the GlobalCollect platform returned any other error
+// * APIError if the Ingenico ePayments platform returned any other error
 func (c *Client) Testconnection(context communication.CallContext) (services.TestConnection, error) {
 	var resultObject services.TestConnection
 

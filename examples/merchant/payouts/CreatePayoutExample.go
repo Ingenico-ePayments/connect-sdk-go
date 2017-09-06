@@ -58,17 +58,20 @@ func createPayoutExample() {
 	customer.ContactDetails = &contactDetails
 	customer.Name = &name
 
+	var bankTransferPayoutMethodSpecificInput payout.BankTransferPayoutMethodSpecificInput
+	bankTransferPayoutMethodSpecificInput.BankAccountIban = &bankAccountIban
+	bankTransferPayoutMethodSpecificInput.Customer = &customer
+	bankTransferPayoutMethodSpecificInput.PayoutDate = newString("20150102")
+	bankTransferPayoutMethodSpecificInput.PayoutText = newString("Payout Acme")
+	bankTransferPayoutMethodSpecificInput.SwiftCode = newString("swift")
+
 	var references payout.References
 	references.MerchantReference = newString("AcmeOrder001")
 
 	var body payout.CreateRequest
 	body.AmountOfMoney = &amountOfMoney
-	body.BankAccountIban = &bankAccountIban
-	body.Customer = &customer
-	body.PayoutDate = newString("20150102")
-	body.PayoutText = newString("Payout Acme")
+	body.BankTransferPayoutMethodSpecificInput = &bankTransferPayoutMethodSpecificInput
 	body.References = &references
-	body.SwiftCode = newString("swift")
 
 	response, err := client.Merchant("merchantId").Payouts().Create(body, nil)
 	switch realError := err.(type) {

@@ -6,7 +6,7 @@ import (
 	"github.com/Ingenico-ePayments/connect-sdk-go/domain/errors"
 )
 
-// ValidateError represents an error response from the GlobalCollect platform when validation of requests failed.
+// ValidateError represents an error response from the Ingenico ePayments platform when validation of requests failed.
 type ValidateError struct {
 	errorMessage string
 	statusCode   int
@@ -63,7 +63,7 @@ func (ve *ValidateError) Error() string {
 
 // NewValidateError creates a ValidateError with the given statusCode, responseBody, errorID and errors
 func NewValidateError(statusCode int, responseBody, errorID string, errors []errors.APIError) (*ValidateError, error) {
-	return &ValidateError{"the GlobalCollect platform returned an incorrect request error response", statusCode, responseBody, errorID, errors}, nil
+	return &ValidateError{"the Ingenico ePayments platform returned an incorrect request error response", statusCode, responseBody, errorID, errors}, nil
 }
 
 // NewValidateErrorVerbose creates a ValidateError with the given message, statusCode, responseBody, errorID and errors

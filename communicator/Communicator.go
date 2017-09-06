@@ -20,7 +20,7 @@ var (
 	ErrNilMarshaller = errors.New("marshaller is nil")
 )
 
-// A Communicator is used to communicate with the GlobalCollect platform web services.
+// A Communicator is used to communicate with the Ingenico ePayments platform web services.
 // It contains all the logic to transform a request object to a HTTP request and a HTTP response to a response object.
 // It is also thread safe.
 type Communicator struct {

@@ -11,7 +11,7 @@ import (
 // CommunicatorConfiguration represents the configuration to be used by a Communicator
 type CommunicatorConfiguration struct {
 	// APIEndpoint represents the API endpoint of for the communicator
-	// See https://developer.globalcollect.com/documentation/api/server/#endpoints
+	// See https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/endpoints.html
 	APIEndpoint url.URL
 	// ConnectTimeout represents the connect timeout
 	ConnectTimeout time.Duration

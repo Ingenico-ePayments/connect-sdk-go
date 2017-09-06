@@ -6,7 +6,7 @@ import (
 	"github.com/Ingenico-ePayments/connect-sdk-go/domain/errors"
 )
 
-// GlobalCollectError represents an error response from the GlobalCollect platform when something went wrong at the GlobalCollect platform or further downstream.
+// GlobalCollectError represents an error response from the Ingenico ePayments platform when something went wrong at the Ingenico ePayments platform or further downstream.
 type GlobalCollectError struct {
 	errorMessage string
 	statusCode   int
@@ -63,7 +63,7 @@ func (gce *GlobalCollectError) Error() string {
 
 // NewGlobalCollectError creates a GlobalCollectError with the given statusCode, responseBody, errorID and errors
 func NewGlobalCollectError(statusCode int, responseBody, errorID string, errors []errors.APIError) (*GlobalCollectError, error) {
-	return &GlobalCollectError{"the GlobalCollect platform returned an error response", statusCode, responseBody, errorID, errors}, nil
+	return &GlobalCollectError{"the Ingenico ePayments platform returned an error response", statusCode, responseBody, errorID, errors}, nil
 }
 
 // NewGlobalCollectErrorVerbose creates a GlobalCollectError with the given message, statusCode, responseBody, errorID and errors

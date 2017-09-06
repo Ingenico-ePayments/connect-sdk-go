@@ -92,6 +92,16 @@ func createPaymentExample() {
 	customer.ShippingAddress = &shippingAddress
 	customer.VatNumber = newString("1234AB5678CD")
 
+	var invoiceData payment.OrderInvoiceData
+	invoiceData.InvoiceDate = newString("20140306191500")
+	invoiceData.InvoiceNumber = newString("000000123")
+
+	var references payment.OrderReferences
+	references.Descriptor = newString("Fast and Furry-ous")
+	references.InvoiceData = &invoiceData
+	references.MerchantOrderID = newInt64(123456)
+	references.MerchantReference = newString("AcmeOrder0001")
+
 	var items []payment.LineItem
 
 	var item1AmountOfMoney definitions.AmountOfMoney
@@ -124,21 +134,14 @@ func createPaymentExample() {
 
 	items = append(items, item2)
 
-	var invoiceData payment.OrderInvoiceData
-	invoiceData.InvoiceDate = newString("20140306191500")
-	invoiceData.InvoiceNumber = newString("000000123")
-
-	var references payment.OrderReferences
-	references.Descriptor = newString("Fast and Furry-ous")
-	references.InvoiceData = &invoiceData
-	references.MerchantOrderID = newInt64(123456)
-	references.MerchantReference = newString("AcmeOrder0001")
+	var shoppingCart payment.ShoppingCart
+	shoppingCart.Items = &items
 
 	var order payment.Order
 	order.AmountOfMoney = &amountOfMoney
 	order.Customer = &customer
-	order.Items = &items
 	order.References = &references
+	order.ShoppingCart = &shoppingCart
 
 	var body payment.CreateRequest
 	body.CardPaymentMethodSpecificInput = &cardPaymentMethodSpecificInput

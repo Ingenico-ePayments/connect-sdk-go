@@ -15,7 +15,7 @@ import (
 // APIVersion is the version of the current SDK
 const APIVersion = "v1"
 
-// Client is the GlobalCollect platform client. Thread-safe.
+// Client is the Ingenico ePayments platform client. Thread-safe.
 //
 // This client and all its child clients are bound to one specific value for the X-GCS-ClientMetaInfo header.
 // To get a new client with a different header value, use WithClientMetaInfo.

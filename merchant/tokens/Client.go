@@ -26,10 +26,10 @@ type Client struct {
 // * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
 // * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
 // or there was a conflict (HTTP status code 404, 409 or 410)
-// * GlobalCollectError if something went wrong at the GlobalCollect platform,
-// the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
+// * GlobalCollectError if something went wrong at the Ingenico ePayments platform,
+// the Ingenico ePayments platform was unable to process a message from a downstream partner/acquirer,
 // or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
-// * APIError if the GlobalCollect platform returned any other error
+// * APIError if the Ingenico ePayments platform returned any other error
 func (c *Client) Create(body token.CreateRequest, context communication.CallContext) (token.CreateResponse, error) {
 	var resultObject token.CreateResponse
 
@@ -76,10 +76,10 @@ func (c *Client) Create(body token.CreateRequest, context communication.CallCont
 // * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
 // * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
 // or there was a conflict (HTTP status code 404, 409 or 410)
-// * GlobalCollectError if something went wrong at the GlobalCollect platform,
-// the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
+// * GlobalCollectError if something went wrong at the Ingenico ePayments platform,
+// the Ingenico ePayments platform was unable to process a message from a downstream partner/acquirer,
 // or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
-// * APIError if the GlobalCollect platform returned any other error
+// * APIError if the Ingenico ePayments platform returned any other error
 func (c *Client) Get(tokenID string, context communication.CallContext) (token.Response, error) {
 	var resultObject token.Response
 
@@ -130,10 +130,10 @@ func (c *Client) Get(tokenID string, context communication.CallContext) (token.R
 // * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
 // * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
 // or there was a conflict (HTTP status code 404, 409 or 410)
-// * GlobalCollectError if something went wrong at the GlobalCollect platform,
-// the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
+// * GlobalCollectError if something went wrong at the Ingenico ePayments platform,
+// the Ingenico ePayments platform was unable to process a message from a downstream partner/acquirer,
 // or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
-// * APIError if the GlobalCollect platform returned any other error
+// * APIError if the Ingenico ePayments platform returned any other error
 func (c *Client) Update(tokenID string, body token.UpdateRequest, context communication.CallContext) error {
 	pathContext := map[string]string{
 		"tokenId": tokenID,
@@ -183,10 +183,10 @@ func (c *Client) Update(tokenID string, body token.UpdateRequest, context commun
 // * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
 // * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
 // or there was a conflict (HTTP status code 404, 409 or 410)
-// * GlobalCollectError if something went wrong at the GlobalCollect platform,
-// the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
+// * GlobalCollectError if something went wrong at the Ingenico ePayments platform,
+// the Ingenico ePayments platform was unable to process a message from a downstream partner/acquirer,
 // or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
-// * APIError if the GlobalCollect platform returned any other error
+// * APIError if the Ingenico ePayments platform returned any other error
 func (c *Client) Delete(tokenID string, query DeleteParams, context communication.CallContext) error {
 	pathContext := map[string]string{
 		"tokenId": tokenID,
@@ -236,10 +236,10 @@ func (c *Client) Delete(tokenID string, query DeleteParams, context communicatio
 // * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
 // * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
 // or there was a conflict (HTTP status code 404, 409 or 410)
-// * GlobalCollectError if something went wrong at the GlobalCollect platform,
-// the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
+// * GlobalCollectError if something went wrong at the Ingenico ePayments platform,
+// the Ingenico ePayments platform was unable to process a message from a downstream partner/acquirer,
 // or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
-// * APIError if the GlobalCollect platform returned any other error
+// * APIError if the Ingenico ePayments platform returned any other error
 func (c *Client) Approvesepadirectdebit(tokenID string, body token.ApproveRequest, context communication.CallContext) error {
 	pathContext := map[string]string{
 		"tokenId": tokenID,

@@ -8,6 +8,7 @@ type PaymentProduct struct {
 	AccountsOnFile            *[]AccountOnFile            `json:"accountsOnFile,omitempty"`
 	AllowsRecurring           *bool                       `json:"allowsRecurring,omitempty"`
 	AllowsTokenization        *bool                       `json:"allowsTokenization,omitempty"`
+	AuthenticationIndicator   *AuthenticationIndicator    `json:"authenticationIndicator,omitempty"`
 	AutoTokenized             *bool                       `json:"autoTokenized,omitempty"`
 	CanBeIframed              *bool                       `json:"canBeIframed,omitempty"`
 	DisplayHints              *PaymentProductDisplayHints `json:"displayHints,omitempty"`

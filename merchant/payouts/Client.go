@@ -23,16 +23,16 @@ type Client struct {
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/payouts/create.html
 //
 // Can return any of the following errors:
-// * DeclinedPayoutError if the GlobalCollect platform declined / rejected the payout. The payout result will be available from the exception.
+// * DeclinedPayoutError if the Ingenico ePayments platform declined / rejected the payout. The payout result will be available from the exception.
 // * ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
 // * AuthorizationError if the request was not allowed (HTTP status code 403)
 // * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
 // * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
 // or there was a conflict (HTTP status code 404, 409 or 410)
-// * GlobalCollectError if something went wrong at the GlobalCollect platform,
-// the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
+// * GlobalCollectError if something went wrong at the Ingenico ePayments platform,
+// the Ingenico ePayments platform was unable to process a message from a downstream partner/acquirer,
 // or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
-// * APIError if the GlobalCollect platform returned any other error
+// * APIError if the Ingenico ePayments platform returned any other error
 func (c *Client) Create(body payout.CreateRequest, context communication.CallContext) (payout.Response, error) {
 	var resultObject payout.Response
 
@@ -96,10 +96,10 @@ func (c *Client) Create(body payout.CreateRequest, context communication.CallCon
 // * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
 // * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
 // or there was a conflict (HTTP status code 404, 409 or 410)
-// * GlobalCollectError if something went wrong at the GlobalCollect platform,
-// the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
+// * GlobalCollectError if something went wrong at the Ingenico ePayments platform,
+// the Ingenico ePayments platform was unable to process a message from a downstream partner/acquirer,
 // or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
-// * APIError if the GlobalCollect platform returned any other error
+// * APIError if the Ingenico ePayments platform returned any other error
 func (c *Client) Get(payoutID string, context communication.CallContext) (payout.Response, error) {
 	var resultObject payout.Response
 
@@ -150,10 +150,10 @@ func (c *Client) Get(payoutID string, context communication.CallContext) (payout
 // * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
 // * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
 // or there was a conflict (HTTP status code 404, 409 or 410)
-// * GlobalCollectError if something went wrong at the GlobalCollect platform,
-// the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
+// * GlobalCollectError if something went wrong at the Ingenico ePayments platform,
+// the Ingenico ePayments platform was unable to process a message from a downstream partner/acquirer,
 // or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
-// * APIError if the GlobalCollect platform returned any other error
+// * APIError if the Ingenico ePayments platform returned any other error
 func (c *Client) Approve(payoutID string, body payout.ApproveRequest, context communication.CallContext) (payout.Response, error) {
 	var resultObject payout.Response
 
@@ -204,10 +204,10 @@ func (c *Client) Approve(payoutID string, body payout.ApproveRequest, context co
 // * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
 // * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
 // or there was a conflict (HTTP status code 404, 409 or 410)
-// * GlobalCollectError if something went wrong at the GlobalCollect platform,
-// the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
+// * GlobalCollectError if something went wrong at the Ingenico ePayments platform,
+// the Ingenico ePayments platform was unable to process a message from a downstream partner/acquirer,
 // or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
-// * APIError if the GlobalCollect platform returned any other error
+// * APIError if the Ingenico ePayments platform returned any other error
 func (c *Client) Cancel(payoutID string, context communication.CallContext) error {
 	pathContext := map[string]string{
 		"payoutId": payoutID,
@@ -257,10 +257,10 @@ func (c *Client) Cancel(payoutID string, context communication.CallContext) erro
 // * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
 // * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
 // or there was a conflict (HTTP status code 404, 409 or 410)
-// * GlobalCollectError if something went wrong at the GlobalCollect platform,
-// the GlobalCollect platform was unable to process a message from a downstream partner/acquirer,
+// * GlobalCollectError if something went wrong at the Ingenico ePayments platform,
+// the Ingenico ePayments platform was unable to process a message from a downstream partner/acquirer,
 // or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
-// * APIError if the GlobalCollect platform returned any other error
+// * APIError if the Ingenico ePayments platform returned any other error
 func (c *Client) Cancelapproval(payoutID string, context communication.CallContext) error {
 	pathContext := map[string]string{
 		"payoutId": payoutID,

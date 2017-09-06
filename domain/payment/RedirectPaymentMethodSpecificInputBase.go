@@ -8,7 +8,9 @@ type RedirectPaymentMethodSpecificInputBase struct {
 	ExpirationPeriod                  *int32  `json:"expirationPeriod,omitempty"`
 	PaymentProductID                  *int32  `json:"paymentProductId,omitempty"`
 	RecurringPaymentSequenceIndicator *string `json:"recurringPaymentSequenceIndicator,omitempty"`
+	RequiresApproval                  *bool   `json:"requiresApproval,omitempty"`
 	Token                             *string `json:"token,omitempty"`
+	Tokenize                          *bool   `json:"tokenize,omitempty"`
 }
 
 // NewRedirectPaymentMethodSpecificInputBase constructs a new RedirectPaymentMethodSpecificInputBase

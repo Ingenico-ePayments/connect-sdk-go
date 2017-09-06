@@ -6,7 +6,7 @@ import (
 	"github.com/Ingenico-ePayments/connect-sdk-go/domain/errors"
 )
 
-// ReferenceError represents an error response from the GlobalCollect platform when a non-existing or removed object is trying to be accessed.
+// ReferenceError represents an error response from the Ingenico ePayments platform when a non-existing or removed object is trying to be accessed.
 type ReferenceError struct {
 	errorMessage string
 	statusCode   int
@@ -63,7 +63,7 @@ func (re *ReferenceError) Error() string {
 
 // NewReferenceError creates a ReferenceError with the given statusCode, responseBody, errorID and errors
 func NewReferenceError(statusCode int, responseBody, errorID string, errors []errors.APIError) (*ReferenceError, error) {
-	return &ReferenceError{"the GlobalCollect platform returned an incorrect request error response", statusCode, responseBody, errorID, errors}, nil
+	return &ReferenceError{"the Ingenico ePayments platform returned an incorrect request error response", statusCode, responseBody, errorID, errors}, nil
 }
 
 // NewReferenceErrorVerbose creates a ReferenceError with the given message, statusCode, responseBody, errorID and errors

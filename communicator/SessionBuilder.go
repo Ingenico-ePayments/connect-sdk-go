@@ -10,7 +10,7 @@ type SessionBuilder struct {
 	Authenticator    Authenticator
 }
 
-// WithAPIEndpoint sets the GlobalCollect platform API endpoint to be used by the Session
+// WithAPIEndpoint sets the Ingenico ePayments platform API endpoint to be used by the Session
 func (s *SessionBuilder) WithAPIEndpoint(endpoint *url.URL) *SessionBuilder {
 	s.APIEndpoint = endpoint
 

@@ -30,7 +30,7 @@ type DefaultAuthenticator struct {
 }
 
 // NewDefaultAuthenticator creates a DefaultAuthenticator with the given authType, apiKeyID and secretAPIKey
-//- Based on the Authenticationtype value both the GlobalCollect platform and the merchant know which security implementation is used.
+//- Based on the Authenticationtype value both the Ingenico ePayments platform and the merchant know which security implementation is used.
 //  A version number is used for backward compatibility in the future.
 //- The apiKeyID is an identifier for the secret API key. The apiKeyID can be retrieved from the Configuration Center
 //  This identifier is visible in the HTTP request and is also used to identify the correct account.

@@ -14,7 +14,7 @@ var ErrNilParent = errors.New("parent is nil")
 // ErrNilCommunicator occurs when the communicator is nil
 var ErrNilCommunicator = errors.New("communicator is nil")
 
-// APIResource represents the base type of all GlobalCollect platform API resources.
+// APIResource represents the base type of all Ingenico ePayments platform API resources.
 type APIResource struct {
 	parentResource *APIResource
 	communicator   *communicator.Communicator

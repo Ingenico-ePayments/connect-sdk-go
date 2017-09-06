@@ -10,6 +10,7 @@ type Order struct {
 	AdditionalInput *AdditionalOrderInput      `json:"additionalInput,omitempty"`
 	AmountOfMoney   *definitions.AmountOfMoney `json:"amountOfMoney,omitempty"`
 	Customer        *Customer                  `json:"customer,omitempty"`
+	// Deprecated: Use ShoppingCart.items instead
 	Items           *[]LineItem                `json:"items,omitempty"`
 	References      *OrderReferences           `json:"references,omitempty"`
 	ShoppingCart    *ShoppingCart              `json:"shoppingCart,omitempty"`

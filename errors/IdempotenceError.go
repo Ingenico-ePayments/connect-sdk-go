@@ -6,7 +6,7 @@ import (
 	"github.com/Ingenico-ePayments/connect-sdk-go/domain/errors"
 )
 
-// IdempotenceError represents an error response from the GlobalCollect platform when an idempotent request failed because the first request has not finished yet.
+// IdempotenceError represents an error response from the Ingenico ePayments platform when an idempotent request failed because the first request has not finished yet.
 type IdempotenceError struct {
 	idempotenceKey              string
 	idempotenceRequestTimestamp *int64
@@ -86,7 +86,7 @@ func (ie *IdempotenceError) Error() string {
 
 // NewIdempotenceError creates an IdempotenceError with the given idempotenceKey, idempotenceRequestTimestamp, statusCode, responseBody, errorID and errors
 func NewIdempotenceError(idempotenceKey string, idempotenceRequestTimestamp *int64, statusCode int, responseBody, errorID string, errors []errors.APIError) (*IdempotenceError, error) {
-	return &IdempotenceError{idempotenceKey, idempotenceRequestTimestamp, "the GlobalCollect platform returned an incorrect request error response", statusCode, responseBody, errorID, errors}, nil
+	return &IdempotenceError{idempotenceKey, idempotenceRequestTimestamp, "the Ingenico ePayments platform returned an incorrect request error response", statusCode, responseBody, errorID, errors}, nil
 }
 
 // NewIdempotenceErrorVerbose creates an IdempotenceError with the given idempotenceKey, idempotenceRequestTimestamp, message, statusCode, responseBody, errorID and errors

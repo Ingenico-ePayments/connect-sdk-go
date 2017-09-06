@@ -6,7 +6,7 @@ import (
 	"github.com/Ingenico-ePayments/connect-sdk-go/communicator/communication"
 )
 
-// Authenticator is the interface used to sign requests to the GlobalCollect platform. Thread-safe.
+// Authenticator is the interface used to sign requests to the Ingenico ePayments platform. Thread-safe.
 type Authenticator interface {
 
 	// CreateSimpleAuthenticationSignature creates a signature for the simple security model.

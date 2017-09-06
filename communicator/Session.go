@@ -20,7 +20,7 @@ var (
 	ErrNilMetaDataProvider = errors.New("metaDataProvider is required")
 )
 
-// Session Contains the components needed to communicate with the GlobalCollect platform. Thread-safe.
+// Session Contains the components needed to communicate with the Ingenico ePayments platform. Thread-safe.
 type Session struct {
 	apiEndpoint      *url.URL
 	connection       Connection

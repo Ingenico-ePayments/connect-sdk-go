@@ -6,7 +6,7 @@ import (
 	"github.com/Ingenico-ePayments/connect-sdk-go/communicator/communication"
 )
 
-// ResponseError is returned when a response was received from the GlobalCollect platform which indicates an error.
+// ResponseError is returned when a response was received from the Ingenico ePayments platform which indicates an error.
 type ResponseError struct {
 	response   communication.Response
 	statusCode int
@@ -14,22 +14,22 @@ type ResponseError struct {
 	headers    []communication.Header
 }
 
-// Response gets the response that was returned by the GlobalCollect platform.
+// Response gets the response that was returned by the Ingenico ePayments platform.
 func (e *ResponseError) Response() communication.Response {
 	return e.response
 }
 
-// StatusCode gets the HTTP status code that was returned by the GlobalCollect platform.
+// StatusCode gets the HTTP status code that was returned by the Ingenico ePayments platform.
 func (e *ResponseError) StatusCode() int {
 	return e.statusCode
 }
 
-// Body gets the raw response body that was returned by the GlobalConnect platform.
+// Body gets the raw response body that was returned by the Ingenico ePayments platform.
 func (e *ResponseError) Body() string {
 	return e.body
 }
 
-// Headers gets the headers that were returned by the GlobalConnect platform.
+// Headers gets the headers that were returned by the Ingenico ePayments platform.
 func (e *ResponseError) Headers() []communication.Header {
 	return e.headers
 }
@@ -42,7 +42,7 @@ func (e *ResponseError) GetHeader(headerName string) *communication.Header {
 // String implements the Stringer interface
 // Format: 'errorMessage; statusCode=; responseBody='
 func (e *ResponseError) String() string {
-	retString := "the GlobalCollect platform returned an error response"
+	retString := "the Ingenico ePayments platform returned an error response"
 
 	statusCode := e.response.StatusCode()
 	if statusCode > 0 {

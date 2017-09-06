@@ -1,6 +1,6 @@
 package errors
 
-// CommunicationError represents an error during the communication with the GlobalCollect platform
+// CommunicationError represents an error during the communication with the Ingenico ePayments platform
 type CommunicationError struct {
 	internalError error
 }
@@ -16,9 +16,9 @@ func (ce *CommunicationError) Error() string {
 }
 
 // String implements the Stringer interface
-// Format: 'There was an error in the communication with the GlobalCollect platform error'
+// Format: 'There was an error in the communication with the Ingenico ePayments platform error'
 func (ce *CommunicationError) String() string {
-	return "There was an error in the communication with the GlobalCollect platform " + ce.internalError.Error()
+	return "There was an error in the communication with the Ingenico ePayments platform " + ce.internalError.Error()
 }
 
 // NewCommunicationError creates a Communication with the given internal error
