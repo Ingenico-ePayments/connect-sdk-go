@@ -11,6 +11,7 @@ import (
 // CustomerRiskAssessment represents class CustomerRiskAssessment
 type CustomerRiskAssessment struct {
 	BillingAddress      *definitions.Address               `json:"billingAddress,omitempty"`
+	ContactDetails      *ContactDetailsRiskAssessment      `json:"contactDetails,omitempty"`
 	Locale              *string                            `json:"locale,omitempty"`
 	PersonalInformation *PersonalInformationRiskAssessment `json:"personalInformation,omitempty"`
 	ShippingAddress     *payment.AddressPersonal           `json:"shippingAddress,omitempty"`
