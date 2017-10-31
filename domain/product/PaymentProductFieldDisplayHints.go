@@ -9,6 +9,7 @@ type PaymentProductFieldDisplayHints struct {
 	DisplayOrder       *int32                          `json:"displayOrder,omitempty"`
 	FormElement        *PaymentProductFieldFormElement `json:"formElement,omitempty"`
 	Label              *string                         `json:"label,omitempty"`
+	Link               *string                         `json:"link,omitempty"`
 	Mask               *string                         `json:"mask,omitempty"`
 	Obfuscate          *bool                           `json:"obfuscate,omitempty"`
 	PlaceholderLabel   *string                         `json:"placeholderLabel,omitempty"`

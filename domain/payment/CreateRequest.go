@@ -11,6 +11,7 @@ type CreateRequest struct {
 	CardPaymentMethodSpecificInput            *CardPaymentMethodSpecificInput               `json:"cardPaymentMethodSpecificInput,omitempty"`
 	CashPaymentMethodSpecificInput            *CashPaymentMethodSpecificInput               `json:"cashPaymentMethodSpecificInput,omitempty"`
 	DirectDebitPaymentMethodSpecificInput     *NonSepaDirectDebitPaymentMethodSpecificInput `json:"directDebitPaymentMethodSpecificInput,omitempty"`
+	EInvoicePaymentMethodSpecificInput        *EInvoicePaymentMethodSpecificInput           `json:"eInvoicePaymentMethodSpecificInput,omitempty"`
 	EncryptedCustomerInput                    *string                                       `json:"encryptedCustomerInput,omitempty"`
 	FraudFields                               *definitions.FraudFields                      `json:"fraudFields,omitempty"`
 	InvoicePaymentMethodSpecificInput         *InvoicePaymentMethodSpecificInput            `json:"invoicePaymentMethodSpecificInput,omitempty"`

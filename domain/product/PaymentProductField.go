@@ -9,6 +9,7 @@ type PaymentProductField struct {
 	DisplayHints     *PaymentProductFieldDisplayHints     `json:"displayHints,omitempty"`
 	ID               *string                              `json:"id,omitempty"`
 	Type             *string                              `json:"type,omitempty"`
+	UsedForLookup    *bool                                `json:"usedForLookup,omitempty"`
 }
 
 // NewPaymentProductField constructs a new PaymentProductField

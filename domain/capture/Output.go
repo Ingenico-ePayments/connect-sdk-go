@@ -16,6 +16,7 @@ type Output struct {
 	CardPaymentMethodSpecificOutput            *payment.CardPaymentMethodSpecificOutput               `json:"cardPaymentMethodSpecificOutput,omitempty"`
 	CashPaymentMethodSpecificOutput            *payment.CashPaymentMethodSpecificOutput               `json:"cashPaymentMethodSpecificOutput,omitempty"`
 	DirectDebitPaymentMethodSpecificOutput     *payment.NonSepaDirectDebitPaymentMethodSpecificOutput `json:"directDebitPaymentMethodSpecificOutput,omitempty"`
+	EInvoicePaymentMethodSpecificOutput        *payment.EInvoicePaymentMethodSpecificOutput           `json:"eInvoicePaymentMethodSpecificOutput,omitempty"`
 	InvoicePaymentMethodSpecificOutput         *payment.InvoicePaymentMethodSpecificOutput            `json:"invoicePaymentMethodSpecificOutput,omitempty"`
 	MobilePaymentMethodSpecificOutput          *payment.MobilePaymentMethodSpecificOutput             `json:"mobilePaymentMethodSpecificOutput,omitempty"`
 	PaymentMethod                              *string                                                `json:"paymentMethod,omitempty"`

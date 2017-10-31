@@ -13,6 +13,7 @@ type PaymentProduct struct {
 	CanBeIframed              *bool                       `json:"canBeIframed,omitempty"`
 	DisplayHints              *PaymentProductDisplayHints `json:"displayHints,omitempty"`
 	Fields                    *[]PaymentProductField      `json:"fields,omitempty"`
+	FieldsWarning             *string                     `json:"fieldsWarning,omitempty"`
 	ID                        *int32                      `json:"id,omitempty"`
 	MaxAmount                 *int64                      `json:"maxAmount,omitempty"`
 	MinAmount                 *int64                      `json:"minAmount,omitempty"`

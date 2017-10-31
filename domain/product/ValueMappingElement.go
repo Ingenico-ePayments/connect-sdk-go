@@ -5,8 +5,10 @@ package product
 
 // ValueMappingElement represents class ValueMappingElement
 type ValueMappingElement struct {
-	DisplayName *string `json:"displayName,omitempty"`
-	Value       *string `json:"value,omitempty"`
+	DisplayElements *[]PaymentProductFieldDisplayElement `json:"displayElements,omitempty"`
+	// Deprecated: use displayElement with ID 'displayName' instead.
+	DisplayName     *string                              `json:"displayName,omitempty"`
+	Value           *string                              `json:"value,omitempty"`
 }
 
 // NewValueMappingElement constructs a new ValueMappingElement
