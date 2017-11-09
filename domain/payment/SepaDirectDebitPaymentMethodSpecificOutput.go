@@ -7,8 +7,9 @@ import "github.com/Ingenico-ePayments/connect-sdk-go/domain/definitions"
 
 // SepaDirectDebitPaymentMethodSpecificOutput represents class SepaDirectDebitPaymentMethodSpecificOutput
 type SepaDirectDebitPaymentMethodSpecificOutput struct {
-	FraudResults     *definitions.FraudResults `json:"fraudResults,omitempty"`
-	PaymentProductID *int32                    `json:"paymentProductId,omitempty"`
+	FraudResults                    *definitions.FraudResults `json:"fraudResults,omitempty"`
+	PaymentProduct771SpecificOutput *Product771SpecificOutput `json:"paymentProduct771SpecificOutput,omitempty"`
+	PaymentProductID                *int32                    `json:"paymentProductId,omitempty"`
 }
 
 // NewSepaDirectDebitPaymentMethodSpecificOutput constructs a new SepaDirectDebitPaymentMethodSpecificOutput

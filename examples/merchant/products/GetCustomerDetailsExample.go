@@ -34,7 +34,7 @@ func getCustomerDetailsExample() {
 	body.CountryCode = newString("SE")
 	body.Values = &values
 
-	response, err := client.Merchant("merchantId").Products().CustomerDetails(1, body, nil)
+	response, err := client.Merchant("merchantId").Products().CustomerDetails(9000, body, nil)
 
 	fmt.Println(response, err)
 }

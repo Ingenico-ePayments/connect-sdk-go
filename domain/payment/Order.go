@@ -13,6 +13,7 @@ type Order struct {
 	// Deprecated: Use ShoppingCart.items instead
 	Items           *[]LineItem                `json:"items,omitempty"`
 	References      *OrderReferences           `json:"references,omitempty"`
+	Seller          *Seller                    `json:"seller,omitempty"`
 	ShoppingCart    *ShoppingCart              `json:"shoppingCart,omitempty"`
 }
 

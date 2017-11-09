@@ -10,13 +10,15 @@ import (
 
 // CreateRequest represents class CreateHostedCheckoutRequest
 type CreateRequest struct {
-	BankTransferPaymentMethodSpecificInput *payment.BankTransferPaymentMethodSpecificInputBase `json:"bankTransferPaymentMethodSpecificInput,omitempty"`
-	CardPaymentMethodSpecificInput         *payment.CardPaymentMethodSpecificInputBase         `json:"cardPaymentMethodSpecificInput,omitempty"`
-	CashPaymentMethodSpecificInput         *payment.CashPaymentMethodSpecificInputBase         `json:"cashPaymentMethodSpecificInput,omitempty"`
-	FraudFields                            *definitions.FraudFields                            `json:"fraudFields,omitempty"`
-	HostedCheckoutSpecificInput            *SpecificInput                                      `json:"hostedCheckoutSpecificInput,omitempty"`
-	Order                                  *payment.Order                                      `json:"order,omitempty"`
-	RedirectPaymentMethodSpecificInput     *payment.RedirectPaymentMethodSpecificInputBase     `json:"redirectPaymentMethodSpecificInput,omitempty"`
+	BankTransferPaymentMethodSpecificInput    *payment.BankTransferPaymentMethodSpecificInputBase    `json:"bankTransferPaymentMethodSpecificInput,omitempty"`
+	CardPaymentMethodSpecificInput            *payment.CardPaymentMethodSpecificInputBase            `json:"cardPaymentMethodSpecificInput,omitempty"`
+	CashPaymentMethodSpecificInput            *payment.CashPaymentMethodSpecificInputBase            `json:"cashPaymentMethodSpecificInput,omitempty"`
+	EInvoicePaymentMethodSpecificInput        *payment.EInvoicePaymentMethodSpecificInputBase        `json:"eInvoicePaymentMethodSpecificInput,omitempty"`
+	FraudFields                               *definitions.FraudFields                               `json:"fraudFields,omitempty"`
+	HostedCheckoutSpecificInput               *SpecificInput                                         `json:"hostedCheckoutSpecificInput,omitempty"`
+	Order                                     *payment.Order                                         `json:"order,omitempty"`
+	RedirectPaymentMethodSpecificInput        *payment.RedirectPaymentMethodSpecificInputBase        `json:"redirectPaymentMethodSpecificInput,omitempty"`
+	SepaDirectDebitPaymentMethodSpecificInput *payment.SepaDirectDebitPaymentMethodSpecificInputBase `json:"sepaDirectDebitPaymentMethodSpecificInput,omitempty"`
 }
 
 // NewCreateRequest constructs a new CreateRequest

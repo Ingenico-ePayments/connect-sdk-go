@@ -7,6 +7,7 @@ import (
 	"github.com/Ingenico-ePayments/connect-sdk-go/internal/apiresource"
 	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/captures"
 	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/hostedcheckouts"
+	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/mandates"
 	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/payments"
 	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/payouts"
 	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/productgroups"
@@ -51,6 +52,12 @@ func (c *Client) Products() *products.Client {
 // Get information about payment product groups
 func (c *Client) Productgroups() *productgroups.Client {
 	return productgroups.NewClient(c.apiResource, nil)
+}
+
+// Mandates represents the resource /{merchantId}/mandates
+// Create, get and update mandates
+func (c *Client) Mandates() *mandates.Client {
+	return mandates.NewClient(c.apiResource, nil)
 }
 
 // Refunds represents the resource /{merchantId}/refunds
