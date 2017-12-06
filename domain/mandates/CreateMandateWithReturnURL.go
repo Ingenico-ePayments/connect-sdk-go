@@ -3,16 +3,17 @@
 
 package mandates
 
-// CreateMandateBase represents class CreateMandateBase
-type CreateMandateBase struct {
+// CreateMandateWithReturnURL represents class CreateMandateWithReturnUrl
+type CreateMandateWithReturnURL struct {
 	Customer          *MandateCustomer `json:"customer,omitempty"`
 	CustomerReference *string          `json:"customerReference,omitempty"`
 	Language          *string          `json:"language,omitempty"`
 	RecurrenceType    *string          `json:"recurrenceType,omitempty"`
+	ReturnURL         *string          `json:"returnUrl,omitempty"`
 	SignatureType     *string          `json:"signatureType,omitempty"`
 }
 
-// NewCreateMandateBase constructs a new CreateMandateBase
-func NewCreateMandateBase() *CreateMandateBase {
-	return &CreateMandateBase{}
+// NewCreateMandateWithReturnURL constructs a new CreateMandateWithReturnURL
+func NewCreateMandateWithReturnURL() *CreateMandateWithReturnURL {
+	return &CreateMandateWithReturnURL{}
 }
