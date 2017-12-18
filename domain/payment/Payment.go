@@ -5,10 +5,11 @@ package payment
 
 // Payment represents class Payment
 type Payment struct {
-	ID            *string       `json:"id,omitempty"`
-	PaymentOutput *Output       `json:"paymentOutput,omitempty"`
-	Status        *string       `json:"status,omitempty"`
-	StatusOutput  *StatusOutput `json:"statusOutput,omitempty"`
+	HostedCheckoutSpecificOutput *HostedCheckoutSpecificOutput `json:"hostedCheckoutSpecificOutput,omitempty"`
+	ID                           *string                       `json:"id,omitempty"`
+	PaymentOutput                *Output                       `json:"paymentOutput,omitempty"`
+	Status                       *string                       `json:"status,omitempty"`
+	StatusOutput                 *StatusOutput                 `json:"statusOutput,omitempty"`
 }
 
 // NewPayment constructs a new Payment

@@ -5,6 +5,7 @@ package mandates
 
 // CreateMandateWithReturnURL represents class CreateMandateWithReturnUrl
 type CreateMandateWithReturnURL struct {
+	Alias             *string          `json:"alias,omitempty"`
 	Customer          *MandateCustomer `json:"customer,omitempty"`
 	CustomerReference *string          `json:"customerReference,omitempty"`
 	Language          *string          `json:"language,omitempty"`

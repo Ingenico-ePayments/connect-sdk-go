@@ -18,6 +18,7 @@ type AirlineData struct {
 	MerchantCustomerID   *string             `json:"merchantCustomerId,omitempty"`
 	Name                 *string             `json:"name,omitempty"`
 	PassengerName        *string             `json:"passengerName,omitempty"`
+	Passengers           *[]AirlinePassenger `json:"passengers,omitempty"`
 	PlaceOfIssue         *string             `json:"placeOfIssue,omitempty"`
 	PNR                  *string             `json:"pnr,omitempty"`
 	PointOfSale          *string             `json:"pointOfSale,omitempty"`

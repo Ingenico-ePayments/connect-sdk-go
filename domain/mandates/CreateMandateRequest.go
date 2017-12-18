@@ -5,6 +5,7 @@ package mandates
 
 // CreateMandateRequest represents class CreateMandateRequest
 type CreateMandateRequest struct {
+	Alias             *string          `json:"alias,omitempty"`
 	Customer          *MandateCustomer `json:"customer,omitempty"`
 	CustomerReference *string          `json:"customerReference,omitempty"`
 	Language          *string          `json:"language,omitempty"`

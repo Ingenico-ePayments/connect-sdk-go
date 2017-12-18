@@ -5,10 +5,11 @@ package payment
 
 // Response represents class PaymentResponse
 type Response struct {
-	ID            *string       `json:"id,omitempty"`
-	PaymentOutput *Output       `json:"paymentOutput,omitempty"`
-	Status        *string       `json:"status,omitempty"`
-	StatusOutput  *StatusOutput `json:"statusOutput,omitempty"`
+	HostedCheckoutSpecificOutput *HostedCheckoutSpecificOutput `json:"hostedCheckoutSpecificOutput,omitempty"`
+	ID                           *string                       `json:"id,omitempty"`
+	PaymentOutput                *Output                       `json:"paymentOutput,omitempty"`
+	Status                       *string                       `json:"status,omitempty"`
+	StatusOutput                 *StatusOutput                 `json:"statusOutput,omitempty"`
 }
 
 // NewResponse constructs a new Response

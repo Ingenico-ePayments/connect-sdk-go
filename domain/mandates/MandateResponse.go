@@ -5,6 +5,7 @@ package mandates
 
 // MandateResponse represents class MandateResponse
 type MandateResponse struct {
+	Alias                  *string          `json:"alias,omitempty"`
 	Customer               *MandateCustomer `json:"customer,omitempty"`
 	CustomerReference      *string          `json:"customerReference,omitempty"`
 	RecurrenceType         *string          `json:"recurrenceType,omitempty"`

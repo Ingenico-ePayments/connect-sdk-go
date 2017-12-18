@@ -5,6 +5,8 @@ package sessions
 
 // SessionResponse represents class SessionResponse
 type SessionResponse struct {
+	AssetURL        *string   `json:"assetUrl,omitempty"`
+	ClientAPIURL    *string   `json:"clientApiUrl,omitempty"`
 	ClientSessionID *string   `json:"clientSessionId,omitempty"`
 	CustomerID      *string   `json:"customerId,omitempty"`
 	InvalidTokens   *[]string `json:"invalidTokens,omitempty"`

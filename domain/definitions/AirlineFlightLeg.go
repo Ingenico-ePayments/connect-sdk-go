@@ -15,6 +15,7 @@ type AirlineFlightLeg struct {
 	FlightNumber   *string `json:"flightNumber,omitempty"`
 	Number         *int32  `json:"number,omitempty"`
 	OriginAirport  *string `json:"originAirport,omitempty"`
+	ServiceClass   *string `json:"serviceClass,omitempty"`
 	StopoverCode   *string `json:"stopoverCode,omitempty"`
 }
 
