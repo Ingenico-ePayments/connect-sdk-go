@@ -10,7 +10,7 @@ import (
 	"github.com/Ingenico-ePayments/connect-sdk-go/domain/mandates"
 )
 
-func createMandateExample() {
+func createMandateWithReferenceExample() {
 	client, clientErr := getClient()
 	if clientErr != nil {
 		panic(clientErr)
@@ -57,7 +57,7 @@ func createMandateExample() {
 	body.RecurrenceType = newString("UNIQUE")
 	body.SignatureType = newString("UNSIGNED")
 
-	response, err := client.Merchant("merchantId").Mandates().Create(body, nil)
+	response, err := client.Merchant("merchantId").Mandates().CreateWithMandateReference("42268d8067df43e18a50a2ebf4bdb729", body, nil)
 
 	fmt.Println(response, err)
 }

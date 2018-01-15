@@ -177,6 +177,114 @@ func (c *Client) Directory(paymentProductID int32, query DirectoryParams, contex
 	return resultObject, nil
 }
 
+// CustomerDetails represents the resource /{merchantId}/products/{paymentProductId}/customerDetails
+// Get customer details
+// Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/products/customerDetails.html
+//
+// Can return any of the following errors:
+// * ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
+// * AuthorizationError if the request was not allowed (HTTP status code 403)
+// * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
+// * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
+// or there was a conflict (HTTP status code 404, 409 or 410)
+// * GlobalCollectError if something went wrong at the Ingenico ePayments platform,
+// the Ingenico ePayments platform was unable to process a message from a downstream partner/acquirer,
+// or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
+// * APIError if the Ingenico ePayments platform returned any other error
+func (c *Client) CustomerDetails(paymentProductID int32, body product.GetCustomerDetailsRequest, context communication.CallContext) (product.GetCustomerDetailsResponse, error) {
+	var resultObject product.GetCustomerDetailsResponse
+
+	pathContext := map[string]string{
+		"paymentProductId": strconv.FormatInt(int64(paymentProductID), 10),
+	}
+
+	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/products/{paymentProductId}/customerDetails", pathContext)
+	if err != nil {
+		return resultObject, err
+	}
+
+	clientHeaders := c.apiResource.ClientHeaders()
+
+	postErr := c.apiResource.Communicator().Post(uri, clientHeaders, nil, body, context, &resultObject)
+	if postErr != nil {
+		responseError, isResponseError := postErr.(*sdkErrors.ResponseError)
+		if isResponseError {
+			var errorObject interface{}
+
+			errorObject = &errors.ErrorResponse{}
+			err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
+			if err != nil {
+				return resultObject, err
+			}
+
+			err, createErr := sdkErrors.CreateAPIError(responseError.StatusCode(), responseError.Body(), errorObject, context)
+			if createErr != nil {
+				return resultObject, createErr
+			}
+
+			return resultObject, err
+		}
+
+		return resultObject, postErr
+	}
+
+	return resultObject, nil
+}
+
+// DeviceFingerprint represents the resource /{merchantId}/products/{paymentProductId}/deviceFingerprint
+// Get device fingerprint
+// Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/products/deviceFingerprint.html
+//
+// Can return any of the following errors:
+// * ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
+// * AuthorizationError if the request was not allowed (HTTP status code 403)
+// * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
+// * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
+// or there was a conflict (HTTP status code 404, 409 or 410)
+// * GlobalCollectError if something went wrong at the Ingenico ePayments platform,
+// the Ingenico ePayments platform was unable to process a message from a downstream partner/acquirer,
+// or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
+// * APIError if the Ingenico ePayments platform returned any other error
+func (c *Client) DeviceFingerprint(paymentProductID int32, body product.DeviceFingerprintRequest, context communication.CallContext) (product.DeviceFingerprintResponse, error) {
+	var resultObject product.DeviceFingerprintResponse
+
+	pathContext := map[string]string{
+		"paymentProductId": strconv.FormatInt(int64(paymentProductID), 10),
+	}
+
+	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/products/{paymentProductId}/deviceFingerprint", pathContext)
+	if err != nil {
+		return resultObject, err
+	}
+
+	clientHeaders := c.apiResource.ClientHeaders()
+
+	postErr := c.apiResource.Communicator().Post(uri, clientHeaders, nil, body, context, &resultObject)
+	if postErr != nil {
+		responseError, isResponseError := postErr.(*sdkErrors.ResponseError)
+		if isResponseError {
+			var errorObject interface{}
+
+			errorObject = &errors.ErrorResponse{}
+			err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
+			if err != nil {
+				return resultObject, err
+			}
+
+			err, createErr := sdkErrors.CreateAPIError(responseError.StatusCode(), responseError.Body(), errorObject, context)
+			if createErr != nil {
+				return resultObject, createErr
+			}
+
+			return resultObject, err
+		}
+
+		return resultObject, postErr
+	}
+
+	return resultObject, nil
+}
+
 // Networks represents the resource /{merchantId}/products/{paymentProductId}/networks
 // Get payment product networks
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/products/networks.html
@@ -280,60 +388,6 @@ func (c *Client) PublicKey(paymentProductID int32, context communication.CallCon
 		}
 
 		return resultObject, getErr
-	}
-
-	return resultObject, nil
-}
-
-// CustomerDetails represents the resource /{merchantId}/products/{paymentProductId}/customerDetails
-// Get customer details
-// Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/products/customerDetails.html
-//
-// Can return any of the following errors:
-// * ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
-// * AuthorizationError if the request was not allowed (HTTP status code 403)
-// * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
-// * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
-// or there was a conflict (HTTP status code 404, 409 or 410)
-// * GlobalCollectError if something went wrong at the Ingenico ePayments platform,
-// the Ingenico ePayments platform was unable to process a message from a downstream partner/acquirer,
-// or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
-// * APIError if the Ingenico ePayments platform returned any other error
-func (c *Client) CustomerDetails(paymentProductID int32, body product.GetCustomerDetailsRequest, context communication.CallContext) (product.GetCustomerDetailsResponse, error) {
-	var resultObject product.GetCustomerDetailsResponse
-
-	pathContext := map[string]string{
-		"paymentProductId": strconv.FormatInt(int64(paymentProductID), 10),
-	}
-
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/products/{paymentProductId}/customerDetails", pathContext)
-	if err != nil {
-		return resultObject, err
-	}
-
-	clientHeaders := c.apiResource.ClientHeaders()
-
-	postErr := c.apiResource.Communicator().Post(uri, clientHeaders, nil, body, context, &resultObject)
-	if postErr != nil {
-		responseError, isResponseError := postErr.(*sdkErrors.ResponseError)
-		if isResponseError {
-			var errorObject interface{}
-
-			errorObject = &errors.ErrorResponse{}
-			err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
-			if err != nil {
-				return resultObject, err
-			}
-
-			err, createErr := sdkErrors.CreateAPIError(responseError.StatusCode(), responseError.Body(), errorObject, context)
-			if createErr != nil {
-				return resultObject, createErr
-			}
-
-			return resultObject, err
-		}
-
-		return resultObject, postErr
 	}
 
 	return resultObject, nil

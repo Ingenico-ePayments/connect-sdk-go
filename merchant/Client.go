@@ -24,6 +24,12 @@ type Client struct {
 	apiResource *apiresource.APIResource
 }
 
+// Hostedcheckouts represents the resource /{merchantId}/hostedcheckouts
+// Create new hosted checkout
+func (c *Client) Hostedcheckouts() *hostedcheckouts.Client {
+	return hostedcheckouts.NewClient(c.apiResource, nil)
+}
+
 // Payments represents the resource /{merchantId}/payments
 // Create, cancel and approve payments
 func (c *Client) Payments() *payments.Client {
@@ -36,16 +42,16 @@ func (c *Client) Captures() *captures.Client {
 	return captures.NewClient(c.apiResource, nil)
 }
 
+// Refunds represents the resource /{merchantId}/refunds
+// Create, cancel and approve refunds
+func (c *Client) Refunds() *refunds.Client {
+	return refunds.NewClient(c.apiResource, nil)
+}
+
 // Payouts represents the resource /{merchantId}/payouts
 // Create, cancel and approve payouts
 func (c *Client) Payouts() *payouts.Client {
 	return payouts.NewClient(c.apiResource, nil)
-}
-
-// Products represents the resource /{merchantId}/products
-// Get information about payment products
-func (c *Client) Products() *products.Client {
-	return products.NewClient(c.apiResource, nil)
 }
 
 // Productgroups represents the resource /{merchantId}/productgroups
@@ -54,16 +60,10 @@ func (c *Client) Productgroups() *productgroups.Client {
 	return productgroups.NewClient(c.apiResource, nil)
 }
 
-// Mandates represents the resource /{merchantId}/mandates
-// Create, get and update mandates
-func (c *Client) Mandates() *mandates.Client {
-	return mandates.NewClient(c.apiResource, nil)
-}
-
-// Refunds represents the resource /{merchantId}/refunds
-// Create, cancel and approve refunds
-func (c *Client) Refunds() *refunds.Client {
-	return refunds.NewClient(c.apiResource, nil)
+// Products represents the resource /{merchantId}/products
+// Get information about payment products
+func (c *Client) Products() *products.Client {
+	return products.NewClient(c.apiResource, nil)
 }
 
 // Riskassessments represents the resource /{merchantId}/riskassessments
@@ -78,22 +78,22 @@ func (c *Client) Services() *services.Client {
 	return services.NewClient(c.apiResource, nil)
 }
 
-// Sessions represents the resource /{merchantId}/sessions
-// Create new Session for Client2Server API calls
-func (c *Client) Sessions() *sessions.Client {
-	return sessions.NewClient(c.apiResource, nil)
-}
-
 // Tokens represents the resource /{merchantId}/tokens
 // Create, delete and update tokens
 func (c *Client) Tokens() *tokens.Client {
 	return tokens.NewClient(c.apiResource, nil)
 }
 
-// Hostedcheckouts represents the resource /{merchantId}/hostedcheckouts
-// Create new hosted checkout
-func (c *Client) Hostedcheckouts() *hostedcheckouts.Client {
-	return hostedcheckouts.NewClient(c.apiResource, nil)
+// Mandates represents the resource /{merchantId}/mandates
+// Create, get and update mandates
+func (c *Client) Mandates() *mandates.Client {
+	return mandates.NewClient(c.apiResource, nil)
+}
+
+// Sessions represents the resource /{merchantId}/sessions
+// Create new Session for Client2Server API calls
+func (c *Client) Sessions() *sessions.Client {
+	return sessions.NewClient(c.apiResource, nil)
 }
 
 // NewClient constructs a Merchant Client

@@ -11,6 +11,7 @@ type PaymentProduct struct {
 	AuthenticationIndicator   *AuthenticationIndicator    `json:"authenticationIndicator,omitempty"`
 	AutoTokenized             *bool                       `json:"autoTokenized,omitempty"`
 	CanBeIframed              *bool                       `json:"canBeIframed,omitempty"`
+	DeviceFingerprintEnabled  *bool                       `json:"deviceFingerprintEnabled,omitempty"`
 	DisplayHints              *PaymentProductDisplayHints `json:"displayHints,omitempty"`
 	Fields                    *[]PaymentProductField      `json:"fields,omitempty"`
 	FieldsWarning             *string                     `json:"fieldsWarning,omitempty"`

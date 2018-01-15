@@ -13,6 +13,7 @@ type PaymentProductFieldValidators struct {
 	Luhn                       *EmptyValidator                      `json:"luhn,omitempty"`
 	Range                      *RangeValidator                      `json:"range,omitempty"`
 	RegularExpression          *RegularExpressionValidator          `json:"regularExpression,omitempty"`
+	TermsAndConditions         *EmptyValidator                      `json:"termsAndConditions,omitempty"`
 }
 
 // NewPaymentProductFieldValidators constructs a new PaymentProductFieldValidators
