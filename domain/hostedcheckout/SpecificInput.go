@@ -12,6 +12,7 @@ type SpecificInput struct {
 	ReturnURL             *string                              `json:"returnUrl,omitempty"`
 	ShowResultPage        *bool                                `json:"showResultPage,omitempty"`
 	Tokens                *string                              `json:"tokens,omitempty"`
+	ValidateShoppingCart  *bool                                `json:"validateShoppingCart,omitempty"`
 	Variant               *string                              `json:"variant,omitempty"`
 }
 

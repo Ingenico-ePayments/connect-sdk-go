@@ -8,6 +8,7 @@ type OrderLineDetails struct {
 	DiscountAmount          *int64  `json:"discountAmount,omitempty"`
 	GoogleProductCategoryID *int64  `json:"googleProductCategoryId,omitempty"`
 	LineAmountTotal         *int64  `json:"lineAmountTotal,omitempty"`
+	ProductCategory         *string `json:"productCategory,omitempty"`
 	ProductCode             *string `json:"productCode,omitempty"`
 	ProductName             *string `json:"productName,omitempty"`
 	ProductPrice            *int64  `json:"productPrice,omitempty"`

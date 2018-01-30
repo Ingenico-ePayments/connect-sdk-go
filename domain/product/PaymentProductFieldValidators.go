@@ -9,6 +9,7 @@ type PaymentProductFieldValidators struct {
 	EmailAddress               *EmptyValidator                      `json:"emailAddress,omitempty"`
 	ExpirationDate             *EmptyValidator                      `json:"expirationDate,omitempty"`
 	FixedList                  *FixedListValidator                  `json:"fixedList,omitempty"`
+	Iban                       *EmptyValidator                      `json:"iban,omitempty"`
 	Length                     *LengthValidator                     `json:"length,omitempty"`
 	Luhn                       *EmptyValidator                      `json:"luhn,omitempty"`
 	Range                      *RangeValidator                      `json:"range,omitempty"`
