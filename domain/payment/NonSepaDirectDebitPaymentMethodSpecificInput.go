@@ -9,6 +9,7 @@ type NonSepaDirectDebitPaymentMethodSpecificInput struct {
 	DirectDebitText                   *string                                           `json:"directDebitText,omitempty"`
 	IsRecurring                       *bool                                             `json:"isRecurring,omitempty"`
 	PaymentProduct705SpecificInput    *NonSepaDirectDebitPaymentProduct705SpecificInput `json:"paymentProduct705SpecificInput,omitempty"`
+	PaymentProduct730SpecificInput    *NonSepaDirectDebitPaymentProduct730SpecificInput `json:"paymentProduct730SpecificInput,omitempty"`
 	PaymentProductID                  *int32                                            `json:"paymentProductId,omitempty"`
 	RecurringPaymentSequenceIndicator *string                                           `json:"recurringPaymentSequenceIndicator,omitempty"`
 	Token                             *string                                           `json:"token,omitempty"`

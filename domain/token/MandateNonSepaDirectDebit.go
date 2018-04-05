@@ -6,6 +6,7 @@ package token
 // MandateNonSepaDirectDebit represents class MandateNonSepaDirectDebit
 type MandateNonSepaDirectDebit struct {
 	PaymentProduct705SpecificData *NonSepaDirectDebitPaymentProduct705SpecificData `json:"paymentProduct705SpecificData,omitempty"`
+	PaymentProduct730SpecificData *NonSepaDirectDebitPaymentProduct730SpecificData `json:"paymentProduct730SpecificData,omitempty"`
 }
 
 // NewMandateNonSepaDirectDebit constructs a new MandateNonSepaDirectDebit
