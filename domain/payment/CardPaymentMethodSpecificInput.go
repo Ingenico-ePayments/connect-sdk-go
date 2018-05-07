@@ -21,6 +21,8 @@ type CardPaymentMethodSpecificInput struct {
 	Token                                *string                               `json:"token,omitempty"`
 	Tokenize                             *bool                                 `json:"tokenize,omitempty"`
 	TransactionChannel                   *string                               `json:"transactionChannel,omitempty"`
+	UnscheduledCardOnFileIndicator       *string                               `json:"unscheduledCardOnFileIndicator,omitempty"`
+	UnscheduledCardOnFileRequestor       *string                               `json:"unscheduledCardOnFileRequestor,omitempty"`
 }
 
 // NewCardPaymentMethodSpecificInput constructs a new CardPaymentMethodSpecificInput
