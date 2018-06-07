@@ -6,7 +6,6 @@ package mandates
 // MandateContactDetails represents class MandateContactDetails
 type MandateContactDetails struct {
 	EmailAddress *string `json:"emailAddress,omitempty"`
-	PhoneNumber  *string `json:"phoneNumber,omitempty"`
 }
 
 // NewMandateContactDetails constructs a new MandateContactDetails

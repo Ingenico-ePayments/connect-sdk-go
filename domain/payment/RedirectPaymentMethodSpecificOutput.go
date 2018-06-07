@@ -12,6 +12,7 @@ type RedirectPaymentMethodSpecificOutput struct {
 	PaymentProduct836SpecificOutput *Product836SpecificOutput    `json:"paymentProduct836SpecificOutput,omitempty"`
 	PaymentProduct840SpecificOutput *Product840SpecificOutput    `json:"paymentProduct840SpecificOutput,omitempty"`
 	PaymentProductID                *int32                       `json:"paymentProductId,omitempty"`
+	Token                           *string                      `json:"token,omitempty"`
 }
 
 // NewRedirectPaymentMethodSpecificOutput constructs a new RedirectPaymentMethodSpecificOutput

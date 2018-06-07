@@ -27,7 +27,6 @@ func createMandateExample() {
 
 	var contactDetails mandates.MandateContactDetails
 	contactDetails.EmailAddress = newString("wile.e.coyote@acmelabs.com")
-	contactDetails.PhoneNumber = newString("+1234567890")
 
 	var mandateAddress mandates.MandateAddress
 	mandateAddress.City = newString("Monumentenvallei")

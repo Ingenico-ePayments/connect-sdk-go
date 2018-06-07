@@ -12,6 +12,7 @@ type CardPaymentMethodSpecificOutput struct {
 	FraudResults        *definitions.CardFraudResults `json:"fraudResults,omitempty"`
 	PaymentProductID    *int32                        `json:"paymentProductId,omitempty"`
 	ThreeDSecureResults *ThreeDSecureResults          `json:"threeDSecureResults,omitempty"`
+	Token               *string                       `json:"token,omitempty"`
 }
 
 // NewCardPaymentMethodSpecificOutput constructs a new CardPaymentMethodSpecificOutput
