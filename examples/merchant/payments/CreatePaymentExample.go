@@ -64,7 +64,7 @@ func createPaymentExample() {
 
 	var personalInformation payment.PersonalInformation
 	personalInformation.DateOfBirth = newString("19490917")
-	personalInformation.Gender = newString("M")
+	personalInformation.Gender = newString("male")
 	personalInformation.Name = &name
 
 	var shippingName payment.PersonalName

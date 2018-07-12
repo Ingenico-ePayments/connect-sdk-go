@@ -36,6 +36,7 @@ func createHostedCheckoutExample() {
 
 	var customer payment.Customer
 	customer.BillingAddress = &billingAddress
+	customer.MerchantCustomerID = newString("1234")
 
 	var order payment.Order
 	order.AmountOfMoney = &amountOfMoney

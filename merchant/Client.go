@@ -7,6 +7,7 @@ import (
 	"github.com/Ingenico-ePayments/connect-sdk-go/internal/apiresource"
 	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/captures"
 	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/hostedcheckouts"
+	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/hostedmandatemanagements"
 	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/mandates"
 	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/payments"
 	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/payouts"
@@ -28,6 +29,12 @@ type Client struct {
 // Create new hosted checkout
 func (c *Client) Hostedcheckouts() *hostedcheckouts.Client {
 	return hostedcheckouts.NewClient(c.apiResource, nil)
+}
+
+// Hostedmandatemanagements represents the resource /{merchantId}/hostedmandatemanagements
+// Create new hosted mandate management
+func (c *Client) Hostedmandatemanagements() *hostedmandatemanagements.Client {
+	return hostedmandatemanagements.NewClient(c.apiResource, nil)
 }
 
 // Payments represents the resource /{merchantId}/payments
