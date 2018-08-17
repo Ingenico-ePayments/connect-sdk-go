@@ -5,10 +5,11 @@ package payment
 
 // CreationOutput represents class PaymentCreationOutput
 type CreationOutput struct {
-	AdditionalReference *string `json:"additionalReference,omitempty"`
-	ExternalReference   *string `json:"externalReference,omitempty"`
-	IsNewToken          *bool   `json:"isNewToken,omitempty"`
-	Token               *string `json:"token,omitempty"`
+	AdditionalReference   *string `json:"additionalReference,omitempty"`
+	ExternalReference     *string `json:"externalReference,omitempty"`
+	IsNewToken            *bool   `json:"isNewToken,omitempty"`
+	Token                 *string `json:"token,omitempty"`
+	TokenizationSucceeded *bool   `json:"tokenizationSucceeded,omitempty"`
 }
 
 // NewCreationOutput constructs a new CreationOutput

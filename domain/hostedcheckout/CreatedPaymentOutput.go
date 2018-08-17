@@ -11,6 +11,7 @@ type CreatedPaymentOutput struct {
 	Payment                   *payment.Payment            `json:"payment,omitempty"`
 	PaymentCreationReferences *payment.CreationReferences `json:"paymentCreationReferences,omitempty"`
 	PaymentStatusCategory     *string                     `json:"paymentStatusCategory,omitempty"`
+	TokenizationSucceeded     *bool                       `json:"tokenizationSucceeded,omitempty"`
 	Tokens                    *string                     `json:"tokens,omitempty"`
 }
 

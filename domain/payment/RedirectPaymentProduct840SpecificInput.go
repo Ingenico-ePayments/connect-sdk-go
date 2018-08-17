@@ -5,6 +5,7 @@ package payment
 
 // RedirectPaymentProduct840SpecificInput represents class RedirectPaymentProduct840SpecificInput
 type RedirectPaymentProduct840SpecificInput struct {
+	// Deprecated: use order.references.descriptor instead.
 	Custom     *string `json:"custom,omitempty"`
 	IsShortcut *bool   `json:"isShortcut,omitempty"`
 }
