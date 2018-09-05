@@ -13,6 +13,7 @@ type Customer struct {
 	Address            *payment.AddressPersonal        `json:"address,omitempty"`
 	CompanyInformation *definitions.CompanyInformation `json:"companyInformation,omitempty"`
 	ContactDetails     *definitions.ContactDetailsBase `json:"contactDetails,omitempty"`
+	FiscalNumber       *string                         `json:"fiscalNumber,omitempty"`
 }
 
 // NewCustomer constructs a new Customer

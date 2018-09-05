@@ -9,6 +9,7 @@ import "github.com/Ingenico-ePayments/connect-sdk-go/domain/definitions"
 type CardPayoutMethodSpecificInput struct {
 	Card             *definitions.Card `json:"card,omitempty"`
 	PaymentProductID *int32            `json:"paymentProductId,omitempty"`
+	Token            *string           `json:"token,omitempty"`
 }
 
 // NewCardPayoutMethodSpecificInput constructs a new CardPayoutMethodSpecificInput

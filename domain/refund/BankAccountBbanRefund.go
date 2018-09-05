@@ -13,6 +13,7 @@ type BankAccountBbanRefund struct {
 	BranchCode        *string `json:"branchCode,omitempty"`
 	CheckDigit        *string `json:"checkDigit,omitempty"`
 	CountryCode       *string `json:"countryCode,omitempty"`
+	PatronymicName    *string `json:"patronymicName,omitempty"`
 	SwiftCode         *string `json:"swiftCode,omitempty"`
 }
 
