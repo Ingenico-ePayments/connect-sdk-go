@@ -25,6 +25,10 @@ type AirlineData struct {
 	PosCityCode          *string             `json:"posCityCode,omitempty"`
 	TicketDeliveryMethod *string             `json:"ticketDeliveryMethod,omitempty"`
 	TicketNumber         *string             `json:"ticketNumber,omitempty"`
+	TotalFare            *int32              `json:"totalFare,omitempty"`
+	TotalFee             *int32              `json:"totalFee,omitempty"`
+	TotalTaxes           *int32              `json:"totalTaxes,omitempty"`
+	TravelAgencyName     *string             `json:"travelAgencyName,omitempty"`
 }
 
 // NewAirlineData constructs a new AirlineData

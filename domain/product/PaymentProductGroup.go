@@ -5,10 +5,11 @@ package product
 
 // PaymentProductGroup represents class PaymentProductGroup
 type PaymentProductGroup struct {
-	AccountsOnFile *[]AccountOnFile            `json:"accountsOnFile,omitempty"`
-	DisplayHints   *PaymentProductDisplayHints `json:"displayHints,omitempty"`
-	Fields         *[]PaymentProductField      `json:"fields,omitempty"`
-	ID             *string                     `json:"id,omitempty"`
+	AccountsOnFile           *[]AccountOnFile            `json:"accountsOnFile,omitempty"`
+	DeviceFingerprintEnabled *bool                       `json:"deviceFingerprintEnabled,omitempty"`
+	DisplayHints             *PaymentProductDisplayHints `json:"displayHints,omitempty"`
+	Fields                   *[]PaymentProductField      `json:"fields,omitempty"`
+	ID                       *string                     `json:"id,omitempty"`
 }
 
 // NewPaymentProductGroup constructs a new PaymentProductGroup

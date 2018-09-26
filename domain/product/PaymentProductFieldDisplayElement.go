@@ -6,6 +6,7 @@ package product
 // PaymentProductFieldDisplayElement represents class PaymentProductFieldDisplayElement
 type PaymentProductFieldDisplayElement struct {
 	ID    *string `json:"id,omitempty"`
+	Label *string `json:"label,omitempty"`
 	Type  *string `json:"type,omitempty"`
 	Value *string `json:"value,omitempty"`
 }

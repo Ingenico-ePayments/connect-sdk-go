@@ -8,6 +8,7 @@ type CreateResponse struct {
 	RETURNMAC          *string   `json:"RETURNMAC,omitempty"`
 	HostedCheckoutID   *string   `json:"hostedCheckoutId,omitempty"`
 	InvalidTokens      *[]string `json:"invalidTokens,omitempty"`
+	MerchantReference  *string   `json:"merchantReference,omitempty"`
 	PartialRedirectURL *string   `json:"partialRedirectUrl,omitempty"`
 }
 
