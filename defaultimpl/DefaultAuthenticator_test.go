@@ -157,7 +157,7 @@ func TestTotalMinimalExample(t *testing.T) {
 		t.Fatalf("TestTotalMinimalExample : %v", err)
 	}
 	httpHeaders = append(httpHeaders, *dateHeader)
-	parsedURL, err := url.Parse("http://api.globalcollect.com:8080/v1/9991/tokens/123456789")
+	parsedURL, err := url.Parse("http://world.api-ingenico.com:8080/v1/9991/tokens/123456789")
 	if err != nil {
 		t.Fatalf("TestTotalMinimalExample : %v", err)
 	}
@@ -216,7 +216,7 @@ func TestTotalFullExample(t *testing.T) {
 	}
 	httpHeaders = append(httpHeaders, *dateHeader)
 
-	parsedURL, err := url.Parse("http://api.globalcollect.com:8080/v1/9991/tokens/123456789")
+	parsedURL, err := url.Parse("http://world.api-ingenico.com:8080/v1/9991/tokens/123456789")
 	if err != nil {
 		t.Fatalf("TestTotalFullExample : %v", err)
 	}

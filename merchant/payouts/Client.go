@@ -4,8 +4,6 @@
 package payouts
 
 import (
-	"net/http"
-
 	"github.com/Ingenico-ePayments/connect-sdk-go/communicator/communication"
 	"github.com/Ingenico-ePayments/connect-sdk-go/domain/errors"
 	"github.com/Ingenico-ePayments/connect-sdk-go/domain/payout"
@@ -49,27 +47,10 @@ func (c *Client) Create(body payout.CreateRequest, context communication.CallCon
 		if isResponseError {
 			var errorObject interface{}
 
-			switch responseError.StatusCode() {
-			case http.StatusBadRequest:
-				{
-					errorObject = &payout.ErrorResponse{}
-					err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
-					if err != nil {
-						return resultObject, err
-					}
-
-					break
-				}
-			default:
-				{
-					errorObject = &errors.ErrorResponse{}
-					err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
-					if err != nil {
-						return resultObject, err
-					}
-
-					break
-				}
+			errorObject = &payout.ErrorResponse{}
+			err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
+			if err != nil {
+				return resultObject, err
 			}
 
 			err, createErr := sdkErrors.CreateAPIError(responseError.StatusCode(), responseError.Body(), errorObject, context)

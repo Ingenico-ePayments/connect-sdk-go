@@ -38,7 +38,7 @@ type CommunicatorConfiguration struct {
 }
 
 // The default configuration used by the factory is the following:
-// APIEndpoint: api.globalcollect.com
+// APIEndpoint: world.api-ingenico.com
 // ConnectTimeout: 5 seconds
 // SocketTimeout: 30 seconds
 // IdleTimeout: 5 seconds
@@ -49,7 +49,7 @@ type CommunicatorConfiguration struct {
 var defaultConfiguration = CommunicatorConfiguration{
 	APIEndpoint: url.URL{
 		Scheme: "https",
-		Host:   "api.globalcollect.com",
+		Host:   "world.api-ingenico.com",
 	},
 	ConnectTimeout:    5 * time.Second,
 	SocketTimeout:     30 * time.Second,

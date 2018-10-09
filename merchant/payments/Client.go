@@ -4,8 +4,6 @@
 package payments
 
 import (
-	"net/http"
-
 	"github.com/Ingenico-ePayments/connect-sdk-go/communicator/communication"
 	"github.com/Ingenico-ePayments/connect-sdk-go/domain/capture"
 	"github.com/Ingenico-ePayments/connect-sdk-go/domain/errors"
@@ -52,67 +50,10 @@ func (c *Client) Create(body payment.CreateRequest, context communication.CallCo
 		if isResponseError {
 			var errorObject interface{}
 
-			switch responseError.StatusCode() {
-			case http.StatusBadRequest:
-				{
-					errorObject = &payment.ErrorResponse{}
-					err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
-					if err != nil {
-						return resultObject, err
-					}
-
-					break
-				}
-			case http.StatusPaymentRequired:
-				{
-					errorObject = &payment.ErrorResponse{}
-					err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
-					if err != nil {
-						return resultObject, err
-					}
-
-					break
-				}
-			case http.StatusForbidden:
-				{
-					errorObject = &payment.ErrorResponse{}
-					err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
-					if err != nil {
-						return resultObject, err
-					}
-
-					break
-				}
-			case http.StatusBadGateway:
-				{
-					errorObject = &payment.ErrorResponse{}
-					err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
-					if err != nil {
-						return resultObject, err
-					}
-
-					break
-				}
-			case http.StatusServiceUnavailable:
-				{
-					errorObject = &payment.ErrorResponse{}
-					err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
-					if err != nil {
-						return resultObject, err
-					}
-
-					break
-				}
-			default:
-				{
-					errorObject = &errors.ErrorResponse{}
-					err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
-					if err != nil {
-						return resultObject, err
-					}
-
-					break
-				}
+			errorObject = &payment.ErrorResponse{}
+			err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
+			if err != nil {
+				return resultObject, err
 			}
 
 			err, createErr := sdkErrors.CreateAPIError(responseError.StatusCode(), responseError.Body(), errorObject, context)
@@ -700,37 +641,10 @@ func (c *Client) Refund(paymentID string, body refund.Request, context communica
 		if isResponseError {
 			var errorObject interface{}
 
-			switch responseError.StatusCode() {
-			case http.StatusBadRequest:
-				{
-					errorObject = &refund.ErrorResponse{}
-					err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
-					if err != nil {
-						return resultObject, err
-					}
-
-					break
-				}
-			case http.StatusNotFound:
-				{
-					errorObject = &refund.ErrorResponse{}
-					err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
-					if err != nil {
-						return resultObject, err
-					}
-
-					break
-				}
-			default:
-				{
-					errorObject = &errors.ErrorResponse{}
-					err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
-					if err != nil {
-						return resultObject, err
-					}
-
-					break
-				}
+			errorObject = &refund.ErrorResponse{}
+			err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
+			if err != nil {
+				return resultObject, err
 			}
 
 			err, createErr := sdkErrors.CreateAPIError(responseError.StatusCode(), responseError.Body(), errorObject, context)

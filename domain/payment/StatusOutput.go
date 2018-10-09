@@ -14,6 +14,7 @@ type StatusOutput struct {
 	StatusCategory           *string            `json:"statusCategory,omitempty"`
 	StatusCode               *int32             `json:"statusCode,omitempty"`
 	StatusCodeChangeDateTime *string            `json:"statusCodeChangeDateTime,omitempty"`
+	ThreeDSecureStatus       *string            `json:"threeDSecureStatus,omitempty"`
 }
 
 // NewStatusOutput constructs a new StatusOutput
