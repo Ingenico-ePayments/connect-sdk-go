@@ -5,23 +5,26 @@ package product
 
 // PaymentProductResponse represents class PaymentProductResponse
 type PaymentProductResponse struct {
-	AccountsOnFile            *[]AccountOnFile            `json:"accountsOnFile,omitempty"`
-	AllowsRecurring           *bool                       `json:"allowsRecurring,omitempty"`
-	AllowsTokenization        *bool                       `json:"allowsTokenization,omitempty"`
-	AuthenticationIndicator   *AuthenticationIndicator    `json:"authenticationIndicator,omitempty"`
-	AutoTokenized             *bool                       `json:"autoTokenized,omitempty"`
-	CanBeIframed              *bool                       `json:"canBeIframed,omitempty"`
-	DeviceFingerprintEnabled  *bool                       `json:"deviceFingerprintEnabled,omitempty"`
-	DisplayHints              *PaymentProductDisplayHints `json:"displayHints,omitempty"`
-	Fields                    *[]PaymentProductField      `json:"fields,omitempty"`
-	FieldsWarning             *string                     `json:"fieldsWarning,omitempty"`
-	ID                        *int32                      `json:"id,omitempty"`
-	MaxAmount                 *int64                      `json:"maxAmount,omitempty"`
-	MinAmount                 *int64                      `json:"minAmount,omitempty"`
-	MobileIntegrationLevel    *string                     `json:"mobileIntegrationLevel,omitempty"`
-	PaymentMethod             *string                     `json:"paymentMethod,omitempty"`
-	PaymentProductGroup       *string                     `json:"paymentProductGroup,omitempty"`
-	UsesRedirectionTo3rdParty *bool                       `json:"usesRedirectionTo3rdParty,omitempty"`
+	AccountsOnFile                *[]AccountOnFile               `json:"accountsOnFile,omitempty"`
+	AllowsRecurring               *bool                          `json:"allowsRecurring,omitempty"`
+	AllowsTokenization            *bool                          `json:"allowsTokenization,omitempty"`
+	AuthenticationIndicator       *AuthenticationIndicator       `json:"authenticationIndicator,omitempty"`
+	AutoTokenized                 *bool                          `json:"autoTokenized,omitempty"`
+	CanBeIframed                  *bool                          `json:"canBeIframed,omitempty"`
+	DeviceFingerprintEnabled      *bool                          `json:"deviceFingerprintEnabled,omitempty"`
+	DisplayHints                  *PaymentProductDisplayHints    `json:"displayHints,omitempty"`
+	Fields                        *[]PaymentProductField         `json:"fields,omitempty"`
+	FieldsWarning                 *string                        `json:"fieldsWarning,omitempty"`
+	ID                            *int32                         `json:"id,omitempty"`
+	MaxAmount                     *int64                         `json:"maxAmount,omitempty"`
+	MinAmount                     *int64                         `json:"minAmount,omitempty"`
+	MobileIntegrationLevel        *string                        `json:"mobileIntegrationLevel,omitempty"`
+	PaymentMethod                 *string                        `json:"paymentMethod,omitempty"`
+	PaymentProduct302SpecificData *PaymentProduct302SpecificData `json:"paymentProduct302SpecificData,omitempty"`
+	PaymentProduct320SpecificData *PaymentProduct320SpecificData `json:"paymentProduct320SpecificData,omitempty"`
+	PaymentProduct863SpecificData *PaymentProduct863SpecificData `json:"paymentProduct863SpecificData,omitempty"`
+	PaymentProductGroup           *string                        `json:"paymentProductGroup,omitempty"`
+	UsesRedirectionTo3rdParty     *bool                          `json:"usesRedirectionTo3rdParty,omitempty"`
 }
 
 // NewPaymentProductResponse constructs a new PaymentProductResponse
