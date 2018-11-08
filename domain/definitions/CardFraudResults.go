@@ -8,6 +8,7 @@ type CardFraudResults struct {
 	AvsResult          *string                      `json:"avsResult,omitempty"`
 	CvvResult          *string                      `json:"cvvResult,omitempty"`
 	FraudServiceResult *string                      `json:"fraudServiceResult,omitempty"`
+	Fraugster          *FraugsterResults            `json:"fraugster,omitempty"`
 	RetailDecisions    *FraudResultsRetailDecisions `json:"retailDecisions,omitempty"`
 }
 
