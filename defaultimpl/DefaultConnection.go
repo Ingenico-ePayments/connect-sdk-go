@@ -2,6 +2,7 @@ package defaultimpl
 
 import (
 	"crypto/rand"
+	"crypto/tls"
 	"encoding/base64"
 	"fmt"
 	"io/ioutil"
@@ -113,6 +114,9 @@ func NewDefaultConnection(socketTimeout, connectTimeout, keepAliveTimeout, idleT
 		Proxy:           http.ProxyURL(proxy),
 		IdleConnTimeout: idleTimeout,
 		MaxIdleConns:    maxConnections,
+		TLSClientConfig: &tls.Config{
+			MinVersion: tls.VersionTLS12,
+		},
 	}
 
 	client := http.Client{
