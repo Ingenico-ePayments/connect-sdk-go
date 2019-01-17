@@ -5,6 +5,7 @@ package product
 
 // PaymentProduct320SpecificData represents class PaymentProduct320SpecificData
 type PaymentProduct320SpecificData struct {
+	Gateway  *string   `json:"gateway,omitempty"`
 	Networks *[]string `json:"networks,omitempty"`
 }
 

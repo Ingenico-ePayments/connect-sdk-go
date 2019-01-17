@@ -2,6 +2,7 @@ package logging
 
 import (
 	"bytes"
+	"unicode/utf8"
 )
 
 type valueObfuscator struct {
@@ -30,7 +31,7 @@ func valueObfuscatorWithKeepingEndCount(count int) valueObfuscator {
 }
 
 func (vo valueObfuscator) obfuscateValue(value string) (string, error) {
-	valueLength := len(value)
+	valueLength := utf8.RuneCountInString(value)
 
 	if valueLength == 0 {
 		return value, nil
@@ -42,13 +43,18 @@ func (vo valueObfuscator) obfuscateValue(value string) (string, error) {
 		return value, nil
 	}
 
-	chars := []rune(value)
-
-	for i := vo.keepStartCount; i < valueLength - vo.keepEndCount; i++ {
-		chars[i] = vo.maskCharacter
+	var chars bytes.Buffer
+	i := 0
+	for _, r := range value {
+		if i < vo.keepStartCount || i >= valueLength - vo.keepEndCount {
+			chars.WriteRune(r)
+		} else {
+			chars.WriteRune(vo.maskCharacter)
+		}
+		i++
 	}
 
-	return string(chars), nil
+	return chars.String(), nil
 }
 
 func (vo valueObfuscator) repeatMask(count int) string {

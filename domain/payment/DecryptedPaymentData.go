@@ -10,6 +10,8 @@ type DecryptedPaymentData struct {
 	Dpan           *string `json:"dpan,omitempty"`
 	Eci            *int32  `json:"eci,omitempty"`
 	ExpiryDate     *string `json:"expiryDate,omitempty"`
+	Pan            *string `json:"pan,omitempty"`
+	PaymentMethod  *string `json:"paymentMethod,omitempty"`
 }
 
 // NewDecryptedPaymentData constructs a new DecryptedPaymentData

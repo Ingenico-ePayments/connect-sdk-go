@@ -7,8 +7,10 @@ import "github.com/Ingenico-ePayments/connect-sdk-go/domain/mandates"
 
 // SepaDirectDebitPaymentProduct771SpecificInputBase represents class SepaDirectDebitPaymentProduct771SpecificInputBase
 type SepaDirectDebitPaymentProduct771SpecificInputBase struct {
-	Mandate          *mandates.CreateMandateBase `json:"mandate,omitempty"`
-	MandateReference *string                     `json:"mandateReference,omitempty"`
+	ExistingUniqueMandateReference *string                     `json:"existingUniqueMandateReference,omitempty"`
+	Mandate                        *mandates.CreateMandateBase `json:"mandate,omitempty"`
+	// Deprecated: Use <span class="property">existingUniqueMandateReference</span> instead
+	MandateReference               *string                     `json:"mandateReference,omitempty"`
 }
 
 // NewSepaDirectDebitPaymentProduct771SpecificInputBase constructs a new SepaDirectDebitPaymentProduct771SpecificInputBase
