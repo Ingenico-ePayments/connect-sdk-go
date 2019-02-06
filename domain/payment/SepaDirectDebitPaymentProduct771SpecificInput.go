@@ -9,7 +9,7 @@ import "github.com/Ingenico-ePayments/connect-sdk-go/domain/mandates"
 type SepaDirectDebitPaymentProduct771SpecificInput struct {
 	ExistingUniqueMandateReference *string                              `json:"existingUniqueMandateReference,omitempty"`
 	Mandate                        *mandates.CreateMandateWithReturnURL `json:"mandate,omitempty"`
-	// Deprecated: Use mandate.uniqueMandateReference instead
+	// Deprecated: Use existingUniqueMandateReference or mandate.uniqueMandateReference instead
 	MandateReference               *string                              `json:"mandateReference,omitempty"`
 }
 

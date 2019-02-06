@@ -19,8 +19,7 @@ type Client struct {
 	apiResource *apiresource.APIResource
 }
 
-// Find represents the resource /{merchantId}/products
-// Get payment products
+// Find represents the resource /{merchantId}/products - Get payment products
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/products/find.html
 //
 // Can return any of the following errors:
@@ -69,8 +68,7 @@ func (c *Client) Find(query FindParams, context communication.CallContext) (prod
 	return resultObject, nil
 }
 
-// Get represents the resource /{merchantId}/products/{paymentProductId}
-// Get payment product
+// Get represents the resource /{merchantId}/products/{paymentProductId} - Get payment product
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/products/get.html
 //
 // Can return any of the following errors:
@@ -123,8 +121,7 @@ func (c *Client) Get(paymentProductID int32, query GetParams, context communicat
 	return resultObject, nil
 }
 
-// Directory represents the resource /{merchantId}/products/{paymentProductId}/directory
-// Get payment product directory
+// Directory represents the resource /{merchantId}/products/{paymentProductId}/directory - Get payment product directory
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/products/directory.html
 //
 // Can return any of the following errors:
@@ -177,8 +174,7 @@ func (c *Client) Directory(paymentProductID int32, query DirectoryParams, contex
 	return resultObject, nil
 }
 
-// CustomerDetails represents the resource /{merchantId}/products/{paymentProductId}/customerDetails
-// Get customer details
+// CustomerDetails represents the resource /{merchantId}/products/{paymentProductId}/customerDetails - Get customer details
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/products/customerDetails.html
 //
 // Can return any of the following errors:
@@ -231,8 +227,7 @@ func (c *Client) CustomerDetails(paymentProductID int32, body product.GetCustome
 	return resultObject, nil
 }
 
-// DeviceFingerprint represents the resource /{merchantId}/products/{paymentProductId}/deviceFingerprint
-// Get device fingerprint
+// DeviceFingerprint represents the resource /{merchantId}/products/{paymentProductId}/deviceFingerprint - Get device fingerprint
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/products/deviceFingerprint.html
 //
 // Can return any of the following errors:
@@ -285,8 +280,7 @@ func (c *Client) DeviceFingerprint(paymentProductID int32, body product.DeviceFi
 	return resultObject, nil
 }
 
-// Networks represents the resource /{merchantId}/products/{paymentProductId}/networks
-// Get payment product networks
+// Networks represents the resource /{merchantId}/products/{paymentProductId}/networks - Get payment product networks
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/products/networks.html
 //
 // Can return any of the following errors:
@@ -339,8 +333,7 @@ func (c *Client) Networks(paymentProductID int32, query NetworksParams, context 
 	return resultObject, nil
 }
 
-// PublicKey represents the resource /{merchantId}/products/{paymentProductId}/publicKey
-// Get payment product specific public key
+// PublicKey represents the resource /{merchantId}/products/{paymentProductId}/publicKey - Get payment product specific public key
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/products/publicKey.html
 //
 // Can return any of the following errors:

@@ -16,8 +16,7 @@ type Client struct {
 	apiResource *apiresource.APIResource
 }
 
-// Create represents the resource /{merchantId}/mandates
-// Create mandate
+// Create represents the resource /{merchantId}/mandates - Create mandate
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/mandates/create.html
 //
 // Can return any of the following errors:
@@ -66,8 +65,7 @@ func (c *Client) Create(body mandates.CreateMandateRequest, context communicatio
 	return resultObject, nil
 }
 
-// CreateWithMandateReference represents the resource /{merchantId}/mandates/{uniqueMandateReference}
-// Create mandate with mandatereference
+// CreateWithMandateReference represents the resource /{merchantId}/mandates/{uniqueMandateReference} - Create mandate with mandatereference
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/mandates/createWithMandateReference.html
 //
 // Can return any of the following errors:
@@ -120,8 +118,7 @@ func (c *Client) CreateWithMandateReference(uniqueMandateReference string, body 
 	return resultObject, nil
 }
 
-// Get represents the resource /{merchantId}/mandates/{uniqueMandateReference}
-// Get mandate
+// Get represents the resource /{merchantId}/mandates/{uniqueMandateReference} - Get mandate
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/mandates/get.html
 //
 // Can return any of the following errors:
@@ -174,8 +171,7 @@ func (c *Client) Get(uniqueMandateReference string, context communication.CallCo
 	return resultObject, nil
 }
 
-// Block represents the resource /{merchantId}/mandates/{uniqueMandateReference}/block
-// Block mandate
+// Block represents the resource /{merchantId}/mandates/{uniqueMandateReference}/block - Block mandate
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/mandates/block.html
 //
 // Can return any of the following errors:
@@ -228,8 +224,7 @@ func (c *Client) Block(uniqueMandateReference string, context communication.Call
 	return resultObject, nil
 }
 
-// Unblock represents the resource /{merchantId}/mandates/{uniqueMandateReference}/unblock
-// Unblock mandate
+// Unblock represents the resource /{merchantId}/mandates/{uniqueMandateReference}/unblock - Unblock mandate
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/mandates/unblock.html
 //
 // Can return any of the following errors:
@@ -282,8 +277,7 @@ func (c *Client) Unblock(uniqueMandateReference string, context communication.Ca
 	return resultObject, nil
 }
 
-// Revoke represents the resource /{merchantId}/mandates/{uniqueMandateReference}/revoke
-// Revoke mandate
+// Revoke represents the resource /{merchantId}/mandates/{uniqueMandateReference}/revoke - Revoke mandate
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/mandates/revoke.html
 //
 // Can return any of the following errors:

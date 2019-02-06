@@ -16,8 +16,7 @@ type Client struct {
 	apiResource *apiresource.APIResource
 }
 
-// ConvertAmount represents the resource /{merchantId}/services/convert/amount
-// Convert amount
+// ConvertAmount represents the resource /{merchantId}/services/convert/amount - Convert amount
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/services/convertAmount.html
 //
 // Can return any of the following errors:
@@ -66,8 +65,7 @@ func (c *Client) ConvertAmount(query ConvertAmountParams, context communication.
 	return resultObject, nil
 }
 
-// Bankaccount represents the resource /{merchantId}/services/convert/bankaccount
-// Convert bankaccount
+// Bankaccount represents the resource /{merchantId}/services/convert/bankaccount - Convert bankaccount
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/services/bankaccount.html
 //
 // Can return any of the following errors:
@@ -116,8 +114,7 @@ func (c *Client) Bankaccount(body services.BankDetailsRequest, context communica
 	return resultObject, nil
 }
 
-// GetIINdetails represents the resource /{merchantId}/services/getIINdetails
-// Get IIN details
+// GetIINdetails represents the resource /{merchantId}/services/getIINdetails - Get IIN details
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/services/getIINdetails.html
 //
 // Can return any of the following errors:
@@ -166,8 +163,7 @@ func (c *Client) GetIINdetails(body services.GetIINDetailsRequest, context commu
 	return resultObject, nil
 }
 
-// Testconnection represents the resource /{merchantId}/services/testconnection
-// Test connection
+// Testconnection represents the resource /{merchantId}/services/testconnection - Test connection
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/services/testconnection.html
 //
 // Can return any of the following errors:

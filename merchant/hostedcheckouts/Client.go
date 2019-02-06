@@ -16,8 +16,7 @@ type Client struct {
 	apiResource *apiresource.APIResource
 }
 
-// Create represents the resource /{merchantId}/hostedcheckouts
-// Create hosted checkout
+// Create represents the resource /{merchantId}/hostedcheckouts - Create hosted checkout
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/hostedcheckouts/create.html
 //
 // Can return any of the following errors:
@@ -66,8 +65,7 @@ func (c *Client) Create(body hostedcheckout.CreateRequest, context communication
 	return resultObject, nil
 }
 
-// Get represents the resource /{merchantId}/hostedcheckouts/{hostedCheckoutId}
-// Get hosted checkout status
+// Get represents the resource /{merchantId}/hostedcheckouts/{hostedCheckoutId} - Get hosted checkout status
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/hostedcheckouts/get.html
 //
 // Can return any of the following errors:

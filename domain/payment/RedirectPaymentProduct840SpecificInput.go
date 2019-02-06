@@ -5,9 +5,10 @@ package payment
 
 // RedirectPaymentProduct840SpecificInput represents class RedirectPaymentProduct840SpecificInput
 type RedirectPaymentProduct840SpecificInput struct {
+	AddressSelectionAtPayPal *bool   `json:"addressSelectionAtPayPal,omitempty"`
 	// Deprecated: use order.references.descriptor instead.
-	Custom     *string `json:"custom,omitempty"`
-	IsShortcut *bool   `json:"isShortcut,omitempty"`
+	Custom                   *string `json:"custom,omitempty"`
+	IsShortcut               *bool   `json:"isShortcut,omitempty"`
 }
 
 // NewRedirectPaymentProduct840SpecificInput constructs a new RedirectPaymentProduct840SpecificInput

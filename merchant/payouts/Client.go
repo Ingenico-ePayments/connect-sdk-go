@@ -16,8 +16,7 @@ type Client struct {
 	apiResource *apiresource.APIResource
 }
 
-// Create represents the resource /{merchantId}/payouts
-// Create payout
+// Create represents the resource /{merchantId}/payouts - Create payout
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/payouts/create.html
 //
 // Can return any of the following errors:
@@ -67,8 +66,7 @@ func (c *Client) Create(body payout.CreateRequest, context communication.CallCon
 	return resultObject, nil
 }
 
-// Find represents the resource /{merchantId}/payouts
-// Find payouts
+// Find represents the resource /{merchantId}/payouts - Find payouts
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/payouts/find.html
 //
 // Can return any of the following errors:
@@ -117,8 +115,7 @@ func (c *Client) Find(query FindParams, context communication.CallContext) (payo
 	return resultObject, nil
 }
 
-// Get represents the resource /{merchantId}/payouts/{payoutId}
-// Get payout
+// Get represents the resource /{merchantId}/payouts/{payoutId} - Get payout
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/payouts/get.html
 //
 // Can return any of the following errors:
@@ -171,8 +168,7 @@ func (c *Client) Get(payoutID string, context communication.CallContext) (payout
 	return resultObject, nil
 }
 
-// Approve represents the resource /{merchantId}/payouts/{payoutId}/approve
-// Approve payout
+// Approve represents the resource /{merchantId}/payouts/{payoutId}/approve - Approve payout
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/payouts/approve.html
 //
 // Can return any of the following errors:
@@ -225,8 +221,7 @@ func (c *Client) Approve(payoutID string, body payout.ApproveRequest, context co
 	return resultObject, nil
 }
 
-// Cancel represents the resource /{merchantId}/payouts/{payoutId}/cancel
-// Cancel payout
+// Cancel represents the resource /{merchantId}/payouts/{payoutId}/cancel - Cancel payout
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/payouts/cancel.html
 //
 // Can return any of the following errors:
@@ -278,8 +273,7 @@ func (c *Client) Cancel(payoutID string, context communication.CallContext) erro
 	return nil
 }
 
-// Cancelapproval represents the resource /{merchantId}/payouts/{payoutId}/cancelapproval
-// Undo approve payout
+// Cancelapproval represents the resource /{merchantId}/payouts/{payoutId}/cancelapproval - Undo approve payout
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/payouts/cancelapproval.html
 //
 // Can return any of the following errors:

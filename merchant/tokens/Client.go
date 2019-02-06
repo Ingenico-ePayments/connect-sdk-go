@@ -16,8 +16,7 @@ type Client struct {
 	apiResource *apiresource.APIResource
 }
 
-// Create represents the resource /{merchantId}/tokens
-// Create token
+// Create represents the resource /{merchantId}/tokens - Create token
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/tokens/create.html
 //
 // Can return any of the following errors:
@@ -66,8 +65,7 @@ func (c *Client) Create(body token.CreateRequest, context communication.CallCont
 	return resultObject, nil
 }
 
-// Get represents the resource /{merchantId}/tokens/{tokenId}
-// Get token
+// Get represents the resource /{merchantId}/tokens/{tokenId} - Get token
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/tokens/get.html
 //
 // Can return any of the following errors:
@@ -120,8 +118,7 @@ func (c *Client) Get(tokenID string, context communication.CallContext) (token.R
 	return resultObject, nil
 }
 
-// Update represents the resource /{merchantId}/tokens/{tokenId}
-// Update token
+// Update represents the resource /{merchantId}/tokens/{tokenId} - Update token
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/tokens/update.html
 //
 // Can return any of the following errors:
@@ -173,8 +170,7 @@ func (c *Client) Update(tokenID string, body token.UpdateRequest, context commun
 	return nil
 }
 
-// Delete represents the resource /{merchantId}/tokens/{tokenId}
-// Delete token
+// Delete represents the resource /{merchantId}/tokens/{tokenId} - Delete token
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/tokens/delete.html
 //
 // Can return any of the following errors:
@@ -226,8 +222,7 @@ func (c *Client) Delete(tokenID string, query DeleteParams, context communicatio
 	return nil
 }
 
-// Approvesepadirectdebit represents the resource /{merchantId}/tokens/{tokenId}/approvesepadirectdebit
-// Approve SEPA DD mandate
+// Approvesepadirectdebit represents the resource /{merchantId}/tokens/{tokenId}/approvesepadirectdebit - Approve SEPA DD mandate
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/tokens/approvesepadirectdebit.html
 //
 // Can return any of the following errors:

@@ -16,8 +16,7 @@ type Client struct {
 	apiResource *apiresource.APIResource
 }
 
-// Get represents the resource /{merchantId}/captures/{captureId}
-// Get capture
+// Get represents the resource /{merchantId}/captures/{captureId} - Get capture
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/captures/get.html
 //
 // Can return any of the following errors:

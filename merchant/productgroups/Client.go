@@ -16,8 +16,7 @@ type Client struct {
 	apiResource *apiresource.APIResource
 }
 
-// Find represents the resource /{merchantId}/productgroups
-// Get payment product groups
+// Find represents the resource /{merchantId}/productgroups - Get payment product groups
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/productgroups/find.html
 //
 // Can return any of the following errors:
@@ -66,8 +65,7 @@ func (c *Client) Find(query FindParams, context communication.CallContext) (prod
 	return resultObject, nil
 }
 
-// Get represents the resource /{merchantId}/productgroups/{paymentProductGroupId}
-// Get payment product group
+// Get represents the resource /{merchantId}/productgroups/{paymentProductGroupId} - Get payment product group
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/productgroups/get.html
 //
 // Can return any of the following errors:
@@ -120,8 +118,7 @@ func (c *Client) Get(paymentProductGroupID string, query GetParams, context comm
 	return resultObject, nil
 }
 
-// DeviceFingerprint represents the resource /{merchantId}/productgroups/{paymentProductGroupId}/deviceFingerprint
-// Get device fingerprint
+// DeviceFingerprint represents the resource /{merchantId}/productgroups/{paymentProductGroupId}/deviceFingerprint - Get device fingerprint
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/productgroups/deviceFingerprint.html
 //
 // Can return any of the following errors:

@@ -16,8 +16,7 @@ type Client struct {
 	apiResource *apiresource.APIResource
 }
 
-// Create represents the resource /{merchantId}/sessions
-// Create session
+// Create represents the resource /{merchantId}/sessions - Create session
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/sessions/create.html
 //
 // Can return any of the following errors:

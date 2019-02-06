@@ -16,8 +16,7 @@ type Client struct {
 	apiResource *apiresource.APIResource
 }
 
-// Find represents the resource /{merchantId}/refunds
-// Find refunds
+// Find represents the resource /{merchantId}/refunds - Find refunds
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/refunds/find.html
 //
 // Can return any of the following errors:
@@ -66,8 +65,7 @@ func (c *Client) Find(query FindParams, context communication.CallContext) (refu
 	return resultObject, nil
 }
 
-// Get represents the resource /{merchantId}/refunds/{refundId}
-// Get refund
+// Get represents the resource /{merchantId}/refunds/{refundId} - Get refund
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/refunds/get.html
 //
 // Can return any of the following errors:
@@ -120,8 +118,7 @@ func (c *Client) Get(refundID string, context communication.CallContext) (refund
 	return resultObject, nil
 }
 
-// Approve represents the resource /{merchantId}/refunds/{refundId}/approve
-// Approve refund
+// Approve represents the resource /{merchantId}/refunds/{refundId}/approve - Approve refund
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/refunds/approve.html
 //
 // Can return any of the following errors:
@@ -173,8 +170,7 @@ func (c *Client) Approve(refundID string, body refund.ApproveRequest, context co
 	return nil
 }
 
-// Cancel represents the resource /{merchantId}/refunds/{refundId}/cancel
-// Cancel refund
+// Cancel represents the resource /{merchantId}/refunds/{refundId}/cancel - Cancel refund
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/refunds/cancel.html
 //
 // Can return any of the following errors:
@@ -226,8 +222,7 @@ func (c *Client) Cancel(refundID string, context communication.CallContext) erro
 	return nil
 }
 
-// Cancelapproval represents the resource /{merchantId}/refunds/{refundId}/cancelapproval
-// Undo approve refund
+// Cancelapproval represents the resource /{merchantId}/refunds/{refundId}/cancelapproval - Undo approve refund
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/refunds/cancelapproval.html
 //
 // Can return any of the following errors:

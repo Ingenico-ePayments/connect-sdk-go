@@ -16,8 +16,7 @@ type Client struct {
 	apiResource *apiresource.APIResource
 }
 
-// Create represents the resource /{merchantId}/hostedmandatemanagements
-// Create hosted mandate management
+// Create represents the resource /{merchantId}/hostedmandatemanagements - Create hosted mandate management
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/hostedmandatemanagements/create.html
 //
 // Can return any of the following errors:
@@ -66,8 +65,7 @@ func (c *Client) Create(body hostedmandatemanagement.CreateRequest, context comm
 	return resultObject, nil
 }
 
-// Get represents the resource /{merchantId}/hostedmandatemanagements/{hostedMandateManagementId}
-// Get hosted mandate management status
+// Get represents the resource /{merchantId}/hostedmandatemanagements/{hostedMandateManagementId} - Get hosted mandate management status
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/hostedmandatemanagements/get.html
 //
 // Can return any of the following errors:
