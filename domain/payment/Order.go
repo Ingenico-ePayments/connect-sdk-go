@@ -14,6 +14,7 @@ type Order struct {
 	Items           *[]LineItem                `json:"items,omitempty"`
 	References      *OrderReferences           `json:"references,omitempty"`
 	Seller          *Seller                    `json:"seller,omitempty"`
+	Shipping        *Shipping                  `json:"shipping,omitempty"`
 	ShoppingCart    *ShoppingCart              `json:"shoppingCart,omitempty"`
 }
 

@@ -8,6 +8,7 @@ type Product840CustomerAccount struct {
 	AccountID             *string `json:"accountId,omitempty"`
 	BillingAgreementID    *string `json:"billingAgreementId,omitempty"`
 	CompanyName           *string `json:"companyName,omitempty"`
+	ContactPhone          *string `json:"contactPhone,omitempty"`
 	CountryCode           *string `json:"countryCode,omitempty"`
 	CustomerAccountStatus *string `json:"customerAccountStatus,omitempty"`
 	CustomerAddressStatus *string `json:"customerAddressStatus,omitempty"`
