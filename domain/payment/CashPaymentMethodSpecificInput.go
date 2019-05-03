@@ -5,6 +5,7 @@ package payment
 
 // CashPaymentMethodSpecificInput represents class CashPaymentMethodSpecificInput
 type CashPaymentMethodSpecificInput struct {
+	// Deprecated: No replacement
 	PaymentProduct1503SpecificInput *CashPaymentProduct1503SpecificInput `json:"paymentProduct1503SpecificInput,omitempty"`
 	PaymentProduct1504SpecificInput *CashPaymentProduct1504SpecificInput `json:"paymentProduct1504SpecificInput,omitempty"`
 	PaymentProductID                *int32                               `json:"paymentProductId,omitempty"`

@@ -12,6 +12,7 @@ type CustomerTokenWithContactDetails struct {
 	ContactDetails      *ContactDetailsToken            `json:"contactDetails,omitempty"`
 	MerchantCustomerID  *string                         `json:"merchantCustomerId,omitempty"`
 	PersonalInformation *PersonalInformationToken       `json:"personalInformation,omitempty"`
+	// Deprecated: Use companyInformation.vatNumber instead
 	VatNumber           *string                         `json:"vatNumber,omitempty"`
 }
 

@@ -6,6 +6,7 @@ package payment
 // CompletePaymentRequest represents class CompletePaymentRequest
 type CompletePaymentRequest struct {
 	CardPaymentMethodSpecificInput *CompletePaymentCardPaymentMethodSpecificInput `json:"cardPaymentMethodSpecificInput,omitempty"`
+	Merchant                       *Merchant                                      `json:"merchant,omitempty"`
 	Order                          *Order                                         `json:"order,omitempty"`
 }
 

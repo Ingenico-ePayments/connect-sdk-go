@@ -33,7 +33,12 @@ To install the latest version of this repository, run the following command from
 
 ### Release
 
+#### Go 1.10 and below
+
 Because `go get` can only get the latest version of the repository, and that version could contain breaking changes for new major versions, this package should be used with one of the tools from [Go package managers](https://github.com/golang/go/wiki/PackageManagementTools#pkg-copy-built-using-gopath-modification-supports-fetching-specific-version) that support it. We recommend using [glide](https://github.com/Masterminds/glide). This package manager will automatically handle all dependencies of this project.
+
+#### Go 1.11 and above
+Go 1.11 added module support and with that support for versions in `go get`. This means you can add `@version` to the go get command to get a specific version. For example `go get github.com/Ingenico-ePayments/connect-sdk-go@1.29.0` will download version 1.29.0 of the SDK. See the releases page for an overview of available releases.
 
 ## Running tests
 

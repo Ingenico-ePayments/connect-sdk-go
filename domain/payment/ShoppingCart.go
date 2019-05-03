@@ -5,8 +5,12 @@ package payment
 
 // ShoppingCart represents class ShoppingCart
 type ShoppingCart struct {
-	AmountBreakdown *[]AmountBreakdown `json:"amountBreakdown,omitempty"`
-	Items           *[]LineItem        `json:"items,omitempty"`
+	AmountBreakdown              *[]AmountBreakdown `json:"amountBreakdown,omitempty"`
+	GiftCardPurchase             *GiftCardPurchase  `json:"giftCardPurchase,omitempty"`
+	IsPreOrder                   *bool              `json:"isPreOrder,omitempty"`
+	Items                        *[]LineItem        `json:"items,omitempty"`
+	PreOrderItemAvailabilityDate *string            `json:"preOrderItemAvailabilityDate,omitempty"`
+	ReOrderIndicator             *bool              `json:"reOrderIndicator,omitempty"`
 }
 
 // NewShoppingCart constructs a new ShoppingCart

@@ -14,7 +14,9 @@ type RedirectPaymentMethodSpecificInput struct {
 	PaymentProduct882SpecificInput    *RedirectPaymentProduct882SpecificInput `json:"paymentProduct882SpecificInput,omitempty"`
 	PaymentProductID                  *int32                                  `json:"paymentProductId,omitempty"`
 	RecurringPaymentSequenceIndicator *string                                 `json:"recurringPaymentSequenceIndicator,omitempty"`
+	RedirectionData                   *RedirectionData                        `json:"redirectionData,omitempty"`
 	RequiresApproval                  *bool                                   `json:"requiresApproval,omitempty"`
+	// Deprecated: Use redirectionData.returnUrl instead
 	ReturnURL                         *string                                 `json:"returnUrl,omitempty"`
 	Token                             *string                                 `json:"token,omitempty"`
 	Tokenize                          *bool                                   `json:"tokenize,omitempty"`

@@ -7,6 +7,7 @@ package definitions
 type CustomerBase struct {
 	CompanyInformation *CompanyInformation `json:"companyInformation,omitempty"`
 	MerchantCustomerID *string             `json:"merchantCustomerId,omitempty"`
+	// Deprecated: Use companyInformation.vatNumber instead
 	VatNumber          *string             `json:"vatNumber,omitempty"`
 }
 

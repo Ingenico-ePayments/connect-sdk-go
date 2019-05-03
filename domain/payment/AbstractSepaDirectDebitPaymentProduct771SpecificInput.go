@@ -5,7 +5,7 @@ package payment
 
 // AbstractSepaDirectDebitPaymentProduct771SpecificInput represents class AbstractSepaDirectDebitPaymentProduct771SpecificInput
 type AbstractSepaDirectDebitPaymentProduct771SpecificInput struct {
-	// Deprecated: Use existingUniqueMandateReference instead
+	// Deprecated: Use existingUniqueMandateReference or mandate.uniqueMandateReference instead
 	MandateReference *string `json:"mandateReference,omitempty"`
 }
 

@@ -4,7 +4,10 @@
 package payment
 
 // CashPaymentProduct1503SpecificInput represents class CashPaymentProduct1503SpecificInput
+//
+// Deprecated: No replacement
 type CashPaymentProduct1503SpecificInput struct {
+	// Deprecated: No replacement, since Boleto Bancario no longer needs a return URL
 	ReturnURL *string `json:"returnUrl,omitempty"`
 }
 

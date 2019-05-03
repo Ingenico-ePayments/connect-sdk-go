@@ -5,9 +5,14 @@ package payment
 
 // ThreeDSecureResults represents class ThreeDSecureResults
 type ThreeDSecureResults struct {
-	Cavv *string `json:"cavv,omitempty"`
-	Eci  *string `json:"eci,omitempty"`
-	Xid  *string `json:"xid,omitempty"`
+	Cavv                         *string           `json:"cavv,omitempty"`
+	DirectoryServerTransactionID *string           `json:"directoryServerTransactionId,omitempty"`
+	Eci                          *string           `json:"eci,omitempty"`
+	SdkData                      *SdkDataOutput    `json:"sdkData,omitempty"`
+	ThreeDSecureData             *ThreeDSecureData `json:"threeDSecureData,omitempty"`
+	ThreeDSecureVersion          *string           `json:"threeDSecureVersion,omitempty"`
+	ThreeDServerTransactionID    *string           `json:"threeDServerTransactionId,omitempty"`
+	Xid                          *string           `json:"xid,omitempty"`
 }
 
 // NewThreeDSecureResults constructs a new ThreeDSecureResults

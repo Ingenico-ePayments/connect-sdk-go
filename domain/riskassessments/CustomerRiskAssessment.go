@@ -10,10 +10,15 @@ import (
 
 // CustomerRiskAssessment represents class CustomerRiskAssessment
 type CustomerRiskAssessment struct {
+	Account             *CustomerAccountRiskAssessment     `json:"account,omitempty"`
+	AccountType         *string                            `json:"accountType,omitempty"`
 	BillingAddress      *definitions.Address               `json:"billingAddress,omitempty"`
 	ContactDetails      *ContactDetailsRiskAssessment      `json:"contactDetails,omitempty"`
+	Device              *CustomerDeviceRiskAssessment      `json:"device,omitempty"`
+	IsPreviousCustomer  *bool                              `json:"isPreviousCustomer,omitempty"`
 	Locale              *string                            `json:"locale,omitempty"`
 	PersonalInformation *PersonalInformationRiskAssessment `json:"personalInformation,omitempty"`
+	// Deprecated: Use Order.shipping.address instead
 	ShippingAddress     *payment.AddressPersonal           `json:"shippingAddress,omitempty"`
 }
 

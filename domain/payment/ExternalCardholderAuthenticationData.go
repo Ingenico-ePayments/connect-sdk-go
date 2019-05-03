@@ -5,11 +5,14 @@ package payment
 
 // ExternalCardholderAuthenticationData represents class ExternalCardholderAuthenticationData
 type ExternalCardholderAuthenticationData struct {
-	Cavv             *string `json:"cavv,omitempty"`
-	CavvAlgorithm    *string `json:"cavvAlgorithm,omitempty"`
-	Eci              *int32  `json:"eci,omitempty"`
-	ValidationResult *string `json:"validationResult,omitempty"`
-	Xid              *string `json:"xid,omitempty"`
+	Cavv                         *string `json:"cavv,omitempty"`
+	CavvAlgorithm                *string `json:"cavvAlgorithm,omitempty"`
+	DirectoryServerTransactionID *string `json:"directoryServerTransactionId,omitempty"`
+	Eci                          *int32  `json:"eci,omitempty"`
+	ThreeDSecureVersion          *string `json:"threeDSecureVersion,omitempty"`
+	ThreeDServerTransactionID    *string `json:"threeDServerTransactionId,omitempty"`
+	ValidationResult             *string `json:"validationResult,omitempty"`
+	Xid                          *string `json:"xid,omitempty"`
 }
 
 // NewExternalCardholderAuthenticationData constructs a new ExternalCardholderAuthenticationData

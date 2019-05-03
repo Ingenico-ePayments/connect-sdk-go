@@ -5,18 +5,23 @@ package payment
 
 // AbstractCardPaymentMethodSpecificInput represents class AbstractCardPaymentMethodSpecificInput
 type AbstractCardPaymentMethodSpecificInput struct {
-	AuthorizationMode                 *string `json:"authorizationMode,omitempty"`
-	CustomerReference                 *string `json:"customerReference,omitempty"`
-	PaymentProductID                  *int32  `json:"paymentProductId,omitempty"`
-	RecurringPaymentSequenceIndicator *string `json:"recurringPaymentSequenceIndicator,omitempty"`
-	RequiresApproval                  *bool   `json:"requiresApproval,omitempty"`
-	SkipAuthentication                *bool   `json:"skipAuthentication,omitempty"`
-	SkipFraudService                  *bool   `json:"skipFraudService,omitempty"`
-	Token                             *string `json:"token,omitempty"`
-	Tokenize                          *bool   `json:"tokenize,omitempty"`
-	TransactionChannel                *string `json:"transactionChannel,omitempty"`
-	UnscheduledCardOnFileIndicator    *string `json:"unscheduledCardOnFileIndicator,omitempty"`
-	UnscheduledCardOnFileRequestor    *string `json:"unscheduledCardOnFileRequestor,omitempty"`
+	AuthorizationMode                      *string                `json:"authorizationMode,omitempty"`
+	CustomerReference                      *string                `json:"customerReference,omitempty"`
+	PaymentProductID                       *int32                 `json:"paymentProductId,omitempty"`
+	Recurring                              *CardRecurrenceDetails `json:"recurring,omitempty"`
+	// Deprecated: Use recurring.recurringPaymentSequenceIndicator instead
+	RecurringPaymentSequenceIndicator      *string                `json:"recurringPaymentSequenceIndicator,omitempty"`
+	RequiresApproval                       *bool                  `json:"requiresApproval,omitempty"`
+	// Deprecated: Use threeDSecure.skipAuthentication instead
+	SkipAuthentication                     *bool                  `json:"skipAuthentication,omitempty"`
+	SkipFraudService                       *bool                  `json:"skipFraudService,omitempty"`
+	Token                                  *string                `json:"token,omitempty"`
+	Tokenize                               *bool                  `json:"tokenize,omitempty"`
+	TransactionChannel                     *string                `json:"transactionChannel,omitempty"`
+	// Deprecated: Use unscheduledCardOnFileSequenceIndicator instead
+	UnscheduledCardOnFileIndicator         *string                `json:"unscheduledCardOnFileIndicator,omitempty"`
+	UnscheduledCardOnFileRequestor         *string                `json:"unscheduledCardOnFileRequestor,omitempty"`
+	UnscheduledCardOnFileSequenceIndicator *string                `json:"unscheduledCardOnFileSequenceIndicator,omitempty"`
 }
 
 // NewAbstractCardPaymentMethodSpecificInput constructs a new AbstractCardPaymentMethodSpecificInput

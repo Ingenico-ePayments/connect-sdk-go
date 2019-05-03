@@ -5,13 +5,13 @@ package payment
 
 // Level3SummaryData represents class Level3SummaryData
 //
-// Deprecated: Use Order.shoppingCart instead
+// Deprecated: Use ShoppingCart.amountBreakdown instead
 type Level3SummaryData struct {
-	// Deprecated: Use ShoppingCart.amountbreakdown with type DISCOUNT instead
+	// Deprecated: Use ShoppingCart.amountBreakdown with type DISCOUNT instead
 	DiscountAmount *int64 `json:"discountAmount,omitempty"`
-	// Deprecated: Use ShoppingCart.amountbreakdown with type DUTY instead
+	// Deprecated: Use ShoppingCart.amountBreakdown with type DUTY instead
 	DutyAmount     *int64 `json:"dutyAmount,omitempty"`
-	// Deprecated: Use ShoppingCart.amountbreakdown with type SHIPPING instead
+	// Deprecated: Use ShoppingCart.amountBreakdown with type SHIPPING instead
 	ShippingAmount *int64 `json:"shippingAmount,omitempty"`
 }
 

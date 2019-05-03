@@ -11,6 +11,7 @@ type CustomerToken struct {
 	CompanyInformation  *definitions.CompanyInformation `json:"companyInformation,omitempty"`
 	MerchantCustomerID  *string                         `json:"merchantCustomerId,omitempty"`
 	PersonalInformation *PersonalInformationToken       `json:"personalInformation,omitempty"`
+	// Deprecated: Use companyInformation.vatNumber instead
 	VatNumber           *string                         `json:"vatNumber,omitempty"`
 }
 

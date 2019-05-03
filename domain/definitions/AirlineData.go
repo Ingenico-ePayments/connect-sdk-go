@@ -11,6 +11,7 @@ type AirlineData struct {
 	FlightLegs           *[]AirlineFlightLeg `json:"flightLegs,omitempty"`
 	InvoiceNumber        *string             `json:"invoiceNumber,omitempty"`
 	IsETicket            *bool               `json:"isETicket,omitempty"`
+	// Deprecated: Use Order.customer.accountType instead
 	IsRegisteredCustomer *bool               `json:"isRegisteredCustomer,omitempty"`
 	IsRestrictedTicket   *bool               `json:"isRestrictedTicket,omitempty"`
 	IsThirdParty         *bool               `json:"isThirdParty,omitempty"`

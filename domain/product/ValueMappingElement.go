@@ -6,7 +6,7 @@ package product
 // ValueMappingElement represents class ValueMappingElement
 type ValueMappingElement struct {
 	DisplayElements *[]PaymentProductFieldDisplayElement `json:"displayElements,omitempty"`
-	// Deprecated: use displayElement with ID 'displayName' instead.
+	// Deprecated: Use displayElements instead with ID 'displayName'
 	DisplayName     *string                              `json:"displayName,omitempty"`
 	Value           *string                              `json:"value,omitempty"`
 }

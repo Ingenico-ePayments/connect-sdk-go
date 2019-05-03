@@ -8,20 +8,20 @@ import "github.com/Ingenico-ePayments/connect-sdk-go/domain/definitions"
 // CreateRequest represents class CreatePayoutRequest
 type CreateRequest struct {
 	AmountOfMoney                         *definitions.AmountOfMoney             `json:"amountOfMoney,omitempty"`
-	// Deprecated: Use bankTransferPayoutMethodSpecificInput.bankAccountBban instead
+	// Deprecated: Moved to BankTransferPayoutMethodSpecificInput
 	BankAccountBban                       *definitions.BankAccountBban           `json:"bankAccountBban,omitempty"`
-	// Deprecated: Use bankTransferPayoutMethodSpecificInput.bankAccountIban instead
+	// Deprecated: Moved to BankTransferPayoutMethodSpecificInput
 	BankAccountIban                       *definitions.BankAccountIban           `json:"bankAccountIban,omitempty"`
 	BankTransferPayoutMethodSpecificInput *BankTransferPayoutMethodSpecificInput `json:"bankTransferPayoutMethodSpecificInput,omitempty"`
 	CardPayoutMethodSpecificInput         *CardPayoutMethodSpecificInput         `json:"cardPayoutMethodSpecificInput,omitempty"`
-	// Deprecated: Use bankTransferPayoutMethodSpecificInput.customer instead
+	// Deprecated: Moved to BankTransferPayoutMethodSpecificInput
 	Customer                              *Customer                              `json:"customer,omitempty"`
-	// Deprecated: Use bankTransferPayoutMethodSpecificInput.payoutDate instead
+	// Deprecated: Moved to BankTransferPayoutMethodSpecificInput
 	PayoutDate                            *string                                `json:"payoutDate,omitempty"`
-	// Deprecated: Use bankTransferPayoutMethodSpecificInput.payoutText instead
+	// Deprecated: Moved to BankTransferPayoutMethodSpecificInput
 	PayoutText                            *string                                `json:"payoutText,omitempty"`
 	References                            *References                            `json:"references,omitempty"`
-	// Deprecated: Use bankTransferPayoutMethodSpecificInput.swiftCode instead
+	// Deprecated: Moved to BankTransferPayoutMethodSpecificInput
 	SwiftCode                             *string                                `json:"swiftCode,omitempty"`
 }
 

@@ -8,6 +8,7 @@ import "github.com/Ingenico-ePayments/connect-sdk-go/domain/definitions"
 // OrderApprovePayment represents class OrderApprovePayment
 type OrderApprovePayment struct {
 	AdditionalInput *definitions.AdditionalOrderInputAirlineData `json:"additionalInput,omitempty"`
+	Customer        *CustomerApprovePayment                      `json:"customer,omitempty"`
 	References      *OrderReferencesApprovePayment               `json:"references,omitempty"`
 }
 

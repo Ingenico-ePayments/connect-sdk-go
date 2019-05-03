@@ -9,6 +9,7 @@ import "github.com/Ingenico-ePayments/connect-sdk-go/domain/definitions"
 type RiskAssessmentCard struct {
 	Card             *definitions.Card        `json:"card,omitempty"`
 	FraudFields      *definitions.FraudFields `json:"fraudFields,omitempty"`
+	Merchant         *MerchantRiskAssessment  `json:"merchant,omitempty"`
 	Order            *OrderRiskAssessment     `json:"order,omitempty"`
 	PaymentProductID *int32                   `json:"paymentProductId,omitempty"`
 }

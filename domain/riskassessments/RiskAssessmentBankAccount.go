@@ -10,6 +10,7 @@ type RiskAssessmentBankAccount struct {
 	BankAccountBban  *definitions.BankAccountBban `json:"bankAccountBban,omitempty"`
 	BankAccountIban  *definitions.BankAccountIban `json:"bankAccountIban,omitempty"`
 	FraudFields      *definitions.FraudFields     `json:"fraudFields,omitempty"`
+	Merchant         *MerchantRiskAssessment      `json:"merchant,omitempty"`
 	Order            *OrderRiskAssessment         `json:"order,omitempty"`
 	PaymentProductID *int32                       `json:"paymentProductId,omitempty"`
 }

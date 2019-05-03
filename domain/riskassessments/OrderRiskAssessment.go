@@ -10,6 +10,7 @@ type OrderRiskAssessment struct {
 	AdditionalInput *definitions.AdditionalOrderInputAirlineData `json:"additionalInput,omitempty"`
 	AmountOfMoney   *definitions.AmountOfMoney                   `json:"amountOfMoney,omitempty"`
 	Customer        *CustomerRiskAssessment                      `json:"customer,omitempty"`
+	Shipping        *ShippingRiskAssessment                      `json:"shipping,omitempty"`
 }
 
 // NewOrderRiskAssessment constructs a new OrderRiskAssessment

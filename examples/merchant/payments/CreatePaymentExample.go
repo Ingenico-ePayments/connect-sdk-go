@@ -29,10 +29,47 @@ func createPaymentExample() {
 	card.Cvv = newString("123")
 	card.ExpiryDate = newString("1220")
 
+	var externalCardholderAuthenticationData payment.ExternalCardholderAuthenticationData
+	externalCardholderAuthenticationData.Cavv = newString("AgAAAAAABk4DWZ4C28yUQAAAAAA=")
+	externalCardholderAuthenticationData.CavvAlgorithm = newString("1")
+	externalCardholderAuthenticationData.Eci = newInt32(8)
+	externalCardholderAuthenticationData.ThreeDSecureVersion = newString("v2")
+	externalCardholderAuthenticationData.ThreeDServerTransactionID = newString("3DSTID1234")
+	externalCardholderAuthenticationData.ValidationResult = newString("Y")
+	externalCardholderAuthenticationData.Xid = newString("n3h2uOQPUgnmqhCkXNfxl8pOZJA=")
+
+	var priorThreeDSecureData payment.ThreeDSecureData
+	priorThreeDSecureData.AcsTransactionID = newString("empty")
+	priorThreeDSecureData.Method = newString("challenged")
+	priorThreeDSecureData.UtcTimestamp = newString("201901311530")
+
+	var deviceRenderOptions payment.DeviceRenderOptions
+	deviceRenderOptions.SdkInterface = newString("native")
+	deviceRenderOptions.SdkUIType = newString("multi-select")
+
+	var sdkData payment.SdkDataInput
+	sdkData.DeviceInfo = newString("abc123")
+	sdkData.DeviceRenderOptions = &deviceRenderOptions
+	sdkData.SdkAppID = newString("xyz")
+	sdkData.SdkEncryptedData = newString("abc123")
+	sdkData.SdkEphemeralPublicKey = newString("123xyz")
+	sdkData.SdkMaxTimeout = newString("30")
+	sdkData.SdkReferenceNumber = newString("zaq123")
+	sdkData.SdkTransactionID = newString("xsw321")
+
+	var threeDSecure payment.ThreeDSecure
+	threeDSecure.AuthenticationFlow = newString("browser")
+	threeDSecure.ChallengeCanvasSize = newString("600x400")
+	threeDSecure.ChallengeIndicator = newString("challenge-requested")
+	threeDSecure.ExternalCardholderAuthenticationData = &externalCardholderAuthenticationData
+	threeDSecure.PriorThreeDSecureData = &priorThreeDSecureData
+	threeDSecure.SdkData = &sdkData
+	threeDSecure.SkipAuthentication = newBool(false)
+
 	var cardPaymentMethodSpecificInput payment.CardPaymentMethodSpecificInput
 	cardPaymentMethodSpecificInput.Card = &card
 	cardPaymentMethodSpecificInput.PaymentProductID = newInt32(1)
-	cardPaymentMethodSpecificInput.SkipAuthentication = newBool(false)
+	cardPaymentMethodSpecificInput.ThreeDSecure = &threeDSecure
 
 	var amountOfMoney definitions.AmountOfMoney
 	amountOfMoney.Amount = newInt64(2980)
@@ -49,6 +86,7 @@ func createPaymentExample() {
 
 	var companyInformation definitions.CompanyInformation
 	companyInformation.Name = newString("Acme Labs")
+	companyInformation.VatNumber = newString("1234AB5678CD")
 
 	var contactDetails payment.ContactDetails
 	contactDetails.EmailAddress = newString("wile.e.coyote@acmelabs.com")
@@ -67,21 +105,6 @@ func createPaymentExample() {
 	personalInformation.Gender = newString("male")
 	personalInformation.Name = &name
 
-	var shippingName payment.PersonalName
-	shippingName.FirstName = newString("Road")
-	shippingName.Surname = newString("Runner")
-	shippingName.Title = newString("Miss")
-
-	var shippingAddress payment.AddressPersonal
-	shippingAddress.AdditionalInfo = newString("Suite II")
-	shippingAddress.City = newString("Monument Valley")
-	shippingAddress.CountryCode = newString("US")
-	shippingAddress.HouseNumber = newString("1")
-	shippingAddress.Name = &shippingName
-	shippingAddress.State = newString("Utah")
-	shippingAddress.Street = newString("Desertroad")
-	shippingAddress.Zip = newString("84536")
-
 	var customer payment.Customer
 	customer.BillingAddress = &billingAddress
 	customer.CompanyInformation = &companyInformation
@@ -89,8 +112,6 @@ func createPaymentExample() {
 	customer.Locale = newString("en_US")
 	customer.MerchantCustomerID = newString("1234")
 	customer.PersonalInformation = &personalInformation
-	customer.ShippingAddress = &shippingAddress
-	customer.VatNumber = newString("1234AB5678CD")
 
 	var invoiceData payment.OrderInvoiceData
 	invoiceData.InvoiceDate = newString("20140306191500")
@@ -101,6 +122,24 @@ func createPaymentExample() {
 	references.InvoiceData = &invoiceData
 	references.MerchantOrderID = newInt64(123456)
 	references.MerchantReference = newString("AcmeOrder0001")
+
+	var shippingName payment.PersonalName
+	shippingName.FirstName = newString("Road")
+	shippingName.Surname = newString("Runner")
+	shippingName.Title = newString("Miss")
+
+	var address payment.AddressPersonal
+	address.AdditionalInfo = newString("Suite II")
+	address.City = newString("Monument Valley")
+	address.CountryCode = newString("US")
+	address.HouseNumber = newString("1")
+	address.Name = &shippingName
+	address.State = newString("Utah")
+	address.Street = newString("Desertroad")
+	address.Zip = newString("84536")
+
+	var shipping payment.Shipping
+	shipping.Address = &address
 
 	var items []payment.LineItem
 
@@ -141,6 +180,7 @@ func createPaymentExample() {
 	order.AmountOfMoney = &amountOfMoney
 	order.Customer = &customer
 	order.References = &references
+	order.Shipping = &shipping
 	order.ShoppingCart = &shoppingCart
 
 	var body payment.CreateRequest

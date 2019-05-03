@@ -10,7 +10,7 @@ type CreatedPaymentOutput struct {
 	DisplayedData             *DisplayedData              `json:"displayedData,omitempty"`
 	Payment                   *payment.Payment            `json:"payment,omitempty"`
 	PaymentCreationReferences *payment.CreationReferences `json:"paymentCreationReferences,omitempty"`
-	// Deprecated: Use payment.statusOutput.statusCategory instead
+	// Deprecated: Use Payment.statusOutput.statusCategory instead
 	PaymentStatusCategory     *string                     `json:"paymentStatusCategory,omitempty"`
 	TokenizationSucceeded     *bool                       `json:"tokenizationSucceeded,omitempty"`
 	Tokens                    *string                     `json:"tokens,omitempty"`

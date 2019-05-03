@@ -8,7 +8,7 @@ import "github.com/Ingenico-ePayments/connect-sdk-go/domain/definitions"
 // AdditionalOrderInput represents class AdditionalOrderInput
 type AdditionalOrderInput struct {
 	AirlineData          *definitions.AirlineData `json:"airlineData,omitempty"`
-	// Deprecated: Use Order.shoppingCart instead
+	// Deprecated: Use Order.shoppingCart.amountBreakdown instead
 	Level3SummaryData    *Level3SummaryData       `json:"level3SummaryData,omitempty"`
 	NumberOfInstallments *int64                   `json:"numberOfInstallments,omitempty"`
 	OrderDate            *string                  `json:"orderDate,omitempty"`

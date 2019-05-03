@@ -66,7 +66,6 @@ func riskAssessmentCardsExample() {
 	airlineData.FlightLegs = &flightLegs
 	airlineData.InvoiceNumber = newString("123456")
 	airlineData.IsETicket = newBool(true)
-	airlineData.IsRegisteredCustomer = newBool(true)
 	airlineData.IsRestrictedTicket = newBool(true)
 	airlineData.IsThirdParty = newBool(true)
 	airlineData.IssueDate = newString("20150101")
@@ -91,6 +90,7 @@ func riskAssessmentCardsExample() {
 	billingAddress.CountryCode = newString("US")
 
 	var customer riskassessments.CustomerRiskAssessment
+	customer.AccountType = newString("existing")
 	customer.BillingAddress = &billingAddress
 	customer.Locale = newString("en_US")
 

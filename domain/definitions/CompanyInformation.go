@@ -5,7 +5,8 @@ package definitions
 
 // CompanyInformation represents class CompanyInformation
 type CompanyInformation struct {
-	Name *string `json:"name,omitempty"`
+	Name      *string `json:"name,omitempty"`
+	VatNumber *string `json:"vatNumber,omitempty"`
 }
 
 // NewCompanyInformation constructs a new CompanyInformation
