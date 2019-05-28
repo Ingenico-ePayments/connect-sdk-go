@@ -16,6 +16,7 @@ type MerchantAction struct {
 	RedirectData                          *RedirectData                          `json:"redirectData,omitempty"`
 	RenderingData                         *string                                `json:"renderingData,omitempty"`
 	ShowData                              *[]definitions.KeyValuePair            `json:"showData,omitempty"`
+	ThirdPartyData                        *ThirdPartyData                        `json:"thirdPartyData,omitempty"`
 }
 
 // NewMerchantAction constructs a new MerchantAction

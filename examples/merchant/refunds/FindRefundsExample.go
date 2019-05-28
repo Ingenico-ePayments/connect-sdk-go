@@ -22,6 +22,7 @@ func findRefundsExample() {
 	// The code for these helper functions can be found in file Helper.go
 
 	var query refunds.FindParams
+	query.HostedCheckoutID = newString("15c09dac-bf44-486a-af6b-edfd8680a166")
 	query.MerchantReference = newString("AcmeOrder0001")
 	query.MerchantOrderID = newInt64(123456)
 	query.Offset = newInt32(0)

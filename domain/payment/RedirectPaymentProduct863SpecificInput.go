@@ -6,6 +6,7 @@ package payment
 // RedirectPaymentProduct863SpecificInput represents class RedirectPaymentProduct863SpecificInput
 type RedirectPaymentProduct863SpecificInput struct {
 	IntegrationType *string `json:"integrationType,omitempty"`
+	OpenID          *string `json:"openId,omitempty"`
 }
 
 // NewRedirectPaymentProduct863SpecificInput constructs a new RedirectPaymentProduct863SpecificInput

@@ -10,6 +10,7 @@ import (
 // FindParams represents query parameters for Find payments
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/payments/find.html
 type FindParams struct {
+	HostedCheckoutID  *string
 	MerchantReference *string
 	MerchantOrderID   *int64
 	Offset            *int32
@@ -20,6 +21,7 @@ type FindParams struct {
 func (params *FindParams) ToRequestParameters() communicator.RequestParams {
 	reqParams := communicator.RequestParams{}
 
+	communicator.AddRequestParameter(&reqParams, "hostedCheckoutId", params.HostedCheckoutID)
 	communicator.AddRequestParameter(&reqParams, "merchantReference", params.MerchantReference)
 	communicator.AddRequestParameter(&reqParams, "merchantOrderId", params.MerchantOrderID)
 	communicator.AddRequestParameter(&reqParams, "offset", params.Offset)
