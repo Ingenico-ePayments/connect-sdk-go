@@ -43,27 +43,12 @@ func createPaymentExample() {
 	priorThreeDSecureData.Method = newString("challenged")
 	priorThreeDSecureData.UtcTimestamp = newString("201901311530")
 
-	var deviceRenderOptions payment.DeviceRenderOptions
-	deviceRenderOptions.SdkInterface = newString("native")
-	deviceRenderOptions.SdkUIType = newString("multi-select")
-
-	var sdkData payment.SdkDataInput
-	sdkData.DeviceInfo = newString("abc123")
-	sdkData.DeviceRenderOptions = &deviceRenderOptions
-	sdkData.SdkAppID = newString("xyz")
-	sdkData.SdkEncryptedData = newString("abc123")
-	sdkData.SdkEphemeralPublicKey = newString("123xyz")
-	sdkData.SdkMaxTimeout = newString("30")
-	sdkData.SdkReferenceNumber = newString("zaq123")
-	sdkData.SdkTransactionID = newString("xsw321")
-
 	var threeDSecure payment.ThreeDSecure
 	threeDSecure.AuthenticationFlow = newString("browser")
 	threeDSecure.ChallengeCanvasSize = newString("600x400")
 	threeDSecure.ChallengeIndicator = newString("challenge-requested")
 	threeDSecure.ExternalCardholderAuthenticationData = &externalCardholderAuthenticationData
 	threeDSecure.PriorThreeDSecureData = &priorThreeDSecureData
-	threeDSecure.SdkData = &sdkData
 	threeDSecure.SkipAuthentication = newBool(false)
 
 	var cardPaymentMethodSpecificInput payment.CardPaymentMethodSpecificInput
