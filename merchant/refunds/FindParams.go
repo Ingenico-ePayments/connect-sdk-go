@@ -4,7 +4,9 @@
 package refunds
 
 import (
-	communicator "github.com/Ingenico-ePayments/connect-sdk-go/communicator"
+	"strconv"
+
+	"github.com/Ingenico-ePayments/connect-sdk-go/communicator"
 )
 
 // FindParams represents query parameters for Find refunds
@@ -21,11 +23,26 @@ type FindParams struct {
 func (params *FindParams) ToRequestParameters() communicator.RequestParams {
 	reqParams := communicator.RequestParams{}
 
-	communicator.AddRequestParameter(&reqParams, "hostedCheckoutId", params.HostedCheckoutID)
-	communicator.AddRequestParameter(&reqParams, "merchantReference", params.MerchantReference)
-	communicator.AddRequestParameter(&reqParams, "merchantOrderId", params.MerchantOrderID)
-	communicator.AddRequestParameter(&reqParams, "offset", params.Offset)
-	communicator.AddRequestParameter(&reqParams, "limit", params.Limit)
+	if params.HostedCheckoutID != nil {
+		param, _ := communicator.NewRequestParam("hostedCheckoutId", *params.HostedCheckoutID)
+		reqParams = append(reqParams, *param)
+	}
+	if params.MerchantReference != nil {
+		param, _ := communicator.NewRequestParam("merchantReference", *params.MerchantReference)
+		reqParams = append(reqParams, *param)
+	}
+	if params.MerchantOrderID != nil {
+		param, _ := communicator.NewRequestParam("merchantOrderId", strconv.FormatInt(*params.MerchantOrderID, 10))
+		reqParams = append(reqParams, *param)
+	}
+	if params.Offset != nil {
+		param, _ := communicator.NewRequestParam("offset", strconv.FormatInt(int64(*params.Offset), 10))
+		reqParams = append(reqParams, *param)
+	}
+	if params.Limit != nil {
+		param, _ := communicator.NewRequestParam("limit", strconv.FormatInt(int64(*params.Limit), 10))
+		reqParams = append(reqParams, *param)
+	}
 
 	return reqParams
 }

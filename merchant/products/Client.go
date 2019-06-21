@@ -9,7 +9,6 @@ import (
 	"github.com/Ingenico-ePayments/connect-sdk-go/communicator/communication"
 	"github.com/Ingenico-ePayments/connect-sdk-go/domain/errors"
 	"github.com/Ingenico-ePayments/connect-sdk-go/domain/product"
-	"github.com/Ingenico-ePayments/connect-sdk-go/domain/publickey"
 	sdkErrors "github.com/Ingenico-ePayments/connect-sdk-go/errors"
 	"github.com/Ingenico-ePayments/connect-sdk-go/internal/apiresource"
 )
@@ -35,7 +34,7 @@ type Client struct {
 func (c *Client) Find(query FindParams, context communication.CallContext) (product.PaymentProducts, error) {
 	var resultObject product.PaymentProducts
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/products", nil)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/products", nil)
 	if err != nil {
 		return resultObject, err
 	}
@@ -88,7 +87,7 @@ func (c *Client) Get(paymentProductID int32, query GetParams, context communicat
 		"paymentProductId": strconv.FormatInt(int64(paymentProductID), 10),
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/products/{paymentProductId}", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/products/{paymentProductId}", pathContext)
 	if err != nil {
 		return resultObject, err
 	}
@@ -141,7 +140,7 @@ func (c *Client) Directory(paymentProductID int32, query DirectoryParams, contex
 		"paymentProductId": strconv.FormatInt(int64(paymentProductID), 10),
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/products/{paymentProductId}/directory", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/products/{paymentProductId}/directory", pathContext)
 	if err != nil {
 		return resultObject, err
 	}
@@ -194,7 +193,7 @@ func (c *Client) CustomerDetails(paymentProductID int32, body product.GetCustome
 		"paymentProductId": strconv.FormatInt(int64(paymentProductID), 10),
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/products/{paymentProductId}/customerDetails", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/products/{paymentProductId}/customerDetails", pathContext)
 	if err != nil {
 		return resultObject, err
 	}
@@ -247,7 +246,7 @@ func (c *Client) DeviceFingerprint(paymentProductID int32, body product.DeviceFi
 		"paymentProductId": strconv.FormatInt(int64(paymentProductID), 10),
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/products/{paymentProductId}/deviceFingerprint", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/products/{paymentProductId}/deviceFingerprint", pathContext)
 	if err != nil {
 		return resultObject, err
 	}
@@ -300,7 +299,7 @@ func (c *Client) Networks(paymentProductID int32, query NetworksParams, context 
 		"paymentProductId": strconv.FormatInt(int64(paymentProductID), 10),
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/products/{paymentProductId}/networks", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/products/{paymentProductId}/networks", pathContext)
 	if err != nil {
 		return resultObject, err
 	}
@@ -308,59 +307,6 @@ func (c *Client) Networks(paymentProductID int32, query NetworksParams, context 
 	clientHeaders := c.apiResource.ClientHeaders()
 
 	getErr := c.apiResource.Communicator().Get(uri, clientHeaders, &query, context, &resultObject)
-	if getErr != nil {
-		responseError, isResponseError := getErr.(*sdkErrors.ResponseError)
-		if isResponseError {
-			var errorObject interface{}
-
-			errorObject = &errors.ErrorResponse{}
-			err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
-			if err != nil {
-				return resultObject, err
-			}
-
-			err, createErr := sdkErrors.CreateAPIError(responseError.StatusCode(), responseError.Body(), errorObject, context)
-			if createErr != nil {
-				return resultObject, createErr
-			}
-
-			return resultObject, err
-		}
-
-		return resultObject, getErr
-	}
-
-	return resultObject, nil
-}
-
-// PublicKey represents the resource /{merchantId}/products/{paymentProductId}/publicKey - Get payment product specific public key
-// Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/products/publicKey.html
-//
-// Can return any of the following errors:
-// * ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
-// * AuthorizationError if the request was not allowed (HTTP status code 403)
-// * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
-// * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
-// or there was a conflict (HTTP status code 404, 409 or 410)
-// * GlobalCollectError if something went wrong at the Ingenico ePayments platform,
-// the Ingenico ePayments platform was unable to process a message from a downstream partner/acquirer,
-// or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
-// * APIError if the Ingenico ePayments platform returned any other error
-func (c *Client) PublicKey(paymentProductID int32, context communication.CallContext) (publickey.PublicKey, error) {
-	var resultObject publickey.PublicKey
-
-	pathContext := map[string]string{
-		"paymentProductId": strconv.FormatInt(int64(paymentProductID), 10),
-	}
-
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/products/{paymentProductId}/publicKey", pathContext)
-	if err != nil {
-		return resultObject, err
-	}
-
-	clientHeaders := c.apiResource.ClientHeaders()
-
-	getErr := c.apiResource.Communicator().Get(uri, clientHeaders, nil, context, &resultObject)
 	if getErr != nil {
 		responseError, isResponseError := getErr.(*sdkErrors.ResponseError)
 		if isResponseError {

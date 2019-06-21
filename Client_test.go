@@ -1,9 +1,9 @@
 package connectsdk
 
 import (
+	"encoding/base64"
 	"net/url"
 	"testing"
-	"encoding/base64"
 
 	"github.com/Ingenico-ePayments/connect-sdk-go/configuration"
 	"github.com/Ingenico-ePayments/connect-sdk-go/defaultimpl"
@@ -12,7 +12,7 @@ import (
 var testConfiguration = configuration.CommunicatorConfiguration{
 	APIEndpoint: url.URL{
 		Scheme: "https",
-		Host:   "api-sandbox.globalcollect.com",
+		Host:   "eu.sandbox.api-ingenico.com",
 	},
 	AuthorizationType: defaultimpl.V1HMAC,
 	MaxConnections:    100,

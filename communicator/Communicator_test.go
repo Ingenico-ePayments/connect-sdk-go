@@ -1,13 +1,14 @@
 package communicator
 
 import (
+	"io"
 	"net/url"
 	"testing"
 )
 
 var baseURL = url.URL{
 	Scheme: "https",
-	Host:   "api-sandbox.globalcollect.com",
+	Host:   "eu.sandbox.api-ingenico.com",
 }
 
 var marshaller = &communicatorTestMarshaller{}
@@ -17,6 +18,10 @@ type communicatorTestMarshaller struct {
 
 // Marshal encodes the given value using json.Marshal
 func (m *communicatorTestMarshaller) Marshal(v interface{}) (string, error) {
+	panic("Not implemented")
+}
+
+func (m *communicatorTestMarshaller) UnmarshalFromReader(reader io.Reader, v interface{}) error {
 	panic("Not implemented")
 }
 
@@ -35,7 +40,7 @@ func TestToURIWithoutRequestParams(t *testing.T) {
 		t.Fatalf("TestToURIWithoutRequestParams: %v", err)
 	}
 
-	expectedURL, err := url.Parse("https://api-sandbox.globalcollect.com/v1/merchant/20000/convertamount")
+	expectedURL, err := url.Parse("https://eu.sandbox.api-ingenico.com/v1/merchant/20000/convertamount")
 	if err != nil {
 		t.Fatalf("TestToURIWithoutRequestParams: %v", err)
 	}
@@ -69,7 +74,7 @@ func TestToURIWithRequestParams(t *testing.T) {
 		t.Fatalf("TestToURIWithoutRequestParams: %v", err)
 	}
 
-	expectedURL, err := url.Parse("https://api-sandbox.globalcollect.com/v1/merchant/20000/convertamount?amount=123&source=USD&target=EUR&dummy=%C3%A9%26%25%3D")
+	expectedURL, err := url.Parse("https://eu.sandbox.api-ingenico.com/v1/merchant/20000/convertamount?amount=123&source=USD&target=EUR&dummy=%C3%A9%26%25%3D")
 	if err != nil {
 		t.Fatalf("TestToURIWithoutRequestParams: %v", err)
 	}

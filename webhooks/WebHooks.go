@@ -14,7 +14,7 @@ func CreateHelperBuilder(secretKeyStore SecretKeyStore) (*HelperBuilder, error) 
 
 // CreateHelper creates a Helper that will use the given secretKeyStore
 func CreateHelper(secretKeyStore SecretKeyStore) (*Helper, error) {
-	helperBuilder, err := CreateHelperBuilder(secretKeyStore);
+	helperBuilder, err := CreateHelperBuilder(secretKeyStore)
 	if err != nil {
 		return nil, err
 	}

@@ -1896,7 +1896,7 @@ func createTimedTestEnvironment(path string, handleFunc http.HandlerFunc, socket
 		Handler: mux,
 	}
 
-	randomPort := (1 << 12) + rand.Intn((1 << 15))
+	randomPort := (1 << 12) + rand.Intn(1 << 15)
 	listener, err := net.Listen("tcp", ":"+strconv.Itoa(randomPort))
 	if err != nil {
 		return nil, nil, nil, err
@@ -1922,7 +1922,7 @@ func createEmptyTestEnvironment() (net.Listener, *stoppableListener, *Client, *h
 		Handler: mux,
 	}
 
-	randomPort := (1 << 12) + rand.Intn((1 << 15))
+	randomPort := (1 << 12) + rand.Intn(1 << 15)
 	listener, err := net.Listen("tcp", ":"+strconv.Itoa(randomPort))
 	if err != nil {
 		return nil, nil, nil, nil, err
@@ -1948,7 +1948,7 @@ func createEmptyTimedTestEnvironment(socketTimeout, connectTimeout time.Duration
 		Handler: mux,
 	}
 
-	randomPort := (1 << 12) + rand.Intn((1 << 15))
+	randomPort := (1 << 12) + rand.Intn(1 << 15)
 	listener, err := net.Listen("tcp", ":"+strconv.Itoa(randomPort))
 	if err != nil {
 		return nil, nil, nil, nil, err

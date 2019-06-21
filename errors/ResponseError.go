@@ -8,15 +8,9 @@ import (
 
 // ResponseError is returned when a response was received from the Ingenico ePayments platform which indicates an error.
 type ResponseError struct {
-	response   communication.Response
 	statusCode int
 	body       string
 	headers    []communication.Header
-}
-
-// Response gets the response that was returned by the Ingenico ePayments platform.
-func (e *ResponseError) Response() communication.Response {
-	return e.response
 }
 
 // StatusCode gets the HTTP status code that was returned by the Ingenico ePayments platform.
@@ -36,7 +30,7 @@ func (e *ResponseError) Headers() []communication.Header {
 
 // GetHeader returns the header with the given name, or nil if there was no such header.
 func (e *ResponseError) GetHeader(headerName string) *communication.Header {
-	return e.response.GetHeader(headerName)
+	return communication.Headers(e.headers).GetHeader(headerName)
 }
 
 // String implements the Stringer interface
@@ -44,14 +38,14 @@ func (e *ResponseError) GetHeader(headerName string) *communication.Header {
 func (e *ResponseError) String() string {
 	retString := "the Ingenico ePayments platform returned an error response"
 
-	statusCode := e.response.StatusCode()
+	statusCode := e.statusCode
 	if statusCode > 0 {
-		retString += ";  statusCode=" + strconv.Itoa(e.response.StatusCode())
+		retString += ";  statusCode=" + strconv.Itoa(e.statusCode)
 	}
 
-	responseBody := e.response.Body()
+	responseBody := e.body
 	if len(responseBody) > 0 {
-		retString += "; responseBody='" + e.response.Body() + "'"
+		retString += "; responseBody='" + e.body + "'"
 	}
 
 	return retString
@@ -63,6 +57,6 @@ func (e *ResponseError) Error() string {
 }
 
 // NewResponseError creates a new ResponseError with the specified response
-func NewResponseError(r communication.Response) *ResponseError {
-	return &ResponseError{response: r, statusCode: r.StatusCode(), body: r.Body(), headers: r.Headers()}
+func NewResponseError(statusCode int, body string, headers []communication.Header) *ResponseError {
+	return &ResponseError{statusCode: statusCode, body: body, headers: headers}
 }

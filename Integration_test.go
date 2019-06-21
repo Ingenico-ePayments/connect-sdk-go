@@ -294,7 +294,7 @@ func TestIntegratedMultilineHeader(t *testing.T) {
 	t.Skip("fails inside sandbox")
 
 	configuration := configuration.DefaultConfiguration(envAPIKeyID, envSecretAPIKey, "Ingenico")
-	configuration.APIEndpoint.Host = "api-sandbox.globalcollect.com"
+	configuration.APIEndpoint.Host = "eu.sandbox.api-ingenico.com"
 	configuration.APIKeyID = envAPIKeyID
 	configuration.SecretAPIKey = envSecretAPIKey
 
@@ -345,7 +345,7 @@ func TestIntegratedMultilineHeader(t *testing.T) {
 
 func getClientIntegration() (*Client, error) {
 	configuration := configuration.DefaultConfiguration(envAPIKeyID, envSecretAPIKey, "Ingenico")
-	configuration.APIEndpoint.Host = "api-sandbox.globalcollect.com"
+	configuration.APIEndpoint.Host = "eu.sandbox.api-ingenico.com"
 
 	if len(envProxyURL) > 0 {
 		proxy, err := url.Parse(envProxyURL)

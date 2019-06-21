@@ -32,7 +32,7 @@ type Client struct {
 func (c *Client) ConvertAmount(query ConvertAmountParams, context communication.CallContext) (services.ConvertAmount, error) {
 	var resultObject services.ConvertAmount
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/services/convert/amount", nil)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/services/convert/amount", nil)
 	if err != nil {
 		return resultObject, err
 	}
@@ -81,7 +81,7 @@ func (c *Client) ConvertAmount(query ConvertAmountParams, context communication.
 func (c *Client) Bankaccount(body services.BankDetailsRequest, context communication.CallContext) (services.BankDetailsResponse, error) {
 	var resultObject services.BankDetailsResponse
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/services/convert/bankaccount", nil)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/services/convert/bankaccount", nil)
 	if err != nil {
 		return resultObject, err
 	}
@@ -130,7 +130,7 @@ func (c *Client) Bankaccount(body services.BankDetailsRequest, context communica
 func (c *Client) GetIINdetails(body services.GetIINDetailsRequest, context communication.CallContext) (services.GetIINDetailsResponse, error) {
 	var resultObject services.GetIINDetailsResponse
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/services/getIINdetails", nil)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/services/getIINdetails", nil)
 	if err != nil {
 		return resultObject, err
 	}
@@ -179,7 +179,7 @@ func (c *Client) GetIINdetails(body services.GetIINDetailsRequest, context commu
 func (c *Client) Privacypolicy(query PrivacypolicyParams, context communication.CallContext) (services.GetPrivacyPolicyResponse, error) {
 	var resultObject services.GetPrivacyPolicyResponse
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/services/privacypolicy", nil)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/services/privacypolicy", nil)
 	if err != nil {
 		return resultObject, err
 	}
@@ -228,7 +228,7 @@ func (c *Client) Privacypolicy(query PrivacypolicyParams, context communication.
 func (c *Client) Testconnection(context communication.CallContext) (services.TestConnection, error) {
 	var resultObject services.TestConnection
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/services/testconnection", nil)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/services/testconnection", nil)
 	if err != nil {
 		return resultObject, err
 	}

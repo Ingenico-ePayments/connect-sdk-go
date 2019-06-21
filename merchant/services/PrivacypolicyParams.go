@@ -4,7 +4,9 @@
 package services
 
 import (
-	communicator "github.com/Ingenico-ePayments/connect-sdk-go/communicator"
+	"strconv"
+
+	"github.com/Ingenico-ePayments/connect-sdk-go/communicator"
 )
 
 // PrivacypolicyParams represents query parameters for Get privacy policy
@@ -18,8 +20,14 @@ type PrivacypolicyParams struct {
 func (params *PrivacypolicyParams) ToRequestParameters() communicator.RequestParams {
 	reqParams := communicator.RequestParams{}
 
-	communicator.AddRequestParameter(&reqParams, "locale", params.Locale)
-	communicator.AddRequestParameter(&reqParams, "paymentProductId", params.PaymentProductID)
+	if params.Locale != nil {
+		param, _ := communicator.NewRequestParam("locale", *params.Locale)
+		reqParams = append(reqParams, *param)
+	}
+	if params.PaymentProductID != nil {
+		param, _ := communicator.NewRequestParam("paymentProductId", strconv.FormatInt(int64(*params.PaymentProductID), 10))
+		reqParams = append(reqParams, *param)
+	}
 
 	return reqParams
 }

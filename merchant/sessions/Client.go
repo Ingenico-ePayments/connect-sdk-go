@@ -32,7 +32,7 @@ type Client struct {
 func (c *Client) Create(body sessions.SessionRequest, context communication.CallContext) (sessions.SessionResponse, error) {
 	var resultObject sessions.SessionResponse
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/sessions", nil)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/sessions", nil)
 	if err != nil {
 		return resultObject, err
 	}

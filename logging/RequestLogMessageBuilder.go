@@ -112,13 +112,23 @@ func (rlm *RequestLogMessageBuilder) AddHeader(name, value string) error {
 // SetBody sets the request body
 func (rlm *RequestLogMessageBuilder) SetBody(body, contentType string) error {
 	obfuscatedBody, err := ObfuscateBody(body)
-
 	if err != nil {
 		return err
 	}
 
 	rlm.contentType = contentType
 	rlm.body = obfuscatedBody
+
+	return nil
+}
+
+// SetBinaryBody sets the binary request body
+func (rlm *RequestLogMessageBuilder) SetBinaryBody(contentType string) error {
+	if !isBinaryContent(contentType) {
+		return errors.New("Not a binary content type: " + contentType)
+	}
+	rlm.contentType = contentType
+	rlm.body = "<binary content>"
 
 	return nil
 }

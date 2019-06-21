@@ -32,7 +32,7 @@ type Client struct {
 func (c *Client) Create(body hostedmandatemanagement.CreateRequest, context communication.CallContext) (hostedmandatemanagement.CreateResponse, error) {
 	var resultObject hostedmandatemanagement.CreateResponse
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/hostedmandatemanagements", nil)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/hostedmandatemanagements", nil)
 	if err != nil {
 		return resultObject, err
 	}
@@ -85,7 +85,7 @@ func (c *Client) Get(hostedMandateManagementID string, context communication.Cal
 		"hostedMandateManagementId": hostedMandateManagementID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/hostedmandatemanagements/{hostedMandateManagementId}", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/hostedmandatemanagements/{hostedMandateManagementId}", pathContext)
 	if err != nil {
 		return resultObject, err
 	}

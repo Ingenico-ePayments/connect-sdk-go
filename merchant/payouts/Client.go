@@ -33,7 +33,7 @@ type Client struct {
 func (c *Client) Create(body payout.CreateRequest, context communication.CallContext) (payout.Response, error) {
 	var resultObject payout.Response
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/payouts", nil)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/payouts", nil)
 	if err != nil {
 		return resultObject, err
 	}
@@ -82,7 +82,7 @@ func (c *Client) Create(body payout.CreateRequest, context communication.CallCon
 func (c *Client) Find(query FindParams, context communication.CallContext) (payout.FindResponse, error) {
 	var resultObject payout.FindResponse
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/payouts", nil)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/payouts", nil)
 	if err != nil {
 		return resultObject, err
 	}
@@ -135,7 +135,7 @@ func (c *Client) Get(payoutID string, context communication.CallContext) (payout
 		"payoutId": payoutID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/payouts/{payoutId}", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/payouts/{payoutId}", pathContext)
 	if err != nil {
 		return resultObject, err
 	}
@@ -188,7 +188,7 @@ func (c *Client) Approve(payoutID string, body payout.ApproveRequest, context co
 		"payoutId": payoutID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/payouts/{payoutId}/approve", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/payouts/{payoutId}/approve", pathContext)
 	if err != nil {
 		return resultObject, err
 	}
@@ -239,7 +239,7 @@ func (c *Client) Cancel(payoutID string, context communication.CallContext) erro
 		"payoutId": payoutID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/payouts/{payoutId}/cancel", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/payouts/{payoutId}/cancel", pathContext)
 	if err != nil {
 		return err
 	}
@@ -291,7 +291,7 @@ func (c *Client) Cancelapproval(payoutID string, context communication.CallConte
 		"payoutId": payoutID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/payouts/{payoutId}/cancelapproval", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/payouts/{payoutId}/cancelapproval", pathContext)
 	if err != nil {
 		return err
 	}

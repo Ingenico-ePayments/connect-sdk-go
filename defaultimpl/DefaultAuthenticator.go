@@ -142,8 +142,11 @@ func (a *DefaultAuthenticator) signData(s string) (string, error) {
 
 	writableBuffer := bytes.Buffer{}
 	encoder := base64.NewEncoder(base64.StdEncoding, &writableBuffer)
-	encoder.Write(hmacOutput)
-	err := encoder.Close()
+	_, err := encoder.Write(hmacOutput)
+	if err != nil {
+		return "", err
+	}
+	err = encoder.Close()
 	if err != nil {
 		return "", err
 	}

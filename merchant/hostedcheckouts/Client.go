@@ -32,7 +32,7 @@ type Client struct {
 func (c *Client) Create(body hostedcheckout.CreateRequest, context communication.CallContext) (hostedcheckout.CreateResponse, error) {
 	var resultObject hostedcheckout.CreateResponse
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/hostedcheckouts", nil)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/hostedcheckouts", nil)
 	if err != nil {
 		return resultObject, err
 	}
@@ -85,7 +85,7 @@ func (c *Client) Get(hostedCheckoutID string, context communication.CallContext)
 		"hostedCheckoutId": hostedCheckoutID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/hostedcheckouts/{hostedCheckoutId}", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/hostedcheckouts/{hostedCheckoutId}", pathContext)
 	if err != nil {
 		return resultObject, err
 	}

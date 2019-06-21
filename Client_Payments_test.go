@@ -338,17 +338,23 @@ func (t *TestConnection) CloseIdleConnections(num time.Duration) {
 func (t *TestConnection) Close() error {
 	return nil
 }
-func (t *TestConnection) Get(resourceURI url.URL, requestHeaders []communication.Header) (*communication.Response, error) {
+func (t *TestConnection) Get(resourceURI url.URL, requestHeaders []communication.Header, respHandler communication.ResponseHandler) (interface{}, error) {
 	return nil, nil
 }
-func (t *TestConnection) Delete(resourceURI url.URL, requestHeaders []communication.Header) (*communication.Response, error) {
+func (t *TestConnection) Delete(resourceURI url.URL, requestHeaders []communication.Header, respHandler communication.ResponseHandler) (interface{}, error) {
 	return nil, nil
 }
-func (t *TestConnection) Put(resourceURI url.URL, requestHeaders []communication.Header, body string) (*communication.Response, error) {
+func (t *TestConnection) Put(resourceURI url.URL, requestHeaders []communication.Header, body string, respHandler communication.ResponseHandler) (interface{}, error) {
 	return nil, nil
 }
-func (t *TestConnection) Post(resourceURI url.URL, requestHeaders []communication.Header, body string) (*communication.Response, error) {
-	return communication.NewResponse(t.statusCode, t.body, t.headers)
+func (t *TestConnection) PutMultipart(resourceURI url.URL, requestHeaders []communication.Header, body *communication.MultipartFormDataObject, respHandler communication.ResponseHandler) (interface{}, error) {
+	return nil, nil
+}
+func (t *TestConnection) Post(resourceURI url.URL, requestHeaders []communication.Header, body string, respHandler communication.ResponseHandler) (interface{}, error) {
+	return respHandler.Handle(t.statusCode, t.headers, strings.NewReader(t.body))
+}
+func (t *TestConnection) PostMultipart(resourceURI url.URL, requestHeaders []communication.Header, body *communication.MultipartFormDataObject, respHandler communication.ResponseHandler) (interface{}, error) {
+	return nil, nil
 }
 func (t *TestConnection) DisableLogging() {
 

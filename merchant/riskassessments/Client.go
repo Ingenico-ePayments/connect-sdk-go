@@ -32,7 +32,7 @@ type Client struct {
 func (c *Client) Bankaccounts(body riskassessments.RiskAssessmentBankAccount, context communication.CallContext) (riskassessments.RiskAssessmentResponse, error) {
 	var resultObject riskassessments.RiskAssessmentResponse
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/riskassessments/bankaccounts", nil)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/riskassessments/bankaccounts", nil)
 	if err != nil {
 		return resultObject, err
 	}
@@ -81,7 +81,7 @@ func (c *Client) Bankaccounts(body riskassessments.RiskAssessmentBankAccount, co
 func (c *Client) Cards(body riskassessments.RiskAssessmentCard, context communication.CallContext) (riskassessments.RiskAssessmentResponse, error) {
 	var resultObject riskassessments.RiskAssessmentResponse
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/riskassessments/cards", nil)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/riskassessments/cards", nil)
 	if err != nil {
 		return resultObject, err
 	}

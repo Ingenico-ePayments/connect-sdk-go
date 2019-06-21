@@ -7,6 +7,7 @@ import (
 	"github.com/Ingenico-ePayments/connect-sdk-go/internal/apiresource"
 	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/captures"
 	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/disputes"
+	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/files"
 	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/hostedcheckouts"
 	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/hostedmandatemanagements"
 	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/mandates"
@@ -94,6 +95,11 @@ func (c *Client) Mandates() *mandates.Client {
 // Sessions represents the resource /{merchantId}/sessions
 func (c *Client) Sessions() *sessions.Client {
 	return sessions.NewClient(c.apiResource, nil)
+}
+
+// Files represents the resource /{merchantId}/files
+func (c *Client) Files() *files.Client {
+	return files.NewClient(c.apiResource, nil)
 }
 
 // NewClient constructs a Merchant Client

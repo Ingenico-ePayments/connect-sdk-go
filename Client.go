@@ -81,9 +81,7 @@ func NewClient(communicator *communicator.Communicator) (client *Client, err err
 }
 
 func internalNewClient(communicator *communicator.Communicator, clientMetaInfo string) (client *Client, err error) {
-	apiResource, apiErr := apiresource.NewAPIResource(communicator, clientMetaInfo, map[string]string{
-		"apiVersion": APIVersion,
-	})
+	apiResource, apiErr := apiresource.NewAPIResource(communicator, clientMetaInfo, nil)
 
 	if apiErr != nil {
 		err = apiErr

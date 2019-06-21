@@ -121,7 +121,7 @@ func CreateAPIError(statusCode int, responseBody string, errorObject interface{}
 }
 
 func isIdempotenceError(errors []apiErrors.APIError, context communication.CallContext) (ok bool) {
-	ok = (context != nil && len(context.GetIdempotenceKey()) != 0 && len(errors) == 1 && errors[0].Code != nil && *errors[0].Code == "1409")
+	ok = context != nil && len(context.GetIdempotenceKey()) != 0 && len(errors) == 1 && errors[0].Code != nil && *errors[0].Code == "1409"
 
 	return
 }

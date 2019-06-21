@@ -289,7 +289,7 @@ func createTestEnvironment(path string, handleFunc http.HandlerFunc) (net.Listen
 		Handler: mux,
 	}
 
-	randomPort := (1 << 12) + rand.Intn((1 << 15))
+	randomPort := (1 << 12) + rand.Intn(1 << 15)
 	listener, err := net.Listen("tcp", ":"+strconv.Itoa(randomPort))
 	if err != nil {
 		return nil, nil, nil, err

@@ -3,9 +3,7 @@
 
 package products
 
-import (
-	communicator "github.com/Ingenico-ePayments/connect-sdk-go/communicator"
-)
+import "github.com/Ingenico-ePayments/connect-sdk-go/communicator"
 
 // DirectoryParams represents query parameters for Get payment product directory
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/products/directory.html
@@ -18,8 +16,14 @@ type DirectoryParams struct {
 func (params *DirectoryParams) ToRequestParameters() communicator.RequestParams {
 	reqParams := communicator.RequestParams{}
 
-	communicator.AddRequestParameter(&reqParams, "countryCode", params.CountryCode)
-	communicator.AddRequestParameter(&reqParams, "currencyCode", params.CurrencyCode)
+	if params.CountryCode != nil {
+		param, _ := communicator.NewRequestParam("countryCode", *params.CountryCode)
+		reqParams = append(reqParams, *param)
+	}
+	if params.CurrencyCode != nil {
+		param, _ := communicator.NewRequestParam("currencyCode", *params.CurrencyCode)
+		reqParams = append(reqParams, *param)
+	}
 
 	return reqParams
 }

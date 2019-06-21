@@ -37,7 +37,7 @@ type Client struct {
 func (c *Client) Create(body payment.CreateRequest, context communication.CallContext) (payment.CreateResponse, error) {
 	var resultObject payment.CreateResponse
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/payments", nil)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/payments", nil)
 	if err != nil {
 		return resultObject, err
 	}
@@ -86,7 +86,7 @@ func (c *Client) Create(body payment.CreateRequest, context communication.CallCo
 func (c *Client) Find(query FindParams, context communication.CallContext) (payment.FindResponse, error) {
 	var resultObject payment.FindResponse
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/payments", nil)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/payments", nil)
 	if err != nil {
 		return resultObject, err
 	}
@@ -139,7 +139,7 @@ func (c *Client) Get(paymentID string, context communication.CallContext) (payme
 		"paymentId": paymentID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/payments/{paymentId}", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/payments/{paymentId}", pathContext)
 	if err != nil {
 		return resultObject, err
 	}
@@ -192,7 +192,7 @@ func (c *Client) Complete(paymentID string, body payment.CompletePaymentRequest,
 		"paymentId": paymentID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/payments/{paymentId}/complete", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/payments/{paymentId}/complete", pathContext)
 	if err != nil {
 		return resultObject, err
 	}
@@ -245,7 +245,7 @@ func (c *Client) ThirdPartyStatus(paymentID string, context communication.CallCo
 		"paymentId": paymentID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/payments/{paymentId}/thirdpartystatus", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/payments/{paymentId}/thirdpartystatus", pathContext)
 	if err != nil {
 		return resultObject, err
 	}
@@ -298,7 +298,7 @@ func (c *Client) Tokenize(paymentID string, body payment.TokenizeRequest, contex
 		"paymentId": paymentID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/payments/{paymentId}/tokenize", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/payments/{paymentId}/tokenize", pathContext)
 	if err != nil {
 		return resultObject, err
 	}
@@ -351,7 +351,7 @@ func (c *Client) Processchallenged(paymentID string, context communication.CallC
 		"paymentId": paymentID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/payments/{paymentId}/processchallenged", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/payments/{paymentId}/processchallenged", pathContext)
 	if err != nil {
 		return resultObject, err
 	}
@@ -404,7 +404,7 @@ func (c *Client) Approve(paymentID string, body payment.ApproveRequest, context 
 		"paymentId": paymentID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/payments/{paymentId}/approve", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/payments/{paymentId}/approve", pathContext)
 	if err != nil {
 		return resultObject, err
 	}
@@ -457,7 +457,7 @@ func (c *Client) Capture(paymentID string, body payment.CapturePaymentRequest, c
 		"paymentId": paymentID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/payments/{paymentId}/capture", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/payments/{paymentId}/capture", pathContext)
 	if err != nil {
 		return resultObject, err
 	}
@@ -510,7 +510,7 @@ func (c *Client) Cancelapproval(paymentID string, context communication.CallCont
 		"paymentId": paymentID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/payments/{paymentId}/cancelapproval", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/payments/{paymentId}/cancelapproval", pathContext)
 	if err != nil {
 		return resultObject, err
 	}
@@ -563,7 +563,7 @@ func (c *Client) Captures(paymentID string, context communication.CallContext) (
 		"paymentId": paymentID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/payments/{paymentId}/captures", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/payments/{paymentId}/captures", pathContext)
 	if err != nil {
 		return resultObject, err
 	}
@@ -617,7 +617,7 @@ func (c *Client) Refund(paymentID string, body refund.Request, context communica
 		"paymentId": paymentID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/payments/{paymentId}/refund", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/payments/{paymentId}/refund", pathContext)
 	if err != nil {
 		return resultObject, err
 	}
@@ -670,7 +670,7 @@ func (c *Client) Refunds(paymentID string, context communication.CallContext) (r
 		"paymentId": paymentID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/payments/{paymentId}/refunds", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/payments/{paymentId}/refunds", pathContext)
 	if err != nil {
 		return resultObject, err
 	}
@@ -723,7 +723,7 @@ func (c *Client) Cancel(paymentID string, context communication.CallContext) (pa
 		"paymentId": paymentID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/payments/{paymentId}/cancel", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/payments/{paymentId}/cancel", pathContext)
 	if err != nil {
 		return resultObject, err
 	}
@@ -776,7 +776,7 @@ func (c *Client) Dispute(paymentID string, body dispute.CreateRequest, context c
 		"paymentId": paymentID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/payments/{paymentId}/dispute", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/payments/{paymentId}/dispute", pathContext)
 	if err != nil {
 		return resultObject, err
 	}
@@ -829,7 +829,7 @@ func (c *Client) Disputes(paymentID string, context communication.CallContext) (
 		"paymentId": paymentID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/payments/{paymentId}/disputes", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/payments/{paymentId}/disputes", pathContext)
 	if err != nil {
 		return resultObject, err
 	}

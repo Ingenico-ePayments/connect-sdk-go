@@ -4,7 +4,9 @@
 package services
 
 import (
-	communicator "github.com/Ingenico-ePayments/connect-sdk-go/communicator"
+	"strconv"
+
+	"github.com/Ingenico-ePayments/connect-sdk-go/communicator"
 )
 
 // ConvertAmountParams represents query parameters for Convert amount
@@ -19,9 +21,18 @@ type ConvertAmountParams struct {
 func (params *ConvertAmountParams) ToRequestParameters() communicator.RequestParams {
 	reqParams := communicator.RequestParams{}
 
-	communicator.AddRequestParameter(&reqParams, "source", params.Source)
-	communicator.AddRequestParameter(&reqParams, "target", params.Target)
-	communicator.AddRequestParameter(&reqParams, "amount", params.Amount)
+	if params.Source != nil {
+		param, _ := communicator.NewRequestParam("source", *params.Source)
+		reqParams = append(reqParams, *param)
+	}
+	if params.Target != nil {
+		param, _ := communicator.NewRequestParam("target", *params.Target)
+		reqParams = append(reqParams, *param)
+	}
+	if params.Amount != nil {
+		param, _ := communicator.NewRequestParam("amount", strconv.FormatInt(*params.Amount, 10))
+		reqParams = append(reqParams, *param)
+	}
 
 	return reqParams
 }

@@ -4,7 +4,9 @@
 package products
 
 import (
-	communicator "github.com/Ingenico-ePayments/connect-sdk-go/communicator"
+	"strconv"
+
+	"github.com/Ingenico-ePayments/connect-sdk-go/communicator"
 )
 
 // NetworksParams represents query parameters for Get payment product networks
@@ -20,10 +22,22 @@ type NetworksParams struct {
 func (params *NetworksParams) ToRequestParameters() communicator.RequestParams {
 	reqParams := communicator.RequestParams{}
 
-	communicator.AddRequestParameter(&reqParams, "countryCode", params.CountryCode)
-	communicator.AddRequestParameter(&reqParams, "currencyCode", params.CurrencyCode)
-	communicator.AddRequestParameter(&reqParams, "amount", params.Amount)
-	communicator.AddRequestParameter(&reqParams, "isRecurring", params.IsRecurring)
+	if params.CountryCode != nil {
+		param, _ := communicator.NewRequestParam("countryCode", *params.CountryCode)
+		reqParams = append(reqParams, *param)
+	}
+	if params.CurrencyCode != nil {
+		param, _ := communicator.NewRequestParam("currencyCode", *params.CurrencyCode)
+		reqParams = append(reqParams, *param)
+	}
+	if params.Amount != nil {
+		param, _ := communicator.NewRequestParam("amount", strconv.FormatInt(*params.Amount, 10))
+		reqParams = append(reqParams, *param)
+	}
+	if params.IsRecurring != nil {
+		param, _ := communicator.NewRequestParam("isRecurring", strconv.FormatBool(*params.IsRecurring))
+		reqParams = append(reqParams, *param)
+	}
 
 	return reqParams
 }

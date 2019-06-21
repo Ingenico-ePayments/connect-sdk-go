@@ -8,7 +8,7 @@ var (
 
 // SecretKeyNotAvailableError represents an error that causes a secret key to not be available.
 type SecretKeyNotAvailableError struct {
-	keyID string
+	keyID   string
 	message string
 }
 

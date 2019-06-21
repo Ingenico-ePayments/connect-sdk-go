@@ -4,7 +4,9 @@
 package products
 
 import (
-	communicator "github.com/Ingenico-ePayments/connect-sdk-go/communicator"
+	"strconv"
+
+	"github.com/Ingenico-ePayments/connect-sdk-go/communicator"
 )
 
 // FindParams represents query parameters for Get payment products
@@ -28,12 +30,30 @@ func (params *FindParams) AddHide(value string) {
 func (params *FindParams) ToRequestParameters() communicator.RequestParams {
 	reqParams := communicator.RequestParams{}
 
-	communicator.AddRequestParameter(&reqParams, "countryCode", params.CountryCode)
-	communicator.AddRequestParameter(&reqParams, "currencyCode", params.CurrencyCode)
-	communicator.AddRequestParameter(&reqParams, "locale", params.Locale)
-	communicator.AddRequestParameter(&reqParams, "amount", params.Amount)
-	communicator.AddRequestParameter(&reqParams, "isRecurring", params.IsRecurring)
-	communicator.AddRequestParameter(&reqParams, "hide", params.Hide)
+	if params.CountryCode != nil {
+		param, _ := communicator.NewRequestParam("countryCode", *params.CountryCode)
+		reqParams = append(reqParams, *param)
+	}
+	if params.CurrencyCode != nil {
+		param, _ := communicator.NewRequestParam("currencyCode", *params.CurrencyCode)
+		reqParams = append(reqParams, *param)
+	}
+	if params.Locale != nil {
+		param, _ := communicator.NewRequestParam("locale", *params.Locale)
+		reqParams = append(reqParams, *param)
+	}
+	if params.Amount != nil {
+		param, _ := communicator.NewRequestParam("amount", strconv.FormatInt(*params.Amount, 10))
+		reqParams = append(reqParams, *param)
+	}
+	if params.IsRecurring != nil {
+		param, _ := communicator.NewRequestParam("isRecurring", strconv.FormatBool(*params.IsRecurring))
+		reqParams = append(reqParams, *param)
+	}
+	for _, hideElement := range params.Hide {
+		param, _ := communicator.NewRequestParam("hide", hideElement)
+		reqParams = append(reqParams, *param)
+	}
 
 	return reqParams
 }

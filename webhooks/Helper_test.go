@@ -6,6 +6,7 @@ import (
 
 	"github.com/Ingenico-ePayments/connect-sdk-go/communicator/communication"
 	"github.com/Ingenico-ePayments/connect-sdk-go/domain/webhooks"
+	"io"
 )
 
 var (
@@ -105,6 +106,10 @@ func (m *fakeMarshaller) Unmarshal(data string, v interface{}) error {
 		event.APIVersion = &fakeVersion
 	}
 
+	return nil
+}
+
+func (m *fakeMarshaller) UnmarshalFromReader(reader io.Reader, v interface{}) error {
 	return nil
 }
 

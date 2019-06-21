@@ -19,6 +19,6 @@ type APIError interface {
 	/// Gets the error identifier received from the Ingenico ePayments platform if available.
 	ErrorID() string
 
-	// Gets the error list received from the GlobalCollect if available. Never nil.
+	// Gets the error list received from the Ingenico ePayments platform if available. Never nil.
 	Errors() []errors.APIError
 }

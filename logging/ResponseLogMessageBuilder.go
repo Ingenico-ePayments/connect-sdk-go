@@ -2,7 +2,9 @@ package logging
 
 import (
 	"bytes"
+	"errors"
 	"fmt"
+	"strings"
 	"time"
 )
 
@@ -111,6 +113,23 @@ func (rlm *ResponseLogMessageBuilder) SetBody(body, contentType string) error {
 	rlm.body = obfuscatedBody
 
 	return nil
+}
+
+// SetBinaryBody sets the binary request body
+func (rlm *ResponseLogMessageBuilder) SetBinaryBody(contentType string) error {
+	if !isBinaryContent(contentType) {
+		return errors.New("Not a binary content type: " + contentType)
+	}
+	rlm.contentType = contentType
+	rlm.body = "<binary content>"
+
+	return nil
+}
+
+func isBinaryContent(contentType string) bool {
+	contentType = strings.ToLower(contentType)
+
+	return !strings.HasPrefix(contentType, "text/") && !strings.Contains(contentType, "json") && !strings.Contains(contentType, "xml")
 }
 
 // BuildMessage builds the ResponseLogMessage

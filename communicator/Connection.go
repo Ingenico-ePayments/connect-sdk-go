@@ -24,17 +24,23 @@ type Connection interface {
 
 	//IMPLEMENTATION Connection INTERFACE
 
-	// Get sends a GET request to the Ingenico ePayments platform and return the response.
-	Get(resourceURI url.URL, requestHeaders []communication.Header) (*communication.Response, error)
+	// Get sends a GET request to the Ingenico ePayments platform and calls the given response handler with the response.
+	Get(resourceURI url.URL, requestHeaders []communication.Header, respHandler communication.ResponseHandler) (interface{}, error)
 
-	// Delete sends a DELETE request to the Ingenico ePayments platform and return the response.
-	Delete(resourceURI url.URL, requestHeaders []communication.Header) (*communication.Response, error)
+	// Delete sends a DELETE request to the Ingenico ePayments platform and calls the given response handler with the response.
+	Delete(resourceURI url.URL, requestHeaders []communication.Header, respHandler communication.ResponseHandler) (interface{}, error)
 
-	// Post sends a POST request to the Ingenico ePayments platform and return the response.
-	Post(resourceURI url.URL, requestHeaders []communication.Header, body string) (*communication.Response, error)
+	// Post sends a POST request to the Ingenico ePayments platform and calls the given response handler with the response.
+	Post(resourceURI url.URL, requestHeaders []communication.Header, body string, respHandler communication.ResponseHandler) (interface{}, error)
 
-	// Put sends a PUT request to the Ingenico ePayments platform and return the response.
-	Put(resourceURI url.URL, requestHeaders []communication.Header, body string) (*communication.Response, error)
+	// PostMultipart sends a multipart/form-data POST request to the Ingenico ePayments platform and calls the given response handler with the response.
+	PostMultipart(resourceURI url.URL, requestHeaders []communication.Header, body *communication.MultipartFormDataObject, respHandler communication.ResponseHandler) (interface{}, error)
+
+	// Put sends a PUT request to the Ingenico ePayments platform and calls the given response handler with the response.
+	Put(resourceURI url.URL, requestHeaders []communication.Header, body string, respHandler communication.ResponseHandler) (interface{}, error)
+
+	// PutMultipart sends a multipart/form-data PUT request to the Ingenico ePayments platform and calls the given response handler with the response.
+	PutMultipart(resourceURI url.URL, requestHeaders []communication.Header, body *communication.MultipartFormDataObject, respHandler communication.ResponseHandler) (interface{}, error)
 
 	//IMPLEMENTATION logging.Capable INTERFACE
 

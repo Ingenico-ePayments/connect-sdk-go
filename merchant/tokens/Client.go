@@ -32,7 +32,7 @@ type Client struct {
 func (c *Client) Create(body token.CreateRequest, context communication.CallContext) (token.CreateResponse, error) {
 	var resultObject token.CreateResponse
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/tokens", nil)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/tokens", nil)
 	if err != nil {
 		return resultObject, err
 	}
@@ -85,7 +85,7 @@ func (c *Client) Get(tokenID string, context communication.CallContext) (token.R
 		"tokenId": tokenID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/tokens/{tokenId}", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/tokens/{tokenId}", pathContext)
 	if err != nil {
 		return resultObject, err
 	}
@@ -136,7 +136,7 @@ func (c *Client) Update(tokenID string, body token.UpdateRequest, context commun
 		"tokenId": tokenID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/tokens/{tokenId}", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/tokens/{tokenId}", pathContext)
 	if err != nil {
 		return err
 	}
@@ -188,7 +188,7 @@ func (c *Client) Delete(tokenID string, query DeleteParams, context communicatio
 		"tokenId": tokenID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/tokens/{tokenId}", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/tokens/{tokenId}", pathContext)
 	if err != nil {
 		return err
 	}
@@ -240,7 +240,7 @@ func (c *Client) Approvesepadirectdebit(tokenID string, body token.ApproveReques
 		"tokenId": tokenID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/tokens/{tokenId}/approvesepadirectdebit", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/tokens/{tokenId}/approvesepadirectdebit", pathContext)
 	if err != nil {
 		return err
 	}

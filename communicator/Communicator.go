@@ -2,6 +2,8 @@ package communicator
 
 import (
 	"errors"
+	"io"
+	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strconv"
@@ -80,11 +82,48 @@ func (c *Communicator) Get(relativePath string, requestHeaders []communication.H
 	if err != nil {
 		return err
 	}
-	response, err := connection.Get(uri, requestHeaders)
+
+	_, err = connection.Get(uri, requestHeaders, communication.ResponseHandlerFunc(func(statusCode int, headers []communication.Header, reader io.Reader) (interface{}, error) {
+		return nil, c.processResponse(statusCode, reader, headers, relativePath, context, expectedObject)
+	}))
+
+	return err
+}
+
+// GetWithHandler corresponds to the HTTP Get method
+//
+// relativePath is the Path to call, relative to the base URI
+// requestHeaders is an optimal list of request headers
+// requestParameters is an optional set of request parameters. If not used set to nil
+// context is an optional Call context which can be used
+// expectedObject is a reference to the expected response object
+// bodyHandler is a BodyHandler that handles the body stream
+//
+// Possibly returns an error
+func (c *Communicator) GetWithHandler(relativePath string, requestHeaders []communication.Header, requestParameters ParamRequest, context communication.CallContext, bodyHandler BodyHandler) error {
+	connection := c.session.Connection()
+	var requestParameterList []RequestParam
+	var err error
+	if requestParameters != nil {
+		requestParameterList = requestParameters.ToRequestParameters()
+	}
+	uri, err := c.toAbsoluteURI(relativePath, requestParameterList)
 	if err != nil {
 		return err
 	}
-	return c.processResponse(response, relativePath, context, expectedObject)
+	if requestHeaders == nil {
+		requestHeaders = []communication.Header{}
+	}
+	requestHeaders, err = c.addGenericHeaders(http.MethodGet, uri, requestHeaders, context)
+	if err != nil {
+		return err
+	}
+
+	_, err = connection.Get(uri, requestHeaders, communication.ResponseHandlerFunc(func(statusCode int, headers []communication.Header, reader io.Reader) (interface{}, error) {
+		return nil, c.processResponseWithHandler(statusCode, reader, headers, relativePath, context, bodyHandler)
+	}))
+
+	return err
 }
 
 // Delete corresponds to the HTTP Delete method
@@ -114,11 +153,48 @@ func (c *Communicator) Delete(relativePath string, requestHeaders []communicatio
 	if err != nil {
 		return err
 	}
-	response, err := connection.Delete(uri, requestHeaders)
+
+	_, err = connection.Delete(uri, requestHeaders, communication.ResponseHandlerFunc(func(statusCode int, headers []communication.Header, reader io.Reader) (interface{}, error) {
+		return nil, c.processResponse(statusCode, reader, headers, relativePath, context, expectedObject)
+	}))
+
+	return err
+}
+
+// DeleteWithHandler corresponds to the HTTP Delete method
+//
+// relativePath is the Path to call, relative to the base URI
+// requestHeaders is an optimal list of request headers
+// requestParameters is an optional set of request parameters. If not used set to nil
+// context is an optional Call context which can be used
+// expectedObject is a reference to the expected response object
+// bodyHandler is a BodyHandler that handles the body stream
+//
+// Possibly returns an error
+func (c *Communicator) DeleteWithHandler(relativePath string, requestHeaders []communication.Header, requestParameters ParamRequest, context communication.CallContext, bodyHandler BodyHandler) error {
+	connection := c.session.Connection()
+	var requestParameterList []RequestParam
+	var err error
+	if requestParameters != nil {
+		requestParameterList = requestParameters.ToRequestParameters()
+	}
+	uri, err := c.toAbsoluteURI(relativePath, requestParameterList)
 	if err != nil {
 		return err
 	}
-	return c.processResponse(response, relativePath, context, expectedObject)
+	if requestHeaders == nil {
+		requestHeaders = []communication.Header{}
+	}
+	requestHeaders, err = c.addGenericHeaders(http.MethodDelete, uri, requestHeaders, context)
+	if err != nil {
+		return err
+	}
+
+	_, err = connection.Delete(uri, requestHeaders, communication.ResponseHandlerFunc(func(statusCode int, headers []communication.Header, reader io.Reader) (interface{}, error) {
+		return nil, c.processResponseWithHandler(statusCode, reader, headers, relativePath, context, bodyHandler)
+	}))
+
+	return err
 }
 
 // Post corresponds to the HTTP Post method
@@ -132,6 +208,16 @@ func (c *Communicator) Delete(relativePath string, requestHeaders []communicatio
 //
 // Possibly returns an error
 func (c *Communicator) Post(relativePath string, requestHeaders []communication.Header, requestParameters ParamRequest, requestBody interface{}, context communication.CallContext, expectedResponse interface{}) error {
+	if multipartObject, ok := requestBody.(communication.MultipartFormDataObject); ok {
+		return c.postMultipart(relativePath, requestHeaders, requestParameters, &multipartObject, context, expectedResponse)
+	}
+	if multipartObject, ok := requestBody.(*communication.MultipartFormDataObject); ok {
+		return c.postMultipart(relativePath, requestHeaders, requestParameters, multipartObject, context, expectedResponse)
+	}
+	if multipartRequest, ok := requestBody.(MultipartFormDataRequest); ok {
+		return c.postMultipart(relativePath, requestHeaders, requestParameters, multipartRequest.ToMultipartFormDataObject(), context, expectedResponse)
+	}
+
 	connection := c.session.Connection()
 	var requestParameterList []RequestParam
 	if requestParameters != nil {
@@ -161,11 +247,127 @@ func (c *Communicator) Post(relativePath string, requestHeaders []communication.
 	if err != nil {
 		return err
 	}
-	response, err := connection.Post(uri, requestHeaders, requestJSON)
+	_, err = connection.Post(uri, requestHeaders, requestJSON, communication.ResponseHandlerFunc(func(statusCode int, headers []communication.Header, reader io.Reader) (interface{}, error) {
+		return nil, c.processResponse(statusCode, reader, headers, relativePath, context, expectedResponse)
+	}))
+
+	return err
+}
+
+func (c *Communicator) postMultipart(relativePath string, requestHeaders []communication.Header, requestParameters ParamRequest, requestBody *communication.MultipartFormDataObject, context communication.CallContext, expectedResponse interface{}) error {
+	connection := c.session.Connection()
+	var requestParameterList []RequestParam
+	if requestParameters != nil {
+		requestParameterList = requestParameters.ToRequestParameters()
+	}
+	uri, err := c.toAbsoluteURI(relativePath, requestParameterList)
 	if err != nil {
 		return err
 	}
-	return c.processResponse(response, relativePath, context, expectedResponse)
+	if requestHeaders == nil {
+		requestHeaders = []communication.Header{}
+	}
+
+	multipartHeader, _ := communication.NewHeader("Content-Type", requestBody.GetContentType())
+	requestHeaders = append(requestHeaders, *multipartHeader)
+
+	requestHeaders, err = c.addGenericHeaders(http.MethodPost, uri, requestHeaders, context)
+	if err != nil {
+		return err
+	}
+	_, err = connection.PostMultipart(uri, requestHeaders, requestBody, communication.ResponseHandlerFunc(func(statusCode int, headers []communication.Header, reader io.Reader) (interface{}, error) {
+		return nil, c.processResponse(statusCode, reader, headers, relativePath, context, expectedResponse)
+	}))
+
+	return err
+}
+
+// PostWithHandler corresponds to the HTTP Post method
+//
+// relativePath is the Path to call, relative to the base URI
+// requestHeaders is an optimal list of request headers
+// requestParameters is an optional set of request parameters. If not used set it to nil
+// requestBody is the body of the request. If not used set to nil
+// context is an optional Call context which can be used. If not used set it to nil
+// expectedObject is a reference to the expected response object
+// bodyHandler is a BodybodyHandler that handles the body stream
+//
+// Possibly returns an error
+func (c *Communicator) PostWithHandler(relativePath string, requestHeaders []communication.Header, requestParameters ParamRequest, requestBody interface{}, context communication.CallContext, bodyHandler BodyHandler) error {
+	if multipartObject, ok := requestBody.(communication.MultipartFormDataObject); ok {
+		return c.postMultipartWithHandler(relativePath, requestHeaders, requestParameters, &multipartObject, context, bodyHandler)
+	}
+	if multipartObject, ok := requestBody.(*communication.MultipartFormDataObject); ok {
+		return c.postMultipartWithHandler(relativePath, requestHeaders, requestParameters, multipartObject, context, bodyHandler)
+	}
+	if multipartRequest, ok := requestBody.(MultipartFormDataRequest); ok {
+		return c.postMultipartWithHandler(relativePath, requestHeaders, requestParameters, multipartRequest.ToMultipartFormDataObject(), context, bodyHandler)
+	}
+
+	connection := c.session.Connection()
+	var requestParameterList []RequestParam
+	if requestParameters != nil {
+		requestParameterList = requestParameters.ToRequestParameters()
+	}
+	uri, err := c.toAbsoluteURI(relativePath, requestParameterList)
+	if err != nil {
+		return err
+	}
+	if requestHeaders == nil {
+		requestHeaders = []communication.Header{}
+	}
+
+	var requestJSON string
+	if requestBody != nil {
+		jsonHeader, _ := communication.NewHeader("Content-Type", "application/json")
+		requestHeaders = append(requestHeaders, *jsonHeader)
+
+		requestJSON, err = c.marshaller.Marshal(requestBody)
+
+		if err != nil {
+			return err
+		}
+	}
+
+	requestHeaders, err = c.addGenericHeaders(http.MethodPost, uri, requestHeaders, context)
+	if err != nil {
+		return err
+	}
+
+	_, err = connection.Post(uri, requestHeaders, requestJSON, communication.ResponseHandlerFunc(func(statusCode int, headers []communication.Header, reader io.Reader) (interface{}, error) {
+		return nil, c.processResponseWithHandler(statusCode, reader, headers, relativePath, context, bodyHandler)
+	}))
+
+	return err
+}
+
+func (c *Communicator) postMultipartWithHandler(relativePath string, requestHeaders []communication.Header, requestParameters ParamRequest, requestBody *communication.MultipartFormDataObject, context communication.CallContext, bodyHandler BodyHandler) error {
+	connection := c.session.Connection()
+	var requestParameterList []RequestParam
+	if requestParameters != nil {
+		requestParameterList = requestParameters.ToRequestParameters()
+	}
+	uri, err := c.toAbsoluteURI(relativePath, requestParameterList)
+	if err != nil {
+		return err
+	}
+	if requestHeaders == nil {
+		requestHeaders = []communication.Header{}
+	}
+
+	multipartHeader, _ := communication.NewHeader("Content-Type", requestBody.GetContentType())
+	requestHeaders = append(requestHeaders, *multipartHeader)
+
+	requestHeaders, err = c.addGenericHeaders(http.MethodPost, uri, requestHeaders, context)
+	if err != nil {
+		return err
+	}
+
+	_, err = connection.PostMultipart(uri, requestHeaders, requestBody, communication.ResponseHandlerFunc(func(statusCode int, headers []communication.Header, reader io.Reader) (interface{}, error) {
+		return nil, c.processResponseWithHandler(statusCode, reader, headers, relativePath, context, bodyHandler)
+	}))
+
+	return err
 }
 
 // Put corresponds to the HTTP Put method
@@ -179,6 +381,16 @@ func (c *Communicator) Post(relativePath string, requestHeaders []communication.
 //
 // Possibly returns an error
 func (c *Communicator) Put(relativePath string, requestHeaders []communication.Header, requestParameters ParamRequest, requestBody interface{}, context communication.CallContext, expectedObject interface{}) error {
+	if multipartObject, ok := requestBody.(communication.MultipartFormDataObject); ok {
+		return c.putMultipart(relativePath, requestHeaders, requestParameters, &multipartObject, context, expectedObject)
+	}
+	if multipartObject, ok := requestBody.(*communication.MultipartFormDataObject); ok {
+		return c.putMultipart(relativePath, requestHeaders, requestParameters, multipartObject, context, expectedObject)
+	}
+	if multipartRequest, ok := requestBody.(MultipartFormDataRequest); ok {
+		return c.putMultipart(relativePath, requestHeaders, requestParameters, multipartRequest.ToMultipartFormDataObject(), context, expectedObject)
+	}
+
 	connection := c.session.Connection()
 	var requestParameterList []RequestParam
 	var err error
@@ -208,11 +420,127 @@ func (c *Communicator) Put(relativePath string, requestHeaders []communication.H
 	if err != nil {
 		return err
 	}
-	response, err := connection.Put(uri, requestHeaders, requestJSON)
+	_, err = connection.Put(uri, requestHeaders, requestJSON, communication.ResponseHandlerFunc(func(statusCode int, headers []communication.Header, reader io.Reader) (interface{}, error) {
+		return nil, c.processResponse(statusCode, reader, headers, relativePath, context, expectedObject)
+	}))
+
+	return err
+}
+
+func (c *Communicator) putMultipart(relativePath string, requestHeaders []communication.Header, requestParameters ParamRequest, requestBody *communication.MultipartFormDataObject, context communication.CallContext, expectedResponse interface{}) error {
+	connection := c.session.Connection()
+	var requestParameterList []RequestParam
+	if requestParameters != nil {
+		requestParameterList = requestParameters.ToRequestParameters()
+	}
+	uri, err := c.toAbsoluteURI(relativePath, requestParameterList)
 	if err != nil {
 		return err
 	}
-	return c.processResponse(response, relativePath, context, expectedObject)
+	if requestHeaders == nil {
+		requestHeaders = []communication.Header{}
+	}
+
+	jsonHeader, _ := communication.NewHeader("Content-Type", requestBody.GetContentType())
+	requestHeaders = append(requestHeaders, *jsonHeader)
+
+	requestHeaders, err = c.addGenericHeaders(http.MethodPost, uri, requestHeaders, context)
+	if err != nil {
+		return err
+	}
+	_, err = connection.PutMultipart(uri, requestHeaders, requestBody, communication.ResponseHandlerFunc(func(statusCode int, headers []communication.Header, reader io.Reader) (interface{}, error) {
+		return nil, c.processResponse(statusCode, reader, headers, relativePath, context, expectedResponse)
+	}))
+
+	return err
+}
+
+// PutWithHandler corresponds to the HTTP Put method
+//
+// relativePath is the Path to call, relative to the base URI
+// requestHeaders is an optimal list of request headers
+// requestParameters is an optional set of request parameters. If not used set it to nil
+// requestBody is the body of the request. If not used set to nil
+// context is an optional Call context which can be used. If not used set it to nil
+// expectedObject is a reference to the expected response object
+// bodyHandler is a BodyHandler that handles the body stream
+//
+// Possibly returns an error
+func (c *Communicator) PutWithHandler(relativePath string, requestHeaders []communication.Header, requestParameters ParamRequest, requestBody interface{}, context communication.CallContext, bodyHandler BodyHandler) error {
+	if multipartObject, ok := requestBody.(communication.MultipartFormDataObject); ok {
+		return c.putMultipartWithHandler(relativePath, requestHeaders, requestParameters, &multipartObject, context, bodyHandler)
+	}
+	if multipartObject, ok := requestBody.(*communication.MultipartFormDataObject); ok {
+		return c.putMultipartWithHandler(relativePath, requestHeaders, requestParameters, multipartObject, context, bodyHandler)
+	}
+	if multipartRequest, ok := requestBody.(MultipartFormDataRequest); ok {
+		return c.putMultipartWithHandler(relativePath, requestHeaders, requestParameters, multipartRequest.ToMultipartFormDataObject(), context, bodyHandler)
+	}
+
+	connection := c.session.Connection()
+	var requestParameterList []RequestParam
+	var err error
+	if requestParameters != nil {
+		requestParameterList = requestParameters.ToRequestParameters()
+	}
+	uri, err := c.toAbsoluteURI(relativePath, requestParameterList)
+	if err != nil {
+		return err
+	}
+	if requestHeaders == nil {
+		requestHeaders = []communication.Header{}
+	}
+
+	var requestJSON string
+	if requestBody != nil {
+		jsonHeader, _ := communication.NewHeader("Content-Type", "application/json")
+		requestHeaders = append(requestHeaders, *jsonHeader)
+		requestJSON, err = c.marshaller.Marshal(requestBody)
+
+		if err != nil {
+			return err
+		}
+	}
+
+	requestHeaders, err = c.addGenericHeaders(http.MethodPut, uri, requestHeaders, context)
+	if err != nil {
+		return err
+	}
+
+	_, err = connection.Put(uri, requestHeaders, requestJSON, communication.ResponseHandlerFunc(func(statusCode int, headers []communication.Header, reader io.Reader) (interface{}, error) {
+		return nil, c.processResponseWithHandler(statusCode, reader, headers, relativePath, context, bodyHandler)
+	}))
+
+	return err
+}
+
+func (c *Communicator) putMultipartWithHandler(relativePath string, requestHeaders []communication.Header, requestParameters ParamRequest, requestBody *communication.MultipartFormDataObject, context communication.CallContext, bodyHandler BodyHandler) error {
+	connection := c.session.Connection()
+	var requestParameterList []RequestParam
+	if requestParameters != nil {
+		requestParameterList = requestParameters.ToRequestParameters()
+	}
+	uri, err := c.toAbsoluteURI(relativePath, requestParameterList)
+	if err != nil {
+		return err
+	}
+	if requestHeaders == nil {
+		requestHeaders = []communication.Header{}
+	}
+
+	multipartHeader, _ := communication.NewHeader("Content-Type", requestBody.GetContentType())
+	requestHeaders = append(requestHeaders, *multipartHeader)
+
+	requestHeaders, err = c.addGenericHeaders(http.MethodPost, uri, requestHeaders, context)
+	if err != nil {
+		return err
+	}
+
+	_, err = connection.PutMultipart(uri, requestHeaders, requestBody, communication.ResponseHandlerFunc(func(statusCode int, headers []communication.Header, reader io.Reader) (interface{}, error) {
+		return nil, c.processResponseWithHandler(statusCode, reader, headers, relativePath, context, bodyHandler)
+	}))
+
+	return err
 }
 
 // CloseExpiredConnections is a utility method that delegates the call to this communicator's session's connection.
@@ -307,49 +635,63 @@ func getHeaderDateString() string {
 }
 
 // Checks the Response for errors and creates an error if necessary.
-func (c *Communicator) createErrorIfNecessary(response *communication.Response, requestPath string) error {
-	var statusCode = response.StatusCode()
+func (c *Communicator) createErrorIfNecessary(statusCode int, reader io.Reader, headers []communication.Header, requestPath string) error {
 	if statusCode < http.StatusOK || statusCode >= http.StatusMultipleChoices {
-		var body = response.Body()
-		if body != "" && !isJSON(response) {
-			var cause = sdkErrors.NewResponseError(*response)
-			if statusCode == http.StatusNotFound {
-				err1, err2 := sdkErrors.NewNotFoundErrorVerbose("The requested resource was not found; invalid path: " + requestPath, cause)
-				if err2 != nil {
-					return err2
-				}
-				return err1
-			}
-			err1, err2 := sdkErrors.NewCommunicationError(cause)
-			if err2 != nil {
-				return err2
-			}
-			return err1
+		bodyBuff, err := ioutil.ReadAll(reader)
+		if err != nil {
+			return err
 		}
-		return sdkErrors.NewResponseError(*response)
+		body := string(bodyBuff)
+		if body != "" && !isJSON(headers) {
+			var cause = sdkErrors.NewResponseError(statusCode, body, headers)
+			if statusCode == http.StatusNotFound {
+				err, _ := sdkErrors.NewNotFoundErrorVerbose("The requested resource was not found; invalid path: "+requestPath, cause)
+				return err
+			}
+			err, _ := sdkErrors.NewCommunicationError(cause)
+			return err
+		}
+		return sdkErrors.NewResponseError(statusCode, body, headers)
 	}
 	return nil
 }
 
-func (c *Communicator) processResponse(response *communication.Response, requestPath string, context communication.CallContext, expectedObject interface{}) error {
+func (c *Communicator) processResponse(statusCode int, reader io.Reader, headers []communication.Header, requestPath string, context communication.CallContext, expectedObject interface{}) error {
 	if context != nil {
-		timestamp, err := getIdempotenceTimestamp(response)
+		timestamp, err := getIdempotenceTimestamp(headers)
 		if err != nil {
 			return err
 		}
 		context.SetIdempotenceRequestTimestamp(timestamp)
 	}
 
-	err := c.createErrorIfNecessary(response, requestPath)
+	err := c.createErrorIfNecessary(statusCode, reader, headers, requestPath)
 	if err != nil {
 		return err
 	}
 
-	return c.marshaller.Unmarshal(response.Body(), expectedObject)
+	return c.marshaller.UnmarshalFromReader(reader, expectedObject)
 }
 
-func getIdempotenceTimestamp(response *communication.Response) (*int64, error) {
-	header := response.GetHeader("X-GCS-Idempotence-Request-Timestamp")
+func (c *Communicator) processResponseWithHandler(statusCode int, reader io.Reader, headers []communication.Header, requestPath string, context communication.CallContext, bodyHandler BodyHandler) error {
+	if context != nil {
+		timestamp, err := getIdempotenceTimestamp(headers)
+		if err != nil {
+			return err
+		}
+		context.SetIdempotenceRequestTimestamp(timestamp)
+	}
+
+	err := c.createErrorIfNecessary(statusCode, reader, headers, requestPath)
+	if err != nil {
+		return err
+	}
+
+	return bodyHandler.Handle(headers, reader)
+}
+
+func getIdempotenceTimestamp(headers []communication.Header) (*int64, error) {
+	header := communication.Headers(headers).GetHeader("X-GCS-Idempotence-Request-Timestamp")
 	if header == nil {
 		return nil, nil
 	}
@@ -358,8 +700,8 @@ func getIdempotenceTimestamp(response *communication.Response) (*int64, error) {
 	return &retValue, err
 }
 
-func isJSON(response *communication.Response) bool {
-	header := response.GetHeader("Content-Type")
+func isJSON(headers []communication.Header) bool {
+	header := communication.Headers(headers).GetHeader("Content-Type")
 	if header == nil {
 		return true
 	}

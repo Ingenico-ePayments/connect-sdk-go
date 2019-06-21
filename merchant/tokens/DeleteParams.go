@@ -3,9 +3,7 @@
 
 package tokens
 
-import (
-	communicator "github.com/Ingenico-ePayments/connect-sdk-go/communicator"
-)
+import "github.com/Ingenico-ePayments/connect-sdk-go/communicator"
 
 // DeleteParams represents query parameters for Delete token
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/tokens/delete.html
@@ -17,7 +15,10 @@ type DeleteParams struct {
 func (params *DeleteParams) ToRequestParameters() communicator.RequestParams {
 	reqParams := communicator.RequestParams{}
 
-	communicator.AddRequestParameter(&reqParams, "mandateCancelDate", params.MandateCancelDate)
+	if params.MandateCancelDate != nil {
+		param, _ := communicator.NewRequestParam("mandateCancelDate", *params.MandateCancelDate)
+		reqParams = append(reqParams, *param)
+	}
 
 	return reqParams
 }

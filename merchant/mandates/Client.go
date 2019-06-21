@@ -32,7 +32,7 @@ type Client struct {
 func (c *Client) Create(body mandates.CreateMandateRequest, context communication.CallContext) (mandates.CreateMandateResponse, error) {
 	var resultObject mandates.CreateMandateResponse
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/mandates", nil)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/mandates", nil)
 	if err != nil {
 		return resultObject, err
 	}
@@ -85,7 +85,7 @@ func (c *Client) CreateWithMandateReference(uniqueMandateReference string, body 
 		"uniqueMandateReference": uniqueMandateReference,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/mandates/{uniqueMandateReference}", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/mandates/{uniqueMandateReference}", pathContext)
 	if err != nil {
 		return resultObject, err
 	}
@@ -138,7 +138,7 @@ func (c *Client) Get(uniqueMandateReference string, context communication.CallCo
 		"uniqueMandateReference": uniqueMandateReference,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/mandates/{uniqueMandateReference}", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/mandates/{uniqueMandateReference}", pathContext)
 	if err != nil {
 		return resultObject, err
 	}
@@ -191,7 +191,7 @@ func (c *Client) Block(uniqueMandateReference string, context communication.Call
 		"uniqueMandateReference": uniqueMandateReference,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/mandates/{uniqueMandateReference}/block", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/mandates/{uniqueMandateReference}/block", pathContext)
 	if err != nil {
 		return resultObject, err
 	}
@@ -244,7 +244,7 @@ func (c *Client) Unblock(uniqueMandateReference string, context communication.Ca
 		"uniqueMandateReference": uniqueMandateReference,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/mandates/{uniqueMandateReference}/unblock", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/mandates/{uniqueMandateReference}/unblock", pathContext)
 	if err != nil {
 		return resultObject, err
 	}
@@ -297,7 +297,7 @@ func (c *Client) Revoke(uniqueMandateReference string, context communication.Cal
 		"uniqueMandateReference": uniqueMandateReference,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/mandates/{uniqueMandateReference}/revoke", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/mandates/{uniqueMandateReference}/revoke", pathContext)
 	if err != nil {
 		return resultObject, err
 	}

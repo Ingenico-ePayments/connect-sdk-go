@@ -1,18 +1,24 @@
 package defaultimpl
 
 import (
+	"bytes"
 	"crypto/rand"
 	"crypto/tls"
 	"encoding/base64"
+	"errors"
 	"fmt"
+	"io"
 	"io/ioutil"
+	"mime/multipart"
 	"net"
 	"net/http"
+	"net/textproto"
 	"net/url"
+	"strings"
 	"time"
 
 	"github.com/Ingenico-ePayments/connect-sdk-go/communicator/communication"
-	"github.com/Ingenico-ePayments/connect-sdk-go/errors"
+	sdkErrors "github.com/Ingenico-ePayments/connect-sdk-go/errors"
 	"github.com/Ingenico-ePayments/connect-sdk-go/logging"
 )
 
@@ -59,7 +65,7 @@ func (c *DefaultConnection) logRequest(id, body string, req *http.Request) error
 	return nil
 }
 
-func (c *DefaultConnection) logResponse(id, body string, resp *http.Response, duration time.Duration) error {
+func (c *DefaultConnection) logResponse(id string, reader io.Reader, binaryResponse bool, resp *http.Response, duration time.Duration) error {
 	if c.logger == nil {
 		return nil
 	}
@@ -76,7 +82,17 @@ func (c *DefaultConnection) logResponse(id, body string, resp *http.Response, du
 		}
 	}
 
-	respMessage.SetBody(body, resp.Header.Get("Content-Type"))
+	if binaryResponse {
+		respMessage.SetBinaryBody(resp.Header.Get("Content-Type"))
+	} else {
+		bodyBuff, err := ioutil.ReadAll(reader)
+		if err != nil {
+			c.logError(id, err)
+			return err
+		}
+
+		respMessage.SetBody(string(bodyBuff), resp.Header.Get("Content-Type"))
+	}
 
 	message, err := respMessage.BuildMessage()
 	if err != nil {
@@ -129,30 +145,44 @@ func NewDefaultConnection(socketTimeout, connectTimeout, keepAliveTimeout, idleT
 	return &DefaultConnection{client, transport, nil, proxyAuth}, nil
 }
 
-// Get sends a GET request to the Ingenico ePayments platform and return the response.
-func (c *DefaultConnection) Get(uri url.URL, headerList []communication.Header) (*communication.Response, error) {
-	r := communication.NewRequest("GET", uri, headerList)
-	return c.sendRequest(r, "")
+// Get sends a GET request to the Ingenico ePayments platform and calls the given response handler with the response.
+func (c *DefaultConnection) Get(uri url.URL, headerList []communication.Header, handler communication.ResponseHandler) (interface{}, error) {
+	return c.sendRequest("GET", uri, headerList, nil, "", handler)
 }
 
-// Delete sends a DELETE request to the Ingenico ePayments platform and return the response.
-func (c *DefaultConnection) Delete(uri url.URL, headerList []communication.Header) (*communication.Response, error) {
-	r := communication.NewRequest("DELETE", uri, headerList)
-	return c.sendRequest(r, "")
+// Delete sends a DELETE request to the Ingenico ePayments platform and calls the given response handler with the response.
+func (c *DefaultConnection) Delete(uri url.URL, headerList []communication.Header, handler communication.ResponseHandler) (interface{}, error) {
+	return c.sendRequest("DELETE", uri, headerList, nil, "", handler)
 }
 
-// Put sends a PUT request to the Ingenico ePayments platform and return the response.
-func (c *DefaultConnection) Put(uri url.URL, headerList []communication.Header, body string) (*communication.Response, error) {
-	r := communication.NewRequest("PUT", uri, headerList)
-	r.SetBodyString(body)
-	return c.sendRequest(r, body)
+// Post sends a POST request to the Ingenico ePayments platform and calls the given response handler with the response.
+func (c *DefaultConnection) Post(uri url.URL, headerList []communication.Header, body string, handler communication.ResponseHandler) (interface{}, error) {
+	return c.sendRequest("POST", uri, headerList, strings.NewReader(body), body, handler)
 }
 
-// Post sends a POST request to the Ingenico ePayments platform and return the response.
-func (c *DefaultConnection) Post(uri url.URL, headerList []communication.Header, body string) (*communication.Response, error) {
-	r := communication.NewRequest("POST", uri, headerList)
-	r.SetBodyString(body)
-	return c.sendRequest(r, body)
+// PostMultipart sends a multipart/form-data POST request to the Ingenico ePayments platform and calls the given response handler with the response.
+func (c *DefaultConnection) PostMultipart(uri url.URL, headerList []communication.Header, body *communication.MultipartFormDataObject, handler communication.ResponseHandler) (interface{}, error) {
+	r, err := c.createMultipartReader(body)
+	if err != nil {
+		return nil, err
+	}
+	defer r.Close()
+	return c.sendRequest("POST", uri, headerList, r, "<binary content>", handler)
+}
+
+// Put sends a PUT request to the Ingenico ePayments platform and returns the response.
+func (c *DefaultConnection) Put(uri url.URL, headerList []communication.Header, body string, handler communication.ResponseHandler) (interface{}, error) {
+	return c.sendRequest("PUT", uri, headerList, strings.NewReader(body), body, handler)
+}
+
+// PutMultipart sends a multipart/form-data POST request to the Ingenico ePayments platform and calls the given response handler with the response.
+func (c *DefaultConnection) PutMultipart(uri url.URL, headerList []communication.Header, body *communication.MultipartFormDataObject, handler communication.ResponseHandler) (interface{}, error) {
+	r, err := c.createMultipartReader(body)
+	if err != nil {
+		return nil, err
+	}
+	defer r.Close()
+	return c.sendRequest("PUT", uri, headerList, r, "<binary content>", handler)
 }
 
 func pseudoUUID() (string, error) {
@@ -164,7 +194,7 @@ func pseudoUUID() (string, error) {
 	return fmt.Sprintf("%X-%X-%X-%X-%X", b[0:4], b[4:6], b[6:8], b[8:10], b[10:]), nil
 }
 
-func getProxyAuth(proxy *url.URL) (string) {
+func getProxyAuth(proxy *url.URL) string {
 	if proxy == nil || proxy.User == nil {
 		return ""
 	}
@@ -172,19 +202,30 @@ func getProxyAuth(proxy *url.URL) (string) {
 	return "Basic " + base64.StdEncoding.EncodeToString([]byte(proxy.User.String()))
 }
 
-func (c *DefaultConnection) sendRequest(r *communication.Request, body string) (*communication.Response, error) {
+func isBinaryContent(headers []communication.Header) bool {
+	header := communication.Headers(headers).GetHeader("Content-Type")
+	if header == nil {
+		return false
+	}
+
+	contentType := strings.ToLower(header.Value())
+
+	return !strings.HasPrefix(contentType, "text/") && !strings.Contains(contentType, "json") && !strings.Contains(contentType, "xml")
+}
+
+func (c *DefaultConnection) sendRequest(method string, uri url.URL, headerList []communication.Header, body io.Reader, bodyString string, handler communication.ResponseHandler) (interface{}, error) {
 	id, err := pseudoUUID()
 	if err != nil {
 		return nil, err
 	}
 
-	httpRequest, err := http.NewRequest(r.Method, r.Destination.String(), r.Body())
+	httpRequest, err := http.NewRequest(method, uri.String(), body)
 	if err != nil {
 		c.logError(id, err)
 		return nil, err
 	}
 
-	for _, h := range r.Headers {
+	for _, h := range headerList {
 		httpRequest.Header[h.Name()] = append(httpRequest.Header[h.Name()], h.Value())
 	}
 	if len(c.proxyAuth) > 0 {
@@ -193,7 +234,7 @@ func (c *DefaultConnection) sendRequest(r *communication.Request, body string) (
 
 	start := time.Now()
 
-	c.logRequest(id, body, httpRequest)
+	c.logRequest(id, bodyString, httpRequest)
 
 	resp, err := c.client.Do(httpRequest)
 	switch ce := err.(type) {
@@ -201,7 +242,7 @@ func (c *DefaultConnection) sendRequest(r *communication.Request, body string) (
 		{
 			c.logError(id, ce)
 
-			newErr, _ := errors.NewCommunicationError(ce)
+			newErr, _ := sdkErrors.NewCommunicationError(ce)
 			return nil, newErr
 		}
 	}
@@ -212,19 +253,12 @@ func (c *DefaultConnection) sendRequest(r *communication.Request, body string) (
 
 	end := time.Now()
 
-	bodyBuf, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		c.logError(id, err)
-		return nil, err
-	}
-
-	err = resp.Body.Close()
-	if err != nil {
-		c.logError(id, err)
-		return nil, err
-	}
-
-	c.logResponse(id, string(bodyBuf), resp, end.Sub(start))
+	defer func() {
+		err := resp.Body.Close()
+		if err != nil {
+			c.logError(id, err)
+		}
+	}()
 
 	respHeaders := []communication.Header{}
 	for name, values := range resp.Header {
@@ -239,11 +273,18 @@ func (c *DefaultConnection) sendRequest(r *communication.Request, body string) (
 		}
 		respHeaders = append(respHeaders, *header)
 	}
-	retVal, err := communication.NewResponse(resp.StatusCode, string(bodyBuf), respHeaders)
-	if err != nil {
-		return nil, err
+
+	bodyReader := resp.Body.(io.Reader)
+	if isBinaryContent(respHeaders) {
+		c.logResponse(id, nil, true, resp, end.Sub(start))
+	} else {
+		readBuffer := bytes.NewBuffer([]byte{})
+		teeReader := io.TeeReader(resp.Body, readBuffer)
+		bodyReader = teeReader
+		defer c.logResponse(id, io.MultiReader(readBuffer, teeReader), false, resp, end.Sub(start))
 	}
-	return retVal, nil
+
+	return handler.Handle(resp.StatusCode, respHeaders, bodyReader)
 }
 
 // CloseIdleConnections closes all HTTP connections that have been idle for the specified time. This should also include
@@ -271,4 +312,57 @@ func (c *DefaultConnection) EnableLogging(l logging.CommunicatorLogger) {
 // Disables logging
 func (c *DefaultConnection) DisableLogging() {
 	c.logger = nil
+}
+
+var quoteEscaper = strings.NewReplacer("\\", "\\\\", `"`, "\\\"")
+
+func escapeQuotes(s string) string {
+	return quoteEscaper.Replace(s)
+}
+
+func (c *DefaultConnection) createMultipartReader(body *communication.MultipartFormDataObject) (io.ReadCloser, error) {
+	r, w := io.Pipe()
+
+	writer := multipart.NewWriter(w)
+	err := writer.SetBoundary(body.GetBoundary())
+	if err != nil {
+		return nil, err
+	}
+	if writer.FormDataContentType() != body.GetContentType() {
+		return nil, errors.New("multipart.Writer  did not create the expected content type")
+	}
+
+	go func() {
+		for name, value := range body.GetValues() {
+			err := writer.WriteField(name, value)
+			if err != nil {
+				w.CloseWithError(err)
+				return
+			}
+		}
+		for name, file := range body.GetFiles() {
+			// Do not use writer.CreateFormFile because it does not allow a custom content type
+			header := textproto.MIMEHeader{}
+			header.Set("Content-Disposition", fmt.Sprintf(`form-data; name="%s"; filename="%s"`, escapeQuotes(name), escapeQuotes(file.GetFileName())))
+			header.Set("Content-Type", file.GetContentType())
+			pw, err := writer.CreatePart(header)
+			if err != nil {
+				w.CloseWithError(err)
+				return
+			}
+			_, err = io.Copy(pw, file.GetContent())
+			if err != nil {
+				w.CloseWithError(err)
+				return
+			}
+		}
+		err = writer.Close()
+		if err != nil {
+			w.CloseWithError(err)
+			return
+		}
+		w.Close()
+	}()
+
+	return r, nil
 }

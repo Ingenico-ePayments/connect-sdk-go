@@ -26,6 +26,15 @@ func TestDeleteParamsToRequestParameters(t *testing.T) {
 		lParams.MandateCancelDate = new(string)
 		*lParams.MandateCancelDate = ""
 
+		param, _ := communicator.NewRequestParam("mandateCancelDate", "")
+		paramList = communicator.RequestParams{}
+		paramList = append(paramList, *param)
+	}
+	paramRequestCmp(t, lParams, paramList)
+
+	{
+		lParams.MandateCancelDate = nil
+
 		paramList = communicator.RequestParams{}
 	}
 	paramRequestCmp(t, lParams, paramList)

@@ -32,7 +32,7 @@ type Client struct {
 func (c *Client) Find(query FindParams, context communication.CallContext) (product.PaymentProductGroups, error) {
 	var resultObject product.PaymentProductGroups
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/productgroups", nil)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/productgroups", nil)
 	if err != nil {
 		return resultObject, err
 	}
@@ -85,7 +85,7 @@ func (c *Client) Get(paymentProductGroupID string, query GetParams, context comm
 		"paymentProductGroupId": paymentProductGroupID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/productgroups/{paymentProductGroupId}", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/productgroups/{paymentProductGroupId}", pathContext)
 	if err != nil {
 		return resultObject, err
 	}
@@ -138,7 +138,7 @@ func (c *Client) DeviceFingerprint(paymentProductGroupID string, body product.De
 		"paymentProductGroupId": paymentProductGroupID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/productgroups/{paymentProductGroupId}/deviceFingerprint", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/productgroups/{paymentProductGroupId}/deviceFingerprint", pathContext)
 	if err != nil {
 		return resultObject, err
 	}

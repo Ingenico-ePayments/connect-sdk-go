@@ -32,7 +32,7 @@ type Client struct {
 func (c *Client) Find(query FindParams, context communication.CallContext) (refund.FindResponse, error) {
 	var resultObject refund.FindResponse
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/refunds", nil)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/refunds", nil)
 	if err != nil {
 		return resultObject, err
 	}
@@ -85,7 +85,7 @@ func (c *Client) Get(refundID string, context communication.CallContext) (refund
 		"refundId": refundID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/refunds/{refundId}", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/refunds/{refundId}", pathContext)
 	if err != nil {
 		return resultObject, err
 	}
@@ -136,7 +136,7 @@ func (c *Client) Approve(refundID string, body refund.ApproveRequest, context co
 		"refundId": refundID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/refunds/{refundId}/approve", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/refunds/{refundId}/approve", pathContext)
 	if err != nil {
 		return err
 	}
@@ -188,7 +188,7 @@ func (c *Client) Cancel(refundID string, context communication.CallContext) erro
 		"refundId": refundID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/refunds/{refundId}/cancel", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/refunds/{refundId}/cancel", pathContext)
 	if err != nil {
 		return err
 	}
@@ -240,7 +240,7 @@ func (c *Client) Cancelapproval(refundID string, context communication.CallConte
 		"refundId": refundID,
 	}
 
-	uri, err := c.apiResource.InstantiateURIWithContext("/{apiVersion}/{merchantId}/refunds/{refundId}/cancelapproval", pathContext)
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/refunds/{refundId}/cancelapproval", pathContext)
 	if err != nil {
 		return err
 	}
