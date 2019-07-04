@@ -10,6 +10,7 @@ type AdditionalOrderInput struct {
 	AirlineData          *definitions.AirlineData `json:"airlineData,omitempty"`
 	// Deprecated: Use Order.shoppingCart.amountBreakdown instead
 	Level3SummaryData    *Level3SummaryData       `json:"level3SummaryData,omitempty"`
+	LoanRecipient        *LoanRecipient           `json:"loanRecipient,omitempty"`
 	NumberOfInstallments *int64                   `json:"numberOfInstallments,omitempty"`
 	OrderDate            *string                  `json:"orderDate,omitempty"`
 	TypeInformation      *OrderTypeInformation    `json:"typeInformation,omitempty"`
