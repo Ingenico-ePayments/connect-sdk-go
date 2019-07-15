@@ -29,32 +29,22 @@ func createPaymentExample() {
 	card.Cvv = newString("123")
 	card.ExpiryDate = newString("1220")
 
-	var externalCardholderAuthenticationData payment.ExternalCardholderAuthenticationData
-	externalCardholderAuthenticationData.Cavv = newString("AgAAAAAABk4DWZ4C28yUQAAAAAA=")
-	externalCardholderAuthenticationData.CavvAlgorithm = newString("1")
-	externalCardholderAuthenticationData.Eci = newInt32(8)
-	externalCardholderAuthenticationData.ThreeDSecureVersion = newString("v2")
-	externalCardholderAuthenticationData.ThreeDServerTransactionID = newString("3DSTID1234")
-	externalCardholderAuthenticationData.ValidationResult = newString("Y")
-	externalCardholderAuthenticationData.Xid = newString("n3h2uOQPUgnmqhCkXNfxl8pOZJA=")
-
-	var priorThreeDSecureData payment.ThreeDSecureData
-	priorThreeDSecureData.AcsTransactionID = newString("empty")
-	priorThreeDSecureData.Method = newString("challenged")
-	priorThreeDSecureData.UtcTimestamp = newString("201901311530")
+	var redirectionData payment.RedirectionData
+	redirectionData.ReturnURL = newString("https://hostname.myownwebsite.url")
 
 	var threeDSecure payment.ThreeDSecure
 	threeDSecure.AuthenticationFlow = newString("browser")
 	threeDSecure.ChallengeCanvasSize = newString("600x400")
 	threeDSecure.ChallengeIndicator = newString("challenge-requested")
-	threeDSecure.ExternalCardholderAuthenticationData = &externalCardholderAuthenticationData
-	threeDSecure.PriorThreeDSecureData = &priorThreeDSecureData
+	threeDSecure.RedirectionData = &redirectionData
 	threeDSecure.SkipAuthentication = newBool(false)
 
 	var cardPaymentMethodSpecificInput payment.CardPaymentMethodSpecificInput
 	cardPaymentMethodSpecificInput.Card = &card
+	cardPaymentMethodSpecificInput.IsRecurring = newBool(false)
 	cardPaymentMethodSpecificInput.PaymentProductID = newInt32(1)
 	cardPaymentMethodSpecificInput.ThreeDSecure = &threeDSecure
+	cardPaymentMethodSpecificInput.TransactionChannel = newString("ECOMMERCE")
 
 	var amountOfMoney definitions.AmountOfMoney
 	amountOfMoney.Amount = newInt64(2980)
@@ -75,9 +65,22 @@ func createPaymentExample() {
 
 	var contactDetails payment.ContactDetails
 	contactDetails.EmailAddress = newString("wile.e.coyote@acmelabs.com")
-	contactDetails.EmailMessageType = newString("html")
 	contactDetails.FaxNumber = newString("+1234567891")
 	contactDetails.PhoneNumber = newString("+1234567890")
+
+	var browserData payment.BrowserData
+	browserData.ColorDepth = newInt32(24)
+	browserData.JavaEnabled = newBool(false)
+	browserData.ScreenHeight = newString("1200")
+	browserData.ScreenWidth = newString("1920")
+
+	var device payment.CustomerDevice
+	device.AcceptHeader = newString("texthtml,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
+	device.BrowserData = &browserData
+	device.IPAddress = newString("123.123.123.123")
+	device.Locale = newString("en-US")
+	device.TimezoneOffsetUtcMinutes = newString("420")
+	device.UserAgent = newString("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1 Safari/605.1.15")
 
 	var name payment.PersonalName
 	name.FirstName = newString("Wile")
@@ -91,9 +94,11 @@ func createPaymentExample() {
 	personalInformation.Name = &name
 
 	var customer payment.Customer
+	customer.AccountType = newString("none")
 	customer.BillingAddress = &billingAddress
 	customer.CompanyInformation = &companyInformation
 	customer.ContactDetails = &contactDetails
+	customer.Device = &device
 	customer.Locale = newString("en_US")
 	customer.MerchantCustomerID = newString("1234")
 	customer.PersonalInformation = &personalInformation

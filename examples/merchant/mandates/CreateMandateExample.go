@@ -23,7 +23,7 @@ func createMandateExample() {
 	// The code for this helper function can be found in file Helper.go
 
 	var bankAccountIban definitions.BankAccountIban
-	bankAccountIban.Iban = newString("DE46940594210000012345")
+	bankAccountIban.Iban = newString("DE46720200700359736690")
 
 	var contactDetails mandates.MandateContactDetails
 	contactDetails.EmailAddress = newString("wile.e.coyote@acmelabs.com")

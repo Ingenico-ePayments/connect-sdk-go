@@ -12,6 +12,7 @@ import (
 type Output struct {
 	AmountOfMoney                              *definitions.AmountOfMoney                             `json:"amountOfMoney,omitempty"`
 	AmountPaid                                 *int64                                                 `json:"amountPaid,omitempty"`
+	AmountReversed                             *int64                                                 `json:"amountReversed,omitempty"`
 	BankTransferPaymentMethodSpecificOutput    *payment.BankTransferPaymentMethodSpecificOutput       `json:"bankTransferPaymentMethodSpecificOutput,omitempty"`
 	CardPaymentMethodSpecificOutput            *payment.CardPaymentMethodSpecificOutput               `json:"cardPaymentMethodSpecificOutput,omitempty"`
 	CashPaymentMethodSpecificOutput            *payment.CashPaymentMethodSpecificOutput               `json:"cashPaymentMethodSpecificOutput,omitempty"`

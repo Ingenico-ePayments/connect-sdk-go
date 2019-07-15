@@ -9,6 +9,7 @@ import "github.com/Ingenico-ePayments/connect-sdk-go/domain/definitions"
 type Output struct {
 	AmountOfMoney                              *definitions.AmountOfMoney                     `json:"amountOfMoney,omitempty"`
 	AmountPaid                                 *int64                                         `json:"amountPaid,omitempty"`
+	AmountReversed                             *int64                                         `json:"amountReversed,omitempty"`
 	BankTransferPaymentMethodSpecificOutput    *BankTransferPaymentMethodSpecificOutput       `json:"bankTransferPaymentMethodSpecificOutput,omitempty"`
 	CardPaymentMethodSpecificOutput            *CardPaymentMethodSpecificOutput               `json:"cardPaymentMethodSpecificOutput,omitempty"`
 	CashPaymentMethodSpecificOutput            *CashPaymentMethodSpecificOutput               `json:"cashPaymentMethodSpecificOutput,omitempty"`
