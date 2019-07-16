@@ -3,9 +3,8 @@ package logging
 import (
 	"encoding/json"
 	"errors"
+	"strconv"
 	"strings"
-
-	"github.com/Jeffail/gabs"
 )
 
 var errInvalidDataType = errors.New("invalid data type - should never happen")
@@ -18,42 +17,58 @@ func newPropertyObfuscator(obfuscators valueObfuscatorMap) propertyObfuscator {
 	return propertyObfuscator{obfuscators}
 }
 
-func (po *propertyObfuscator) navigateJSON(cont *gabs.Container) error {
-	contVec := append([]*gabs.Container(nil), cont)
+func (po *propertyObfuscator) obfuscateValue(value interface{}, obfuscator *valueObfuscator) (string, error) {
+	if strVal, ok := value.(string); ok {
+		return obfuscator.obfuscateValue(strVal)
+	}
+	if intVal, ok := value.(int32); ok {
+		return obfuscator.obfuscateValue(strconv.FormatInt(int64(intVal), 10))
+	}
+	if intVal, ok := value.(int64); ok {
+		return obfuscator.obfuscateValue(strconv.FormatInt(intVal, 10))
+	}
+	if floatVal, ok := value.(float32); ok {
+		return obfuscator.obfuscateValue(strconv.FormatFloat(float64(floatVal), 'f', -1, 32))
+	}
+	if floatVal, ok := value.(float64); ok {
+		return obfuscator.obfuscateValue(strconv.FormatFloat(floatVal, 'f', -1, 64))
+	}
+	if boolVal, ok := value.(bool); ok {
+		return obfuscator.obfuscateValue(strconv.FormatBool(boolVal))
+	}
+	return "", errInvalidDataType
+}
 
-	for len(contVec) > 0 {
-		var currentCont *gabs.Container
-		currentCont, contVec = contVec[len(contVec)-1], contVec[:len(contVec)-1]
+func (po *propertyObfuscator) navigateJSON(content interface{}) error {
+	if content == nil {
+		return nil
+	}
 
-		children, sErr := currentCont.ChildrenMap()
-
-		if sErr != nil {
-			if sErr == gabs.ErrNotObj {
-				continue
-			}
-
-			return sErr
-		}
-
-		for key, value := range children {
-			obfuscator, ok := po.obfuscators[key]
-			if ok == true {
-				strVal, cErr := value.Data().(string)
-
-				if cErr != true {
-					return errInvalidDataType
-				}
-
-				newVal, oErr := obfuscator.obfuscateValue(strVal)
-
+	if contentMap, ok := content.(map[string]interface{}); ok {
+		for name, obj := range contentMap {
+			if obfuscator, ok := po.obfuscators[name]; ok {
+				obfuscatedValue, oErr := po.obfuscateValue(obj, &obfuscator)
 				if oErr != nil {
 					return oErr
 				}
 
-				currentCont.Set(newVal, key)
-			}
+				contentMap[name] = obfuscatedValue
 
-			contVec = append(contVec, value)
+			} else {
+				nErr := po.navigateJSON(obj)
+				if nErr != nil {
+					return nErr
+				}
+			}
+		}
+	}
+
+	if contentSlice, ok := content.([]interface{}); ok {
+		for _, obj := range contentSlice {
+			nErr := po.navigateJSON(obj)
+			if nErr != nil {
+				return nErr
+			}
 		}
 	}
 
@@ -65,21 +80,24 @@ func (po *propertyObfuscator) obfuscate(body string) (string, error) {
 		return body, nil
 	}
 
-	parsedJSON, pErr := gabs.ParseJSON([]byte(body))
-
+	var parsedJSON interface{}
+	pErr := json.Unmarshal([]byte(body), &parsedJSON)
 	if _, ok := pErr.(*json.SyntaxError); ok {
 		return body, nil
 	}
-
 	if pErr != nil {
 		return body, pErr
 	}
 
-	nError := po.navigateJSON(parsedJSON)
-
-	if nError != nil {
-		return body, nError
+	nErr := po.navigateJSON(parsedJSON)
+	if nErr != nil {
+		return body, nErr
 	}
 
-	return parsedJSON.StringIndent("", "    "), nil
+	obfuscatedBody, mErr := json.MarshalIndent(parsedJSON, "", "    ")
+	if mErr != nil {
+		return body, mErr
+	}
+
+	return string(obfuscatedBody), nil
 }

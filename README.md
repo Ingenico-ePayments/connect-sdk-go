@@ -16,8 +16,7 @@ See the [Ingenico Connect Developer Hub](https://epayments.developer-ingenico.co
 
 ## Requirements
 
-Go version 1.7 is required. In addition, the following packages are required:
-* [Gabs](https://github.com/Jeffail/gabs)
+Go version 1.7 or higher is required. No additional packages are required.
 
 ## Examples
 
