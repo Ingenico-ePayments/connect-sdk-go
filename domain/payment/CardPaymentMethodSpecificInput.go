@@ -12,7 +12,9 @@ type CardPaymentMethodSpecificInput struct {
 	CustomerReference                      *string                               `json:"customerReference,omitempty"`
 	// Deprecated: Use threeDSecure.externalCardholderAuthenticationData instead
 	ExternalCardholderAuthenticationData   *ExternalCardholderAuthenticationData `json:"externalCardholderAuthenticationData,omitempty"`
+	InitialSchemeTransactionID             *string                               `json:"initialSchemeTransactionId,omitempty"`
 	IsRecurring                            *bool                                 `json:"isRecurring,omitempty"`
+	MerchantInitiatedReasonIndicator       *string                               `json:"merchantInitiatedReasonIndicator,omitempty"`
 	PaymentProductID                       *int32                                `json:"paymentProductId,omitempty"`
 	Recurring                              *CardRecurrenceDetails                `json:"recurring,omitempty"`
 	// Deprecated: Use recurring.recurringPaymentSequenceIndicator instead

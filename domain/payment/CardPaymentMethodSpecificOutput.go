@@ -7,12 +7,14 @@ import "github.com/Ingenico-ePayments/connect-sdk-go/domain/definitions"
 
 // CardPaymentMethodSpecificOutput represents class CardPaymentMethodSpecificOutput
 type CardPaymentMethodSpecificOutput struct {
-	AuthorisationCode   *string                       `json:"authorisationCode,omitempty"`
-	Card                *definitions.CardEssentials   `json:"card,omitempty"`
-	FraudResults        *definitions.CardFraudResults `json:"fraudResults,omitempty"`
-	PaymentProductID    *int32                        `json:"paymentProductId,omitempty"`
-	ThreeDSecureResults *ThreeDSecureResults          `json:"threeDSecureResults,omitempty"`
-	Token               *string                       `json:"token,omitempty"`
+	AuthorisationCode          *string                       `json:"authorisationCode,omitempty"`
+	Card                       *definitions.CardEssentials   `json:"card,omitempty"`
+	FraudResults               *definitions.CardFraudResults `json:"fraudResults,omitempty"`
+	InitialSchemeTransactionID *string                       `json:"initialSchemeTransactionId,omitempty"`
+	PaymentProductID           *int32                        `json:"paymentProductId,omitempty"`
+	SchemeTransactionID        *string                       `json:"schemeTransactionId,omitempty"`
+	ThreeDSecureResults        *ThreeDSecureResults          `json:"threeDSecureResults,omitempty"`
+	Token                      *string                       `json:"token,omitempty"`
 }
 
 // NewCardPaymentMethodSpecificOutput constructs a new CardPaymentMethodSpecificOutput

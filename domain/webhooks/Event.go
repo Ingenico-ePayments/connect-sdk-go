@@ -1,6 +1,7 @@
 package webhooks
 
 import (
+	"github.com/Ingenico-ePayments/connect-sdk-go/domain/dispute"
 	"github.com/Ingenico-ePayments/connect-sdk-go/domain/payment"
 	"github.com/Ingenico-ePayments/connect-sdk-go/domain/payout"
 	"github.com/Ingenico-ePayments/connect-sdk-go/domain/refund"
@@ -18,6 +19,7 @@ type Event struct {
 	Refund     *refund.Response  `json:"refund,omitempty"`
 	Payout     *payout.Response  `json:"payout,omitempty"`
 	Token      *token.Response   `json:"token,omitempty"`
+	Dispute    *dispute.Response `json:"dispute,omitempty"`
 }
 
 // NewEvent constructs a new Event

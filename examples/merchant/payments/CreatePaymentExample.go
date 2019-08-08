@@ -36,12 +36,14 @@ func createPaymentExample() {
 	threeDSecure.AuthenticationFlow = newString("browser")
 	threeDSecure.ChallengeCanvasSize = newString("600x400")
 	threeDSecure.ChallengeIndicator = newString("challenge-requested")
+	threeDSecure.ExemptionRequest = newString("none")
 	threeDSecure.RedirectionData = &redirectionData
 	threeDSecure.SkipAuthentication = newBool(false)
 
 	var cardPaymentMethodSpecificInput payment.CardPaymentMethodSpecificInput
 	cardPaymentMethodSpecificInput.Card = &card
 	cardPaymentMethodSpecificInput.IsRecurring = newBool(false)
+	cardPaymentMethodSpecificInput.MerchantInitiatedReasonIndicator = newString("delayedCharges")
 	cardPaymentMethodSpecificInput.PaymentProductID = newInt32(1)
 	cardPaymentMethodSpecificInput.ThreeDSecure = &threeDSecure
 	cardPaymentMethodSpecificInput.TransactionChannel = newString("ECOMMERCE")

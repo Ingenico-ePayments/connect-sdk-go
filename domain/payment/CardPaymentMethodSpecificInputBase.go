@@ -7,6 +7,7 @@ package payment
 type CardPaymentMethodSpecificInputBase struct {
 	AuthorizationMode                      *string                `json:"authorizationMode,omitempty"`
 	CustomerReference                      *string                `json:"customerReference,omitempty"`
+	InitialSchemeTransactionID             *string                `json:"initialSchemeTransactionId,omitempty"`
 	PaymentProductID                       *int32                 `json:"paymentProductId,omitempty"`
 	Recurring                              *CardRecurrenceDetails `json:"recurring,omitempty"`
 	// Deprecated: Use recurring.recurringPaymentSequenceIndicator instead

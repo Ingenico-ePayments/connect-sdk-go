@@ -8,6 +8,7 @@ type ThreeDSecure struct {
 	AuthenticationFlow                   *string                               `json:"authenticationFlow,omitempty"`
 	ChallengeCanvasSize                  *string                               `json:"challengeCanvasSize,omitempty"`
 	ChallengeIndicator                   *string                               `json:"challengeIndicator,omitempty"`
+	ExemptionRequest                     *string                               `json:"exemptionRequest,omitempty"`
 	ExternalCardholderAuthenticationData *ExternalCardholderAuthenticationData `json:"externalCardholderAuthenticationData,omitempty"`
 	PriorThreeDSecureData                *ThreeDSecureData                     `json:"priorThreeDSecureData,omitempty"`
 	RedirectionData                      *RedirectionData                      `json:"redirectionData,omitempty"`
