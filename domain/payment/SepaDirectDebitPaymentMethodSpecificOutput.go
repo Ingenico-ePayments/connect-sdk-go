@@ -10,6 +10,7 @@ type SepaDirectDebitPaymentMethodSpecificOutput struct {
 	FraudResults                    *definitions.FraudResults `json:"fraudResults,omitempty"`
 	PaymentProduct771SpecificOutput *Product771SpecificOutput `json:"paymentProduct771SpecificOutput,omitempty"`
 	PaymentProductID                *int32                    `json:"paymentProductId,omitempty"`
+	Token                           *string                   `json:"token,omitempty"`
 }
 
 // NewSepaDirectDebitPaymentMethodSpecificOutput constructs a new SepaDirectDebitPaymentMethodSpecificOutput
