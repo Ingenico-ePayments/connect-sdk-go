@@ -5,8 +5,9 @@ package token
 
 // CreateResponse represents class CreateTokenResponse
 type CreateResponse struct {
-	IsNewToken *bool   `json:"isNewToken,omitempty"`
-	Token      *string `json:"token,omitempty"`
+	IsNewToken        *bool   `json:"isNewToken,omitempty"`
+	OriginalPaymentID *string `json:"originalPaymentId,omitempty"`
+	Token             *string `json:"token,omitempty"`
 }
 
 // NewCreateResponse constructs a new CreateResponse

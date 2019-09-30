@@ -7,6 +7,7 @@ import "github.com/Ingenico-ePayments/connect-sdk-go/domain/definitions"
 
 // Product840SpecificOutput represents class PaymentProduct840SpecificOutput
 type Product840SpecificOutput struct {
+	BillingAddress        *definitions.Address       `json:"billingAddress,omitempty"`
 	CustomerAccount       *Product840CustomerAccount `json:"customerAccount,omitempty"`
 	CustomerAddress       *definitions.Address       `json:"customerAddress,omitempty"`
 	ProtectionEligibility *ProtectionEligibility     `json:"protectionEligibility,omitempty"`
