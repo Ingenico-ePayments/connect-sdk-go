@@ -3,9 +3,12 @@
 
 package payment
 
+import "github.com/Ingenico-ePayments/connect-sdk-go/domain/definitions"
+
 // BankTransferPaymentMethodSpecificOutput represents class BankTransferPaymentMethodSpecificOutput
 type BankTransferPaymentMethodSpecificOutput struct {
-	PaymentProductID *int32 `json:"paymentProductId,omitempty"`
+	FraudResults     *definitions.FraudResults `json:"fraudResults,omitempty"`
+	PaymentProductID *int32                    `json:"paymentProductId,omitempty"`
 }
 
 // NewBankTransferPaymentMethodSpecificOutput constructs a new BankTransferPaymentMethodSpecificOutput

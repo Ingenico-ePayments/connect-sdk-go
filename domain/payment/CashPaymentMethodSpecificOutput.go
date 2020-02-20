@@ -3,9 +3,12 @@
 
 package payment
 
+import "github.com/Ingenico-ePayments/connect-sdk-go/domain/definitions"
+
 // CashPaymentMethodSpecificOutput represents class CashPaymentMethodSpecificOutput
 type CashPaymentMethodSpecificOutput struct {
-	PaymentProductID *int32 `json:"paymentProductId,omitempty"`
+	FraudResults     *definitions.FraudResults `json:"fraudResults,omitempty"`
+	PaymentProductID *int32                    `json:"paymentProductId,omitempty"`
 }
 
 // NewCashPaymentMethodSpecificOutput constructs a new CashPaymentMethodSpecificOutput

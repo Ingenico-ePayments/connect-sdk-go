@@ -12,6 +12,7 @@ type RedirectPaymentMethodSpecificInput struct {
 	PaymentProduct840SpecificInput    *RedirectPaymentProduct840SpecificInput `json:"paymentProduct840SpecificInput,omitempty"`
 	PaymentProduct861SpecificInput    *RedirectPaymentProduct861SpecificInput `json:"paymentProduct861SpecificInput,omitempty"`
 	PaymentProduct863SpecificInput    *RedirectPaymentProduct863SpecificInput `json:"paymentProduct863SpecificInput,omitempty"`
+	PaymentProduct869SpecificInput    *RedirectPaymentProduct869SpecificInput `json:"paymentProduct869SpecificInput,omitempty"`
 	PaymentProduct882SpecificInput    *RedirectPaymentProduct882SpecificInput `json:"paymentProduct882SpecificInput,omitempty"`
 	PaymentProductID                  *int32                                  `json:"paymentProductId,omitempty"`
 	RecurringPaymentSequenceIndicator *string                                 `json:"recurringPaymentSequenceIndicator,omitempty"`

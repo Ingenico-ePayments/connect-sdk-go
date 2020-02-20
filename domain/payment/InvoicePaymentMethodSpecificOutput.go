@@ -3,9 +3,12 @@
 
 package payment
 
+import "github.com/Ingenico-ePayments/connect-sdk-go/domain/definitions"
+
 // InvoicePaymentMethodSpecificOutput represents class InvoicePaymentMethodSpecificOutput
 type InvoicePaymentMethodSpecificOutput struct {
-	PaymentProductID *int32 `json:"paymentProductId,omitempty"`
+	FraudResults     *definitions.FraudResults `json:"fraudResults,omitempty"`
+	PaymentProductID *int32                    `json:"paymentProductId,omitempty"`
 }
 
 // NewInvoicePaymentMethodSpecificOutput constructs a new InvoicePaymentMethodSpecificOutput

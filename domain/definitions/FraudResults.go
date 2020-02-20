@@ -6,6 +6,7 @@ package definitions
 // FraudResults represents class FraudResults
 type FraudResults struct {
 	FraudServiceResult *string `json:"fraudServiceResult,omitempty"`
+	InAuth             *InAuth `json:"inAuth,omitempty"`
 }
 
 // NewFraudResults constructs a new FraudResults
