@@ -3,14 +3,14 @@
 
 package payment
 
-// RefundBankMethodSpecificOutput represents class RefundBankMethodSpecificOutput
-type RefundBankMethodSpecificOutput struct {
+// RefundCashMethodSpecificOutput represents class RefundCashMethodSpecificOutput
+type RefundCashMethodSpecificOutput struct {
 	RefundProductID     *int32 `json:"refundProductId,omitempty"`
 	TotalAmountPaid     *int64 `json:"totalAmountPaid,omitempty"`
 	TotalAmountRefunded *int64 `json:"totalAmountRefunded,omitempty"`
 }
 
-// NewRefundBankMethodSpecificOutput constructs a new RefundBankMethodSpecificOutput
-func NewRefundBankMethodSpecificOutput() *RefundBankMethodSpecificOutput {
-	return &RefundBankMethodSpecificOutput{}
+// NewRefundCashMethodSpecificOutput constructs a new RefundCashMethodSpecificOutput
+func NewRefundCashMethodSpecificOutput() *RefundCashMethodSpecificOutput {
+	return &RefundCashMethodSpecificOutput{}
 }

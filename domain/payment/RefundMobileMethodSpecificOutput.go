@@ -6,6 +6,7 @@ package payment
 // RefundMobileMethodSpecificOutput represents class RefundMobileMethodSpecificOutput
 type RefundMobileMethodSpecificOutput struct {
 	Network             *string `json:"network,omitempty"`
+	RefundProductID     *int32  `json:"refundProductId,omitempty"`
 	TotalAmountPaid     *int64  `json:"totalAmountPaid,omitempty"`
 	TotalAmountRefunded *int64  `json:"totalAmountRefunded,omitempty"`
 }

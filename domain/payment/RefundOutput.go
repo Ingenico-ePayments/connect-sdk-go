@@ -11,6 +11,7 @@ type RefundOutput struct {
 	AmountPaid                         *int64                              `json:"amountPaid,omitempty"`
 	BankRefundMethodSpecificOutput     *RefundBankMethodSpecificOutput     `json:"bankRefundMethodSpecificOutput,omitempty"`
 	CardRefundMethodSpecificOutput     *RefundCardMethodSpecificOutput     `json:"cardRefundMethodSpecificOutput,omitempty"`
+	CashRefundMethodSpecificOutput     *RefundCashMethodSpecificOutput     `json:"cashRefundMethodSpecificOutput,omitempty"`
 	EInvoiceRefundMethodSpecificOutput *RefundEInvoiceMethodSpecificOutput `json:"eInvoiceRefundMethodSpecificOutput,omitempty"`
 	EWalletRefundMethodSpecificOutput  *RefundEWalletMethodSpecificOutput  `json:"eWalletRefundMethodSpecificOutput,omitempty"`
 	MobileRefundMethodSpecificOutput   *RefundMobileMethodSpecificOutput   `json:"mobileRefundMethodSpecificOutput,omitempty"`
