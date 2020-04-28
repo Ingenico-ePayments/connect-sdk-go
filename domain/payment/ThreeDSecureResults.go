@@ -5,9 +5,12 @@ package payment
 
 // ThreeDSecureResults represents class ThreeDSecureResults
 type ThreeDSecureResults struct {
+	AcsTransactionID             *string           `json:"acsTransactionId,omitempty"`
+	AppliedExemption             *string           `json:"appliedExemption,omitempty"`
 	Cavv                         *string           `json:"cavv,omitempty"`
 	DirectoryServerTransactionID *string           `json:"directoryServerTransactionId,omitempty"`
 	Eci                          *string           `json:"eci,omitempty"`
+	SchemeRiskScore              *int32            `json:"schemeRiskScore,omitempty"`
 	SdkData                      *SdkDataOutput    `json:"sdkData,omitempty"`
 	ThreeDSecureData             *ThreeDSecureData `json:"threeDSecureData,omitempty"`
 	ThreeDSecureVersion          *string           `json:"threeDSecureVersion,omitempty"`
