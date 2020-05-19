@@ -46,7 +46,8 @@ func (po *propertyObfuscator) navigateJSON(content interface{}) error {
 
 	if contentMap, ok := content.(map[string]interface{}); ok {
 		for name, obj := range contentMap {
-			if obfuscator, ok := po.obfuscators[name]; ok {
+			_, isMap := obj.(map[string]interface{})
+			if obfuscator, ok := po.obfuscators[name]; ok && !isMap {
 				obfuscatedValue, oErr := po.obfuscateValue(obj, &obfuscator)
 				if oErr != nil {
 					return oErr

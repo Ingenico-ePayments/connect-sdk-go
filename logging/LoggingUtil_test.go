@@ -46,7 +46,7 @@ func TestObfuscateHeader(t *testing.T) {
 	CheckObfuscateHeaderWithNoMatch(t, "CONTENT-TYPE", "application/json")
 }
 
-func CheckObfuscateBodyWithEmptyBody(t *testing.T) {
+func TestObfuscateBodyWithEmptyBody(t *testing.T) {
 	emptyString := ""
 	obfuscatedBody, err := ObfuscateBody(emptyString)
 
@@ -55,11 +55,11 @@ func CheckObfuscateBodyWithEmptyBody(t *testing.T) {
 	}
 
 	if obfuscatedBody != emptyString {
-		t.Fatalf("CheckObfuscateBodyWithEmptyBody : expected '%s' got '%s'", emptyString, obfuscatedBody)
+		t.Fatalf("TestObfuscateBodyWithEmptyBody : expected '%s' got '%s'", emptyString, obfuscatedBody)
 	}
 }
 
-func CheckObfuscateBodyWithCard(t *testing.T) {
+func TestObfuscateBodyWithCard(t *testing.T) {
 	cardObfuscated := `{
     "cardPaymentMethodSpecificInput": {
         "card": {
@@ -111,11 +111,11 @@ func CheckObfuscateBodyWithCard(t *testing.T) {
 	}
 
 	if cardObfuscated != obfuscatedBody {
-		t.Fatalf("CheckObfuscateBodyWithCard : expected \n%s\ngot\n%s", cardObfuscated, obfuscatedBody)
+		t.Fatalf("TestObfuscateBodyWithCard : expected \n%s\ngot\n%s", cardObfuscated, obfuscatedBody)
 	}
 }
 
-func CheckObfuscateBodyWithIban(t *testing.T) {
+func TestObfuscateBodyWithIban(t *testing.T) {
 	ibanObfuscated := `{
     "paymentProductId": 770,
     "sepaDirectDebit": {
@@ -161,11 +161,11 @@ func CheckObfuscateBodyWithIban(t *testing.T) {
 	}
 
 	if ibanObfuscated != obfuscatedBody {
-		t.Fatalf("CheckObfuscateBodyWithIban : expected \n%s\ngot\n%s", ibanObfuscated, obfuscatedBody)
+		t.Fatalf("TestObfuscateBodyWithIban : expected \n%s\ngot\n%s", ibanObfuscated, obfuscatedBody)
 	}
 }
 
-func CheckObfuscateBodyWithBin(t *testing.T) {
+func TestObfuscateBodyWithBin(t *testing.T) {
 	binObfuscated := `{
     "bin": "123456**"
 }`
@@ -180,11 +180,11 @@ func CheckObfuscateBodyWithBin(t *testing.T) {
 	}
 
 	if binObfuscated != obfuscatedBody {
-		t.Fatalf("CheckObfuscateBodyWithBin : expected \n%s\ngot\n%s", binObfuscated, obfuscatedBody)
+		t.Fatalf("TestObfuscateBodyWithBin : expected \n%s\ngot\n%s", binObfuscated, obfuscatedBody)
 	}
 }
 
-func CheckObfuscateBodyWithNoMatches(t *testing.T) {
+func TestObfuscateBodyWithNoMatches(t *testing.T) {
 	noObfuscation := `{
     "order": {
         "amountOfMoney": {
@@ -227,14 +227,33 @@ func CheckObfuscateBodyWithNoMatches(t *testing.T) {
 	}
 
 	if postObfuscation != obfuscatedBody {
-		t.Fatalf("CheckObfuscateBodyWithNoMatches : expected \n%s\ngot\n%s", postObfuscation, obfuscatedBody)
+		t.Fatalf("TestObfuscateBodyWithNoMatches : expected \n%s\ngot\n%s", postObfuscation, obfuscatedBody)
 	}
 }
 
-func TestObfuscateProperty(t *testing.T) {
-	CheckObfuscateBodyWithEmptyBody(t)
-	CheckObfuscateBodyWithCard(t)
-	CheckObfuscateBodyWithIban(t)
-	CheckObfuscateBodyWithBin(t)
-	CheckObfuscateBodyWithNoMatches(t)
+func TestObfuscateBodyWithObject(t *testing.T) {
+	jsonObfuscated := `[
+    {
+        "value": "****"
+    },
+    {
+        "value": {}
+    }
+]`
+	jsonUnobfuscated := `[ {
+	"value": true
+}, {
+	"value": {
+	}
+} ]`
+
+	obfuscatedBody, err := ObfuscateBody(jsonUnobfuscated)
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if jsonObfuscated != obfuscatedBody {
+		t.Fatalf("TestObfuscateBodyWithObject : expected \n%s\ngot\n%s", jsonObfuscated, obfuscatedBody)
+	}
 }

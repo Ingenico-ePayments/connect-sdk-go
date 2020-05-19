@@ -3,8 +3,11 @@
 
 package payment
 
+import "github.com/Ingenico-ePayments/connect-sdk-go/domain/definitions"
+
 // ThreeDSecure represents class ThreeDSecure
 type ThreeDSecure struct {
+	AuthenticationAmount                 *definitions.AmountOfMoney            `json:"authenticationAmount,omitempty"`
 	AuthenticationFlow                   *string                               `json:"authenticationFlow,omitempty"`
 	ChallengeCanvasSize                  *string                               `json:"challengeCanvasSize,omitempty"`
 	ChallengeIndicator                   *string                               `json:"challengeIndicator,omitempty"`

@@ -29,10 +29,15 @@ func createPaymentExample() {
 	card.Cvv = newString("123")
 	card.ExpiryDate = newString("1220")
 
+	var authenticationAmount definitions.AmountOfMoney
+	authenticationAmount.Amount = newInt64(2980)
+	authenticationAmount.CurrencyCode = newString("EUR")
+
 	var redirectionData payment.RedirectionData
 	redirectionData.ReturnURL = newString("https://hostname.myownwebsite.url")
 
 	var threeDSecure payment.ThreeDSecure
+	threeDSecure.AuthenticationAmount = &authenticationAmount
 	threeDSecure.AuthenticationFlow = newString("browser")
 	threeDSecure.ChallengeCanvasSize = newString("600x400")
 	threeDSecure.ChallengeIndicator = newString("challenge-requested")
