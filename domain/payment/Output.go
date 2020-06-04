@@ -20,6 +20,7 @@ type Output struct {
 	PaymentMethod                              *string                                        `json:"paymentMethod,omitempty"`
 	RedirectPaymentMethodSpecificOutput        *RedirectPaymentMethodSpecificOutput           `json:"redirectPaymentMethodSpecificOutput,omitempty"`
 	References                                 *References                                    `json:"references,omitempty"`
+	ReversalReason                             *string                                        `json:"reversalReason,omitempty"`
 	SepaDirectDebitPaymentMethodSpecificOutput *SepaDirectDebitPaymentMethodSpecificOutput    `json:"sepaDirectDebitPaymentMethodSpecificOutput,omitempty"`
 }
 
