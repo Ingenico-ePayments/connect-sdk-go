@@ -6,6 +6,7 @@ package product
 // PaymentProductResponse represents class PaymentProductResponse
 type PaymentProductResponse struct {
 	AccountsOnFile                *[]AccountOnFile               `json:"accountsOnFile,omitempty"`
+	AllowsInstallments            *bool                          `json:"allowsInstallments,omitempty"`
 	AllowsRecurring               *bool                          `json:"allowsRecurring,omitempty"`
 	AllowsTokenization            *bool                          `json:"allowsTokenization,omitempty"`
 	AuthenticationIndicator       *AuthenticationIndicator       `json:"authenticationIndicator,omitempty"`
