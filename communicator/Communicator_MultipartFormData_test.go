@@ -2,9 +2,8 @@ package communicator
 
 import (
 	"io"
-	"io/ioutil"
 	"net/url"
-	"os"
+	"strings"
 	"testing"
 
 	"github.com/Ingenico-ePayments/connect-sdk-go/communicator/communication"
@@ -19,17 +18,9 @@ func TestMultipartFormDataUploadPostMultipartFormDataObjectWithResponse(t *testi
 	}
 	defer communicator.Close()
 
-	bytes, err := ioutil.ReadFile("../LICENSE.txt")
-	if err != nil {
-		t.Fatal(err)
-	}
-	expected := string(bytes)
+	expected := "file-content"
 
-	content, err := os.Open("../LICENSE.txt")
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer content.Close()
+	content := strings.NewReader(expected)
 
 	multipart, err := communication.NewMultipartFormDataObject()
 	if err != nil {
@@ -76,17 +67,9 @@ func TestMultipartFormDataUploadPostMultipartFormDataObjectPointerWithResponse(t
 	}
 	defer communicator.Close()
 
-	bytes, err := ioutil.ReadFile("../LICENSE.txt")
-	if err != nil {
-		t.Fatal(err)
-	}
-	expected := string(bytes)
+	expected := "file-content"
 
-	content, err := os.Open("../LICENSE.txt")
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer content.Close()
+	content := strings.NewReader(expected)
 
 	multipart, err := communication.NewMultipartFormDataObject()
 	if err != nil {
@@ -133,17 +116,9 @@ func TestMultipartFormDataUploadPostMultipartFormDataRequestWithResponse(t *test
 	}
 	defer communicator.Close()
 
-	bytes, err := ioutil.ReadFile("../LICENSE.txt")
-	if err != nil {
-		t.Fatal(err)
-	}
-	expected := string(bytes)
+	expected := "file-content"
 
-	content, err := os.Open("../LICENSE.txt")
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer content.Close()
+	content := strings.NewReader(expected)
 
 	multipart, err := communication.NewMultipartFormDataObject()
 	if err != nil {
@@ -190,17 +165,9 @@ func TestMultipartFormDataUploadPostMultipartFormDataObjectWithBodyHandler(t *te
 	}
 	defer communicator.Close()
 
-	bytes, err := ioutil.ReadFile("../LICENSE.txt")
-	if err != nil {
-		t.Fatal(err)
-	}
-	expected := string(bytes)
+	expected := "file-content"
 
-	content, err := os.Open("../LICENSE.txt")
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer content.Close()
+	content := strings.NewReader(expected)
 
 	multipart, err := communication.NewMultipartFormDataObject()
 	if err != nil {
@@ -258,17 +225,9 @@ func TestMultipartFormDataUploadPostMultipartFormDataObjectPointerWithBodyHandle
 	}
 	defer communicator.Close()
 
-	bytes, err := ioutil.ReadFile("../LICENSE.txt")
-	if err != nil {
-		t.Fatal(err)
-	}
-	expected := string(bytes)
+	expected := "file-content"
 
-	content, err := os.Open("../LICENSE.txt")
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer content.Close()
+	content := strings.NewReader(expected)
 
 	multipart, err := communication.NewMultipartFormDataObject()
 	if err != nil {
@@ -326,17 +285,9 @@ func TestMultipartFormDataUploadPostMultipartFormDataRequestWithBodyHandler(t *t
 	}
 	defer communicator.Close()
 
-	bytes, err := ioutil.ReadFile("../LICENSE.txt")
-	if err != nil {
-		t.Fatal(err)
-	}
-	expected := string(bytes)
+	expected := "file-content"
 
-	content, err := os.Open("../LICENSE.txt")
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer content.Close()
+	content := strings.NewReader(expected)
 
 	multipart, err := communication.NewMultipartFormDataObject()
 	if err != nil {
@@ -394,17 +345,9 @@ func TestMultipartFormDataUploadPutMultipartFormDataObjectWithResponse(t *testin
 	}
 	defer communicator.Close()
 
-	bytes, err := ioutil.ReadFile("../LICENSE.txt")
-	if err != nil {
-		t.Fatal(err)
-	}
-	expected := string(bytes)
+	expected := "file-content"
 
-	content, err := os.Open("../LICENSE.txt")
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer content.Close()
+	content := strings.NewReader(expected)
 
 	multipart, err := communication.NewMultipartFormDataObject()
 	if err != nil {
@@ -451,17 +394,9 @@ func TestMultipartFormDataUploadPutMultipartFormDataObjectPointerWithResponse(t 
 	}
 	defer communicator.Close()
 
-	bytes, err := ioutil.ReadFile("../LICENSE.txt")
-	if err != nil {
-		t.Fatal(err)
-	}
-	expected := string(bytes)
+	expected := "file-content"
 
-	content, err := os.Open("../LICENSE.txt")
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer content.Close()
+	content := strings.NewReader(expected)
 
 	multipart, err := communication.NewMultipartFormDataObject()
 	if err != nil {
@@ -508,17 +443,9 @@ func TestMultipartFormDataUploadPutMultipartFormDataRequestWithResponse(t *testi
 	}
 	defer communicator.Close()
 
-	bytes, err := ioutil.ReadFile("../LICENSE.txt")
-	if err != nil {
-		t.Fatal(err)
-	}
-	expected := string(bytes)
+	expected := "file-content"
 
-	content, err := os.Open("../LICENSE.txt")
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer content.Close()
+	content := strings.NewReader(expected)
 
 	multipart, err := communication.NewMultipartFormDataObject()
 	if err != nil {
@@ -565,17 +492,9 @@ func TestMultipartFormDataUploadPutMultipartFormDataObjectWithBodyHandler(t *tes
 	}
 	defer communicator.Close()
 
-	bytes, err := ioutil.ReadFile("../LICENSE.txt")
-	if err != nil {
-		t.Fatal(err)
-	}
-	expected := string(bytes)
+	expected := "file-content"
 
-	content, err := os.Open("../LICENSE.txt")
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer content.Close()
+	content := strings.NewReader(expected)
 
 	multipart, err := communication.NewMultipartFormDataObject()
 	if err != nil {
@@ -633,17 +552,9 @@ func TestMultipartFormDataUploadPutMultipartFormDataObjectPointerWithBodyHandler
 	}
 	defer communicator.Close()
 
-	bytes, err := ioutil.ReadFile("../LICENSE.txt")
-	if err != nil {
-		t.Fatal(err)
-	}
-	expected := string(bytes)
+	expected := "file-content"
 
-	content, err := os.Open("../LICENSE.txt")
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer content.Close()
+	content := strings.NewReader(expected)
 
 	multipart, err := communication.NewMultipartFormDataObject()
 	if err != nil {
@@ -701,17 +612,9 @@ func TestMultipartFormDataUploadPutMultipartFormDataRequestWithBodyHandler(t *te
 	}
 	defer communicator.Close()
 
-	bytes, err := ioutil.ReadFile("../LICENSE.txt")
-	if err != nil {
-		t.Fatal(err)
-	}
-	expected := string(bytes)
+	expected := "file-content"
 
-	content, err := os.Open("../LICENSE.txt")
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer content.Close()
+	content := strings.NewReader(expected)
 
 	multipart, err := communication.NewMultipartFormDataObject()
 	if err != nil {

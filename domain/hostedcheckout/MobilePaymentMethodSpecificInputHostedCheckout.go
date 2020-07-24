@@ -5,6 +5,7 @@ package hostedcheckout
 
 // MobilePaymentMethodSpecificInputHostedCheckout represents class MobilePaymentMethodSpecificInputHostedCheckout
 type MobilePaymentMethodSpecificInputHostedCheckout struct {
+	PaymentProduct302SpecificInput *MobilePaymentProduct302SpecificInputHostedCheckout `json:"paymentProduct302SpecificInput,omitempty"`
 	PaymentProduct320SpecificInput *MobilePaymentProduct320SpecificInputHostedCheckout `json:"paymentProduct320SpecificInput,omitempty"`
 	PaymentProductID               *int32                                              `json:"paymentProductId,omitempty"`
 }
