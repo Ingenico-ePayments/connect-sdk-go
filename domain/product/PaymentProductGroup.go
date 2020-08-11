@@ -6,6 +6,7 @@ package product
 // PaymentProductGroup represents class PaymentProductGroup
 type PaymentProductGroup struct {
 	AccountsOnFile           *[]AccountOnFile            `json:"accountsOnFile,omitempty"`
+	AllowsInstallments       *bool                       `json:"allowsInstallments,omitempty"`
 	DeviceFingerprintEnabled *bool                       `json:"deviceFingerprintEnabled,omitempty"`
 	DisplayHints             *PaymentProductDisplayHints `json:"displayHints,omitempty"`
 	Fields                   *[]PaymentProductField      `json:"fields,omitempty"`
