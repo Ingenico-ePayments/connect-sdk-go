@@ -5,6 +5,7 @@ package payment
 
 // DecryptedPaymentData represents class DecryptedPaymentData
 type DecryptedPaymentData struct {
+	AuthMethod     *string `json:"authMethod,omitempty"`
 	CardholderName *string `json:"cardholderName,omitempty"`
 	Cryptogram     *string `json:"cryptogram,omitempty"`
 	Dpan           *string `json:"dpan,omitempty"`
