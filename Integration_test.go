@@ -227,7 +227,7 @@ func TestIntegratedCreateToken(t *testing.T) {
 	cardWithoutCVV.CardholderName = newString("Jan")
 	cardWithoutCVV.IssueNumber = newString("12")
 	cardWithoutCVV.CardNumber = newString("4567350000427977")
-	cardWithoutCVV.ExpiryDate = newString("0820")
+	cardWithoutCVV.ExpiryDate = newString("1225")
 
 	response, err := client.Merchant(envMerchantID).Tokens().Create(query, nil)
 	if err != nil {

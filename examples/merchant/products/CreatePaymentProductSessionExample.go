@@ -24,7 +24,7 @@ func createPaymentProductSessionExample() {
 	var paymentProductSession302SpecificInput product.MobilePaymentProductSession302SpecificInput
 	paymentProductSession302SpecificInput.DisplayName = newString("Ingenico")
 	paymentProductSession302SpecificInput.DomainName = newString("pay1.secured-by-ingenico.com")
-	paymentProductSession302SpecificInput.ValidationURL = newString("https://apple-pay-gateway-cert.apple.com/paymentservices/startSession")
+	paymentProductSession302SpecificInput.ValidationURL = newString("<VALIDATION URL RECEIVED FROM APPLE>")
 
 	var body product.CreatePaymentProductSessionRequest
 	body.PaymentProductSession302SpecificInput = &paymentProductSession302SpecificInput
