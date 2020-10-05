@@ -3,10 +3,13 @@
 
 package hostedcheckout
 
+import "github.com/Ingenico-ePayments/connect-sdk-go/domain/payment"
+
 // MobilePaymentProduct320SpecificInputHostedCheckout represents class MobilePaymentProduct320SpecificInputHostedCheckout
 type MobilePaymentProduct320SpecificInputHostedCheckout struct {
-	MerchantName   *string `json:"merchantName,omitempty"`
-	MerchantOrigin *string `json:"merchantOrigin,omitempty"`
+	MerchantName   *string                   `json:"merchantName,omitempty"`
+	MerchantOrigin *string                   `json:"merchantOrigin,omitempty"`
+	ThreeDSecure   *payment.GPayThreeDSecure `json:"threeDSecure,omitempty"`
 }
 
 // NewMobilePaymentProduct320SpecificInputHostedCheckout constructs a new MobilePaymentProduct320SpecificInputHostedCheckout
