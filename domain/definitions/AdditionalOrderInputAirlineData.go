@@ -6,6 +6,7 @@ package definitions
 // AdditionalOrderInputAirlineData represents class AdditionalOrderInputAirlineData
 type AdditionalOrderInputAirlineData struct {
 	AirlineData *AirlineData `json:"airlineData,omitempty"`
+	LodgingData *LodgingData `json:"lodgingData,omitempty"`
 }
 
 // NewAdditionalOrderInputAirlineData constructs a new AdditionalOrderInputAirlineData

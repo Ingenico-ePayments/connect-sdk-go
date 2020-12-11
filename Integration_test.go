@@ -151,6 +151,25 @@ func TestIntegratedPaymentProducts(t *testing.T) {
 	}
 	defer client.Close()
 
+	lParams := products.NewFindParams()
+	lParams.CountryCode = newString("NL")
+	lParams.CurrencyCode = newString("EUR")
+
+	_, err = client.Merchant(envMerchantID).Products().Find(*lParams, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestIntegratedPaymentProductDirectories(t *testing.T) {
+	skipTestIfNeeded(t)
+
+	client, err := getClientIntegration()
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer client.Close()
+
 	lParams := products.NewDirectoryParams()
 	lParams.CountryCode = newString("NL")
 	lParams.CurrencyCode = newString("EUR")

@@ -12,6 +12,7 @@ type AdditionalOrderInput struct {
 	// Deprecated: Use Order.shoppingCart.amountBreakdown instead
 	Level3SummaryData    *Level3SummaryData       `json:"level3SummaryData,omitempty"`
 	LoanRecipient        *LoanRecipient           `json:"loanRecipient,omitempty"`
+	LodgingData          *definitions.LodgingData `json:"lodgingData,omitempty"`
 	// Deprecated: Use installments.numberOfInstallments instead
 	NumberOfInstallments *int64                   `json:"numberOfInstallments,omitempty"`
 	OrderDate            *string                  `json:"orderDate,omitempty"`

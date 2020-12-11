@@ -13,6 +13,7 @@ type ThreeDSecureResults struct {
 	Cavv                         *string                    `json:"cavv,omitempty"`
 	DirectoryServerTransactionID *string                    `json:"directoryServerTransactionId,omitempty"`
 	Eci                          *string                    `json:"eci,omitempty"`
+	ExemptionOutput              *ExemptionOutput           `json:"exemptionOutput,omitempty"`
 	SchemeRiskScore              *int32                     `json:"schemeRiskScore,omitempty"`
 	SdkData                      *SdkDataOutput             `json:"sdkData,omitempty"`
 	ThreeDSecureData             *ThreeDSecureData          `json:"threeDSecureData,omitempty"`
