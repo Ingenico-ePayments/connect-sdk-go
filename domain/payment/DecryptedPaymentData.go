@@ -5,6 +5,7 @@ package payment
 
 // DecryptedPaymentData represents class DecryptedPaymentData
 type DecryptedPaymentData struct {
+	// Deprecated: Use decryptedPaymentData.paymentMethod instead
 	AuthMethod     *string `json:"authMethod,omitempty"`
 	CardholderName *string `json:"cardholderName,omitempty"`
 	Cryptogram     *string `json:"cryptogram,omitempty"`
