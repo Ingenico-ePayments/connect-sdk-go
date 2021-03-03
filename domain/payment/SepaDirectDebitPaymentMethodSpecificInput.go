@@ -11,6 +11,7 @@ type SepaDirectDebitPaymentMethodSpecificInput struct {
 	PaymentProduct771SpecificInput    *SepaDirectDebitPaymentProduct771SpecificInput `json:"paymentProduct771SpecificInput,omitempty"`
 	PaymentProductID                  *int32                                         `json:"paymentProductId,omitempty"`
 	RecurringPaymentSequenceIndicator *string                                        `json:"recurringPaymentSequenceIndicator,omitempty"`
+	RequiresApproval                  *bool                                          `json:"requiresApproval,omitempty"`
 	Token                             *string                                        `json:"token,omitempty"`
 	Tokenize                          *bool                                          `json:"tokenize,omitempty"`
 }

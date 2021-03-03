@@ -25,7 +25,7 @@ func riskAssessmentCardsExample() {
 	var card definitions.Card
 	card.CardNumber = newString("4567350000427977")
 	card.Cvv = newString("123")
-	card.ExpiryDate = newString("0820")
+	card.ExpiryDate = newString("1299")
 
 	var flightLegs []definitions.AirlineFlightLeg
 

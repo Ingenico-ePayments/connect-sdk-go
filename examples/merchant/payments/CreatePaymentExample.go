@@ -27,7 +27,7 @@ func createPaymentExample() {
 	card.CardNumber = newString("4567350000427977")
 	card.CardholderName = newString("Wile E. Coyote")
 	card.Cvv = newString("123")
-	card.ExpiryDate = newString("1220")
+	card.ExpiryDate = newString("1299")
 
 	var authenticationAmount definitions.AmountOfMoney
 	authenticationAmount.Amount = newInt64(2980)

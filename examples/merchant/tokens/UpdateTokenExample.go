@@ -51,7 +51,7 @@ func updateTokenExample() {
 	var cardWithoutCvv definitions.CardWithoutCvv
 	cardWithoutCvv.CardNumber = newString("4567350000427977")
 	cardWithoutCvv.CardholderName = newString("Wile E. Coyote")
-	cardWithoutCvv.ExpiryDate = newString("0820")
+	cardWithoutCvv.ExpiryDate = newString("1299")
 	cardWithoutCvv.IssueNumber = newString("12")
 
 	var data token.CardData

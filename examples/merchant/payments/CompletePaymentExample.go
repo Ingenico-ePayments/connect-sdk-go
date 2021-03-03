@@ -25,7 +25,7 @@ func completePaymentExample() {
 	var card definitions.CardWithoutCvv
 	card.CardNumber = newString("67030000000000003")
 	card.CardholderName = newString("Wile E. Coyote")
-	card.ExpiryDate = newString("1220")
+	card.ExpiryDate = newString("1299")
 
 	var cardPaymentMethodSpecificInput payment.CompletePaymentCardPaymentMethodSpecificInput
 	cardPaymentMethodSpecificInput.Card = &card
