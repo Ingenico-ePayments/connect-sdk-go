@@ -7,7 +7,9 @@ import "github.com/Ingenico-ePayments/connect-sdk-go/domain/definitions"
 
 // RedirectPaymentMethodSpecificOutput represents class RedirectPaymentMethodSpecificOutput
 type RedirectPaymentMethodSpecificOutput struct {
+	BankAccountBban                  *definitions.BankAccountBban `json:"bankAccountBban,omitempty"`
 	BankAccountIban                  *definitions.BankAccountIban `json:"bankAccountIban,omitempty"`
+	Bic                              *string                      `json:"bic,omitempty"`
 	FraudResults                     *definitions.FraudResults    `json:"fraudResults,omitempty"`
 	PaymentProduct3201SpecificOutput *Product3201SpecificOutput   `json:"paymentProduct3201SpecificOutput,omitempty"`
 	PaymentProduct806SpecificOutput  *Product806SpecificOutput    `json:"paymentProduct806SpecificOutput,omitempty"`

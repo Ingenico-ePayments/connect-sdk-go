@@ -7,9 +7,10 @@ import "github.com/Ingenico-ePayments/connect-sdk-go/domain/definitions"
 
 // PaymentContext represents class PaymentContext
 type PaymentContext struct {
-	AmountOfMoney *definitions.AmountOfMoney `json:"amountOfMoney,omitempty"`
-	CountryCode   *string                    `json:"countryCode,omitempty"`
-	IsRecurring   *bool                      `json:"isRecurring,omitempty"`
+	AmountOfMoney  *definitions.AmountOfMoney `json:"amountOfMoney,omitempty"`
+	CountryCode    *string                    `json:"countryCode,omitempty"`
+	IsInstallments *bool                      `json:"isInstallments,omitempty"`
+	IsRecurring    *bool                      `json:"isRecurring,omitempty"`
 }
 
 // NewPaymentContext constructs a new PaymentContext
