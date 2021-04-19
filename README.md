@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The Go SDK helps you to communicate with the [Ingenico Connect](https://epayments.developer-ingenico.com/) Server API. It's primary features are:
+The Go SDK helps you to communicate with the [Ingenico Connect](https://epayments.developer-ingenico.com/) Server API. Its primary features are:
 
 * convenient go wrapper around the API calls and responses
     * marshalls Go request structs to HTTP requests
