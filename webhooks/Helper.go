@@ -3,6 +3,7 @@ package webhooks
 import (
 	"crypto/hmac"
 	"crypto/sha256"
+	"crypto/subtle"
 	"encoding/base64"
 	"errors"
 	"fmt"
@@ -20,7 +21,7 @@ var (
 	// ErrNilSecretKeyStore occurs when the provided secretKeyStore is nil
 	ErrNilSecretKeyStore = errors.New("nil secretKeyStore")
 
-	multipleHeaderFormat = `enocuntered multiple occurrences of header "%v"`
+	multipleHeaderFormat = `encountered multiple occurrences of header "%v"`
 	headerNotFoundFormat = `could not find header "%v"`
 	compareFailedFormat  = `failed to validate signature "%v"`
 )
@@ -85,10 +86,11 @@ func (h *Helper) validate(body string, requestHeaders []communication.Header) er
 
 	unencodedResult := mac.Sum(nil)
 
-	expectedSignature := base64.StdEncoding.EncodeToString(unencodedResult)
+	encoder := base64.StdEncoding
+	expectedSignature := make([]byte, encoder.EncodedLen(len(unencodedResult)))
+	encoder.Encode(expectedSignature, unencodedResult)
 
-	isValid := areEqualSignatures(signature, expectedSignature)
-
+	isValid := subtle.ConstantTimeCompare([]byte(signature), expectedSignature) == 1
 	if !isValid {
 		sve, err := NewSignatureValidationError(fmt.Sprintf(compareFailedFormat, signature))
 		if err != nil {
@@ -112,32 +114,6 @@ func NewHelper(marshaller communicator.Marshaller, secretKeyStore SecretKeyStore
 	}
 
 	return &Helper{marshaller, secretKeyStore}, nil
-}
-
-func areEqualSignatures(signature, expectedSignature string) bool {
-	signatureRunes := []rune(signature)
-	expectedSignatureRunes := []rune(expectedSignature)
-
-	length := len(signatureRunes)
-	expectedLength := len(expectedSignatureRunes)
-
-	limit := max(256, max(length, expectedLength))
-
-	result := true
-
-	for i := 0; i < limit; i++ {
-		if i < length && i < expectedLength {
-			result = result && (signatureRunes[i] == expectedSignatureRunes[i])
-		} else {
-			if i >= length && i >= expectedLength {
-				result = result && true
-			} else {
-				result = result && false
-			}
-		}
-	}
-
-	return result
 }
 
 func validateAPIVersion(event *webhooks.Event) error {

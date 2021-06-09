@@ -40,7 +40,7 @@ func getPlatformIdentifier() string {
 }
 
 const sdkIdentifier = "GoServerSDK/v" + sdkVersion
-const sdkVersion = "2.20.0"
+const sdkVersion = "2.21.0"
 const serverMetaInfoHeader = "X-GCS-ServerMetaInfo"
 
 // NewMetaDataProviderWithBuilder creates a MetaDataProvider with the given MetaDataProviderBuilder

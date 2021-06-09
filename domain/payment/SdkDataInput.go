@@ -5,6 +5,7 @@ package payment
 
 // SdkDataInput represents class SdkDataInput
 type SdkDataInput struct {
+	// Deprecated: No replacement
 	DeviceInfo            *string              `json:"deviceInfo,omitempty"`
 	DeviceRenderOptions   *DeviceRenderOptions `json:"deviceRenderOptions,omitempty"`
 	SdkAppID              *string              `json:"sdkAppId,omitempty"`
