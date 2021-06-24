@@ -5,8 +5,10 @@ package payment
 
 // DeviceRenderOptions represents class DeviceRenderOptions
 type DeviceRenderOptions struct {
-	SdkInterface *string `json:"sdkInterface,omitempty"`
-	SdkUIType    *string `json:"sdkUiType,omitempty"`
+	SdkInterface *string   `json:"sdkInterface,omitempty"`
+	// Deprecated: Use deviceRenderOptions.sdkUiTypes instead
+	SdkUIType    *string   `json:"sdkUiType,omitempty"`
+	SdkUITypes   *[]string `json:"sdkUiTypes,omitempty"`
 }
 
 // NewDeviceRenderOptions constructs a new DeviceRenderOptions
