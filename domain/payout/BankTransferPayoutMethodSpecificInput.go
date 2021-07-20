@@ -9,6 +9,7 @@ import "github.com/Ingenico-ePayments/connect-sdk-go/domain/definitions"
 type BankTransferPayoutMethodSpecificInput struct {
 	BankAccountBban *definitions.BankAccountBban `json:"bankAccountBban,omitempty"`
 	BankAccountIban *definitions.BankAccountIban `json:"bankAccountIban,omitempty"`
+	// Deprecated: Moved to PayoutDetails
 	Customer        *Customer                    `json:"customer,omitempty"`
 	PayoutDate      *string                      `json:"payoutDate,omitempty"`
 	PayoutText      *string                      `json:"payoutText,omitempty"`

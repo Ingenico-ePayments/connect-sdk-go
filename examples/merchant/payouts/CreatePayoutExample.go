@@ -24,13 +24,19 @@ func createPayoutExample() {
 	// http://stackoverflow.com/a/30716481 lists a few more alternatives.
 	// The code for these helper functions can be found in file Helper.go
 
-	var amountOfMoney definitions.AmountOfMoney
-	amountOfMoney.Amount = newInt64(2345)
-	amountOfMoney.CurrencyCode = newString("EUR")
-
 	var bankAccountIban definitions.BankAccountIban
 	bankAccountIban.AccountHolderName = newString("Wile E. Coyote")
 	bankAccountIban.Iban = newString("IT60X0542811101000000123456")
+
+	var bankTransferPayoutMethodSpecificInput payout.BankTransferPayoutMethodSpecificInput
+	bankTransferPayoutMethodSpecificInput.BankAccountIban = &bankAccountIban
+	bankTransferPayoutMethodSpecificInput.PayoutDate = newString("20150102")
+	bankTransferPayoutMethodSpecificInput.PayoutText = newString("Payout Acme")
+	bankTransferPayoutMethodSpecificInput.SwiftCode = newString("swift")
+
+	var amountOfMoney definitions.AmountOfMoney
+	amountOfMoney.Amount = newInt64(2345)
+	amountOfMoney.CurrencyCode = newString("EUR")
 
 	var address definitions.Address
 	address.City = newString("Burbank")
@@ -58,20 +64,17 @@ func createPayoutExample() {
 	customer.ContactDetails = &contactDetails
 	customer.Name = &name
 
-	var bankTransferPayoutMethodSpecificInput payout.BankTransferPayoutMethodSpecificInput
-	bankTransferPayoutMethodSpecificInput.BankAccountIban = &bankAccountIban
-	bankTransferPayoutMethodSpecificInput.Customer = &customer
-	bankTransferPayoutMethodSpecificInput.PayoutDate = newString("20150102")
-	bankTransferPayoutMethodSpecificInput.PayoutText = newString("Payout Acme")
-	bankTransferPayoutMethodSpecificInput.SwiftCode = newString("swift")
-
 	var references payout.References
 	references.MerchantReference = newString("AcmeOrder001")
 
+	var payoutDetails payout.Details
+	payoutDetails.AmountOfMoney = &amountOfMoney
+	payoutDetails.Customer = &customer
+	payoutDetails.References = &references
+
 	var body payout.CreateRequest
-	body.AmountOfMoney = &amountOfMoney
 	body.BankTransferPayoutMethodSpecificInput = &bankTransferPayoutMethodSpecificInput
-	body.References = &references
+	body.PayoutDetails = &payoutDetails
 
 	response, err := client.Merchant("merchantId").Payouts().Create(body, nil)
 	switch realError := err.(type) {
