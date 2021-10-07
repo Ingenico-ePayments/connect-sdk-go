@@ -17,6 +17,7 @@ type ThreeDSecure struct {
 	RedirectionData                      *RedirectionData                      `json:"redirectionData,omitempty"`
 	SdkData                              *SdkDataInput                         `json:"sdkData,omitempty"`
 	SkipAuthentication                   *bool                                 `json:"skipAuthentication,omitempty"`
+	TransactionRiskLevel                 *string                               `json:"transactionRiskLevel,omitempty"`
 }
 
 // NewThreeDSecure constructs a new ThreeDSecure

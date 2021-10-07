@@ -5,6 +5,7 @@ package payment
 
 // CustomerAccountAuthentication represents class CustomerAccountAuthentication
 type CustomerAccountAuthentication struct {
+	Data         *string `json:"data,omitempty"`
 	Method       *string `json:"method,omitempty"`
 	UtcTimestamp *string `json:"utcTimestamp,omitempty"`
 }

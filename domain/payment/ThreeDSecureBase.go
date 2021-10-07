@@ -15,6 +15,7 @@ type ThreeDSecureBase struct {
 	PriorThreeDSecureData *ThreeDSecureData          `json:"priorThreeDSecureData,omitempty"`
 	SdkData               *SdkDataInput              `json:"sdkData,omitempty"`
 	SkipAuthentication    *bool                      `json:"skipAuthentication,omitempty"`
+	TransactionRiskLevel  *string                    `json:"transactionRiskLevel,omitempty"`
 }
 
 // NewThreeDSecureBase constructs a new ThreeDSecureBase
