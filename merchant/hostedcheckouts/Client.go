@@ -118,6 +118,58 @@ func (c *Client) Get(hostedCheckoutID string, context communication.CallContext)
 	return resultObject, nil
 }
 
+// Delete represents the resource /{merchantId}/hostedcheckouts/{hostedCheckoutId} - Delete hosted checkout
+// Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/hostedcheckouts/delete.html
+//
+// Can return any of the following errors:
+// * ValidationError if the request was not correct and couldn't be processed (HTTP status code 400)
+// * AuthorizationError if the request was not allowed (HTTP status code 403)
+// * IdempotenceError if an idempotent request caused a conflict (HTTP status code 409)
+// * ReferenceError if an object was attempted to be referenced that doesn't exist or has been removed,
+// or there was a conflict (HTTP status code 404, 409 or 410)
+// * GlobalCollectError if something went wrong at the Ingenico ePayments platform,
+// the Ingenico ePayments platform was unable to process a message from a downstream partner/acquirer,
+// or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
+// * APIError if the Ingenico ePayments platform returned any other error
+func (c *Client) Delete(hostedCheckoutID string, context communication.CallContext) error {
+	pathContext := map[string]string{
+		"hostedCheckoutId": hostedCheckoutID,
+	}
+
+	uri, err := c.apiResource.InstantiateURIWithContext("/v1/{merchantId}/hostedcheckouts/{hostedCheckoutId}", pathContext)
+	if err != nil {
+		return err
+	}
+
+	clientHeaders := c.apiResource.ClientHeaders()
+
+	var resultObject map[string]interface{}
+	deleteErr := c.apiResource.Communicator().Delete(uri, clientHeaders, nil, context, &resultObject)
+	if deleteErr != nil {
+		responseError, isResponseError := deleteErr.(*sdkErrors.ResponseError)
+		if isResponseError {
+			var errorObject interface{}
+
+			errorObject = &errors.ErrorResponse{}
+			err = c.apiResource.Communicator().Marshaller().Unmarshal(responseError.Body(), errorObject)
+			if err != nil {
+				return err
+			}
+
+			err, createErr := sdkErrors.CreateAPIError(responseError.StatusCode(), responseError.Body(), errorObject, context)
+			if createErr != nil {
+				return createErr
+			}
+
+			return err
+		}
+
+		return deleteErr
+	}
+
+	return nil
+}
+
 // NewClient constructs a Hostedcheckouts Client
 //
 // parent is the *apiresource.APIResource on top of which we want to build the new Hostedcheckouts Client
