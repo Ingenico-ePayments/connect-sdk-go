@@ -16,7 +16,7 @@ func (request *UploadFileRequest) ToMultipartFormDataObject() *communication.Mul
 	multipart, _ := communication.NewMultipartFormDataObject()
 
 	if request.File != nil {
-		multipart.AddFile("file", *request.File)
+		multipart.AddFile("file", *request.File) // #nosec G104
 	}
 
 	return multipart

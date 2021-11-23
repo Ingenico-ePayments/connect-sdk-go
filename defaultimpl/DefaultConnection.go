@@ -48,11 +48,11 @@ func (c *DefaultConnection) logRequest(id, body string, req *http.Request) error
 
 	for k, v := range req.Header {
 		for _, rv := range v {
-			reqMessage.AddHeader(k, rv)
+			reqMessage.AddHeader(k, rv) // #nosec G104
 		}
 	}
 
-	reqMessage.SetBody(body, req.Header.Get("Content-Type"))
+	reqMessage.SetBody(body, req.Header.Get("Content-Type")) // #nosec G104
 
 	message, err := reqMessage.BuildMessage()
 	if err != nil {
@@ -78,12 +78,12 @@ func (c *DefaultConnection) logResponse(id string, reader io.Reader, binaryRespo
 
 	for k, v := range resp.Header {
 		for _, rv := range v {
-			respMessage.AddHeader(k, rv)
+			respMessage.AddHeader(k, rv) // #nosec G104
 		}
 	}
 
 	if binaryResponse {
-		respMessage.SetBinaryBody(resp.Header.Get("Content-Type"))
+		respMessage.SetBinaryBody(resp.Header.Get("Content-Type")) // #nosec G104
 	} else {
 		bodyBuff, err := ioutil.ReadAll(reader)
 		if err != nil {
@@ -91,7 +91,7 @@ func (c *DefaultConnection) logResponse(id string, reader io.Reader, binaryRespo
 			return err
 		}
 
-		respMessage.SetBody(string(bodyBuff), resp.Header.Get("Content-Type"))
+		respMessage.SetBody(string(bodyBuff), resp.Header.Get("Content-Type")) // #nosec G104
 	}
 
 	message, err := respMessage.BuildMessage()
@@ -234,7 +234,7 @@ func (c *DefaultConnection) sendRequest(method string, uri url.URL, headerList [
 
 	start := time.Now()
 
-	c.logRequest(id, bodyString, httpRequest)
+	c.logRequest(id, bodyString, httpRequest) // #nosec G104
 
 	resp, err := c.client.Do(httpRequest)
 	switch ce := err.(type) {
@@ -276,7 +276,7 @@ func (c *DefaultConnection) sendRequest(method string, uri url.URL, headerList [
 
 	bodyReader := resp.Body.(io.Reader)
 	if isBinaryContent(respHeaders) {
-		c.logResponse(id, nil, true, resp, end.Sub(start))
+		c.logResponse(id, nil, true, resp, end.Sub(start)) // #nosec G104
 	} else {
 		readBuffer := bytes.NewBuffer([]byte{})
 		teeReader := io.TeeReader(resp.Body, readBuffer)
@@ -361,7 +361,7 @@ func (c *DefaultConnection) createMultipartReader(body *communication.MultipartF
 			w.CloseWithError(err)
 			return
 		}
-		w.Close()
+		w.Close() // #nosec G104
 	}()
 
 	return r, nil

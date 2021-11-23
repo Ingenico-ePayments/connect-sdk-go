@@ -10,6 +10,7 @@ type Card struct {
 	Cvv            *string `json:"cvv,omitempty"`
 	ExpiryDate     *string `json:"expiryDate,omitempty"`
 	IssueNumber    *string `json:"issueNumber,omitempty"`
+	PartialPin     *string `json:"partialPin,omitempty"`
 }
 
 // NewCard constructs a new Card
