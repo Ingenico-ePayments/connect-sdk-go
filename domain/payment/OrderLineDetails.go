@@ -12,6 +12,7 @@ type OrderLineDetails struct {
 	ProductCode             *string `json:"productCode,omitempty"`
 	ProductName             *string `json:"productName,omitempty"`
 	ProductPrice            *int64  `json:"productPrice,omitempty"`
+	ProductSku              *string `json:"productSku,omitempty"`
 	ProductType             *string `json:"productType,omitempty"`
 	Quantity                *int64  `json:"quantity,omitempty"`
 	TaxAmount               *int64  `json:"taxAmount,omitempty"`
