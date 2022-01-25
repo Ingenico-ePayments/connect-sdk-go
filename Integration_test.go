@@ -19,6 +19,7 @@ import (
 	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/products"
 	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/services"
 	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/tokens"
+	sdkErrors "github.com/Ingenico-ePayments/connect-sdk-go/errors"
 )
 
 var envMerchantID = os.Getenv("connect.api.merchantId")
@@ -116,11 +117,12 @@ func TestIntegratedPayment(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	response, err := client.Merchant(envMerchantID).Payments().Create(query, context)
+	result, err := doCreatePayment(client, query, context)
 	if err != nil {
 		t.Fatal(err)
 	}
-	paymentID := response.Payment.ID
+	paymentID := result.Payment.ID
+	status := result.Payment.Status
 
 	if idempotenceKey != context.IdempotenceKey {
 		t.Fatalf("idempotence key mismatch")
@@ -129,7 +131,7 @@ func TestIntegratedPayment(t *testing.T) {
 		t.Fatalf("timestamp not nil")
 	}
 
-	secondResponse, err := client.Merchant(envMerchantID).Payments().Create(query, context)
+	secondResult, err := doCreatePayment(client, query, context)
 	if idempotenceKey != context.IdempotenceKey {
 		t.Fatalf("idempotence key mismatch")
 	}
@@ -137,8 +139,11 @@ func TestIntegratedPayment(t *testing.T) {
 		t.Fatalf("timestamp nil")
 	}
 
-	if *secondResponse.Payment.ID != *paymentID {
+	if *secondResult.Payment.ID != *paymentID {
 		t.Fatalf("payment id mismatch")
+	}
+	if *secondResult.Payment.Status != *status {
+		t.Fatalf("status mismatch")
 	}
 }
 
@@ -380,6 +385,27 @@ func getClientIntegration() (*Client, error) {
 	}
 
 	return client.WithClientMetaInfo("{\"test\":\"test\"}")
+}
+
+func doCreatePayment(client *Client, query payment.CreateRequest, context *CallContext) (payment.CreateResult, error) {
+	// For this test it doesn't matter if the response is successful or declined,
+	// as long as idempotence is handled correctly
+
+	response, err := client.Merchant(envMerchantID).Payments().Create(query, context)
+	if err == nil {
+		result := payment.CreateResult{
+			CreationOutput: response.CreationOutput,
+			MerchantAction: response.MerchantAction,
+			Payment:        response.Payment,
+		}
+		return result, nil
+	}
+	switch realError := err.(type) {
+	case *sdkErrors.DeclinedPaymentError:
+		return *realError.PaymentResult(), nil
+	default:
+		return payment.CreateResult{}, nil
+	}
 }
 
 func pseudoUUID() (string, error) {
