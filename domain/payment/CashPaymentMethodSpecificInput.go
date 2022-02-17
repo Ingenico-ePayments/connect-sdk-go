@@ -8,9 +8,6 @@ type CashPaymentMethodSpecificInput struct {
 	// Deprecated: No replacement
 	PaymentProduct1503SpecificInput *CashPaymentProduct1503SpecificInput `json:"paymentProduct1503SpecificInput,omitempty"`
 	PaymentProduct1504SpecificInput *CashPaymentProduct1504SpecificInput `json:"paymentProduct1504SpecificInput,omitempty"`
-	PaymentProduct1506SpecificInput *CashPaymentProduct1506SpecificInput `json:"paymentProduct1506SpecificInput,omitempty"`
-	PaymentProduct1508SpecificInput *CashPaymentProduct1508SpecificInput `json:"paymentProduct1508SpecificInput,omitempty"`
-	PaymentProduct1511SpecificInput *CashPaymentProduct1511SpecificInput `json:"paymentProduct1511SpecificInput,omitempty"`
 	PaymentProduct1521SpecificInput *CashPaymentProduct1521SpecificInput `json:"paymentProduct1521SpecificInput,omitempty"`
 	PaymentProduct1522SpecificInput *CashPaymentProduct1522SpecificInput `json:"paymentProduct1522SpecificInput,omitempty"`
 	PaymentProduct1523SpecificInput *CashPaymentProduct1523SpecificInput `json:"paymentProduct1523SpecificInput,omitempty"`

@@ -9,6 +9,7 @@ import "github.com/Ingenico-ePayments/connect-sdk-go/domain/definitions"
 type Installments struct {
 	AmountOfMoneyPerInstallment *definitions.AmountOfMoney `json:"amountOfMoneyPerInstallment,omitempty"`
 	FrequencyOfInstallments     *string                    `json:"frequencyOfInstallments,omitempty"`
+	InstallmentPlanCode         *int32                     `json:"installmentPlanCode,omitempty"`
 	InterestRate                *string                    `json:"interestRate,omitempty"`
 	NumberOfInstallments        *int64                     `json:"numberOfInstallments,omitempty"`
 }
