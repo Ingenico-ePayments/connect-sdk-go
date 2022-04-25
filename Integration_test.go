@@ -15,11 +15,11 @@ import (
 	"github.com/Ingenico-ePayments/connect-sdk-go/domain/riskassessments"
 	"github.com/Ingenico-ePayments/connect-sdk-go/domain/sessions"
 	"github.com/Ingenico-ePayments/connect-sdk-go/domain/token"
+	sdkErrors "github.com/Ingenico-ePayments/connect-sdk-go/errors"
 	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/productgroups"
 	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/products"
 	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/services"
 	"github.com/Ingenico-ePayments/connect-sdk-go/merchant/tokens"
-	sdkErrors "github.com/Ingenico-ePayments/connect-sdk-go/errors"
 )
 
 var envMerchantID = os.Getenv("connect.api.merchantId")

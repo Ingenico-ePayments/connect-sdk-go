@@ -9,10 +9,10 @@ import (
 
 // MultipartFormDataObject is a representation of a multipart/form-data object.
 type MultipartFormDataObject struct {
-	boundary string
+	boundary    string
 	contentType string
-	values map[string]string
-	files map[string]UploadableFile
+	values      map[string]string
+	files       map[string]UploadableFile
 }
 
 // GetBoundary returns the boundary.
@@ -89,7 +89,7 @@ func pseudoUUID() (string, error) {
 	b := make([]byte, 16)
 	_, err := rand.Read(b)
 	if err != nil {
-		return "", nil
+		return "", err
 	}
 	return fmt.Sprintf("%X-%X-%X-%X-%X", b[0:4], b[4:6], b[6:8], b[8:10], b[10:]), nil
 }

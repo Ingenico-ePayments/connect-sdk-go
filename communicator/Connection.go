@@ -14,7 +14,7 @@ import (
 // Thread-safe
 type Connection interface {
 
-	// CloseIdleConnection closes all HTTP connections that have been idle for the specified time. This should also include
+	// CloseIdleConnections closes all HTTP connections that have been idle for the specified time. This should also include
 	// all expired HTTP connections.
 	// timespan represents the time spent idle
 	CloseIdleConnections(time time.Duration)

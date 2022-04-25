@@ -40,7 +40,7 @@ func getPlatformIdentifier() string {
 }
 
 const sdkIdentifier = "GoServerSDK/v" + sdkVersion
-const sdkVersion = "2.30.0"
+const sdkVersion = "2.30.1"
 const serverMetaInfoHeader = "X-GCS-ServerMetaInfo"
 
 // NewMetaDataProviderWithBuilder creates a MetaDataProvider with the given MetaDataProviderBuilder
@@ -77,11 +77,11 @@ func newMetaDataProvider(integrator string, shoppingCartExtension *metadata.Shop
 
 	serverMetaInfoBase64 := base64.StdEncoding.EncodeToString([]byte(serverMetaInfoString))
 	header, err := communication.NewHeader(serverMetaInfoHeader, serverMetaInfoBase64)
-	head := []communication.Header{*header}
-	head = append(head, additionalRequestHeaders...)
 	if err != nil {
 		return nil, err
 	}
+	head := []communication.Header{*header}
+	head = append(head, additionalRequestHeaders...)
 	return &MetaDataProvider{sMetaInfo, head}, nil
 }
 
