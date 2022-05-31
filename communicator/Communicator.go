@@ -13,6 +13,7 @@ import (
 	"github.com/Ingenico-ePayments/connect-sdk-go/communicator/communication"
 	sdkErrors "github.com/Ingenico-ePayments/connect-sdk-go/errors"
 	"github.com/Ingenico-ePayments/connect-sdk-go/logging"
+	"github.com/Ingenico-ePayments/connect-sdk-go/logging/obfuscation"
 )
 
 var (
@@ -43,6 +44,20 @@ func (c *Communicator) Marshaller() Marshaller {
 // Close closes the connection of the Communicator
 func (c *Communicator) Close() error {
 	return c.session.Connection().Close()
+}
+
+// SetBodyObfuscator sets the body obfuscator to use.
+func (c *Communicator) SetBodyObfuscator(bodyObfuscator obfuscation.BodyObfuscator) {
+	if connection, ok := c.session.connection.(obfuscation.Capable); ok {
+		connection.SetBodyObfuscator(bodyObfuscator)
+	}
+}
+
+// SetHeaderObfuscator sets the header obfuscator to use.
+func (c *Communicator) SetHeaderObfuscator(headerObfuscator obfuscation.HeaderObfuscator) {
+	if connection, ok := c.session.connection.(obfuscation.Capable); ok {
+		connection.SetHeaderObfuscator(headerObfuscator)
+	}
 }
 
 // EnableLogging turns on logging using the given communicator logger.

@@ -1,4 +1,4 @@
-package logging
+package obfuscation
 
 import (
 	"bytes"
@@ -11,8 +11,6 @@ type valueObfuscator struct {
 	keepStartCount int
 	keepEndCount   int
 }
-
-type valueObfuscatorMap map[string]valueObfuscator
 
 func valueObfuscatorWithAll() valueObfuscator {
 	return newValueObfuscator(0, 0, 0)
@@ -30,17 +28,17 @@ func valueObfuscatorWithKeepingEndCount(count int) valueObfuscator {
 	return newValueObfuscator(0, 0, count)
 }
 
-func (vo valueObfuscator) obfuscateValue(value string) (string, error) {
+func (vo valueObfuscator) obfuscateValue(value string) string {
 	valueLength := utf8.RuneCountInString(value)
 
 	if valueLength == 0 {
-		return value, nil
+		return value
 	}
 	if vo.fixedLength > 0 {
-		return vo.repeatMask(vo.fixedLength), nil
+		return vo.repeatMask(vo.fixedLength)
 	}
 	if valueLength < vo.keepStartCount || valueLength < vo.keepEndCount {
-		return value, nil
+		return value
 	}
 
 	var chars bytes.Buffer
@@ -54,7 +52,7 @@ func (vo valueObfuscator) obfuscateValue(value string) (string, error) {
 		i++
 	}
 
-	return chars.String(), nil
+	return chars.String()
 }
 
 func (vo valueObfuscator) repeatMask(count int) string {

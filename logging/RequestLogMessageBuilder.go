@@ -5,6 +5,8 @@ import (
 	"errors"
 	"fmt"
 	"net/url"
+
+	"github.com/Ingenico-ePayments/connect-sdk-go/logging/obfuscation"
 )
 
 var errRequestIDEmpty = errors.New("requestID can't be empty")
@@ -29,6 +31,9 @@ type RequestLogMessageBuilder struct {
 	headers map[string][]string
 
 	headersBuffer bytes.Buffer
+
+	bodyObfuscator   obfuscation.BodyObfuscator
+	headerObfuscator obfuscation.HeaderObfuscator
 }
 
 // RequestLogMessage represents a log message about a Request
@@ -43,6 +48,9 @@ type RequestLogMessage struct {
 	headers map[string][]string
 
 	headersFormatted string
+
+	bodyObfuscator   obfuscation.BodyObfuscator
+	headerObfuscator obfuscation.HeaderObfuscator
 }
 
 // RequestID returns the request ID
@@ -94,11 +102,7 @@ func (rlm *RequestLogMessageBuilder) AddHeader(name, value string) error {
 	rlm.headersBuffer.WriteString("=\"")
 
 	if len(value) > 0 {
-		obfuscatedValue, oHErr := ObfuscateHeader(name, value)
-
-		if oHErr != nil {
-			return oHErr
-		}
+		obfuscatedValue := rlm.headerObfuscator.ObfuscateHeader(name, value)
 
 		rlm.headersBuffer.WriteString(obfuscatedValue)
 
@@ -111,7 +115,7 @@ func (rlm *RequestLogMessageBuilder) AddHeader(name, value string) error {
 
 // SetBody sets the request body
 func (rlm *RequestLogMessageBuilder) SetBody(body, contentType string) error {
-	obfuscatedBody, err := ObfuscateBody(body)
+	obfuscatedBody, err := rlm.bodyObfuscator.ObfuscateBody(body)
 	if err != nil {
 		return err
 	}
@@ -135,14 +139,21 @@ func (rlm *RequestLogMessageBuilder) SetBinaryBody(contentType string) error {
 
 // BuildMessage builds the RequestLogMessage
 func (rlm *RequestLogMessageBuilder) BuildMessage() (*RequestLogMessage, error) {
-	return &RequestLogMessage{rlm.requestID, rlm.method, rlm.url, rlm.body, rlm.contentType, rlm.headers, rlm.headersBuffer.String()}, nil
+	return &RequestLogMessage{rlm.requestID, rlm.method, rlm.url, rlm.body, rlm.contentType, rlm.headers, rlm.headersBuffer.String(), rlm.bodyObfuscator, rlm.headerObfuscator}, nil
 }
 
 // NewRequestLogMessageBuilder creates a RequestLogMessageBuilder with the given requestID, method and url
+//
+// Deprecated: use NewRequestLogMessageBuilderWithObfuscators instead
 func NewRequestLogMessageBuilder(requestID, method string, url url.URL) (*RequestLogMessageBuilder, error) {
+	return NewRequestLogMessageBuilderWithObfuscators(requestID, method, url, obfuscation.DefaultBodyObfuscator(), obfuscation.DefaultHeaderObfuscator())
+}
+
+// NewRequestLogMessageBuilderWithObfuscators creates a RequestLogMessageBuilder with the given requestID, method, url and obfuscators
+func NewRequestLogMessageBuilderWithObfuscators(requestID, method string, url url.URL, bodyObfuscator obfuscation.BodyObfuscator, headerObfuscator obfuscation.HeaderObfuscator) (*RequestLogMessageBuilder, error) {
 	if len(requestID) < 1 {
 		return nil, errRequestIDEmpty
 	}
 
-	return &RequestLogMessageBuilder{requestID, method, url, "", "", map[string][]string{}, bytes.Buffer{}}, nil
+	return &RequestLogMessageBuilder{requestID, method, url, "", "", map[string][]string{}, bytes.Buffer{}, bodyObfuscator, headerObfuscator}, nil
 }

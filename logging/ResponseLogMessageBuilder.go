@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"strings"
 	"time"
+
+	"github.com/Ingenico-ePayments/connect-sdk-go/logging/obfuscation"
 )
 
 const messageTemplate = `Incoming response (requestId='%s' in '%v'):
@@ -26,6 +28,9 @@ type ResponseLogMessageBuilder struct {
 	headers map[string][]string
 
 	headersBuffer bytes.Buffer
+
+	bodyObfuscator   obfuscation.BodyObfuscator
+	headerObfuscator obfuscation.HeaderObfuscator
 }
 
 // ResponseLogMessage represents a log message about a Response
@@ -40,6 +45,9 @@ type ResponseLogMessage struct {
 	headers map[string][]string
 
 	headersFormatted string
+
+	bodyObfuscator   obfuscation.BodyObfuscator
+	headerObfuscator obfuscation.HeaderObfuscator
 }
 
 // ResponseID returns the response id
@@ -87,11 +95,7 @@ func (rlm *ResponseLogMessageBuilder) AddHeader(name, value string) error {
 	rlm.headersBuffer.WriteString("=\"")
 
 	if len(value) > 0 {
-		obfuscatedValue, oHErr := ObfuscateHeader(name, value)
-
-		if oHErr != nil {
-			return oHErr
-		}
+		obfuscatedValue := rlm.headerObfuscator.ObfuscateHeader(name, value)
 
 		rlm.headersBuffer.WriteString(obfuscatedValue)
 
@@ -104,7 +108,7 @@ func (rlm *ResponseLogMessageBuilder) AddHeader(name, value string) error {
 
 // SetBody sets the request body
 func (rlm *ResponseLogMessageBuilder) SetBody(body, contentType string) error {
-	obfuscatedBody, err := ObfuscateBody(body)
+	obfuscatedBody, err := rlm.bodyObfuscator.ObfuscateBody(body)
 	if err != nil {
 		return err
 	}
@@ -134,14 +138,21 @@ func isBinaryContent(contentType string) bool {
 
 // BuildMessage builds the ResponseLogMessage
 func (rlm *ResponseLogMessageBuilder) BuildMessage() (*ResponseLogMessage, error) {
-	return &ResponseLogMessage{rlm.responseID, rlm.statusCode, rlm.duration, rlm.body, rlm.contentType, rlm.headers, rlm.headersBuffer.String()}, nil
+	return &ResponseLogMessage{rlm.responseID, rlm.statusCode, rlm.duration, rlm.body, rlm.contentType, rlm.headers, rlm.headersBuffer.String(), rlm.bodyObfuscator, rlm.headerObfuscator}, nil
 }
 
 // NewResponseLogMessageBuilder creates a ResponseLogMessageBuilder with the given responseID, statusCode and duration
+//
+// Deprecated: use NewResponseLogMessageBuilderWithObfuscators instead
 func NewResponseLogMessageBuilder(responseID string, statusCode int, duration time.Duration) (*ResponseLogMessageBuilder, error) {
+	return NewResponseLogMessageBuilderWithObfuscators(responseID, statusCode, duration, obfuscation.DefaultBodyObfuscator(), obfuscation.DefaultHeaderObfuscator())
+}
+
+// NewResponseLogMessageBuilderWithObfuscators creates a ResponseLogMessageBuilder with the given responseID, statusCode, duration and obfuscators
+func NewResponseLogMessageBuilderWithObfuscators(responseID string, statusCode int, duration time.Duration, bodyObfuscator obfuscation.BodyObfuscator, headerObfuscator obfuscation.HeaderObfuscator) (*ResponseLogMessageBuilder, error) {
 	if len(responseID) < 1 {
 		return nil, errRequestIDEmpty
 	}
 
-	return &ResponseLogMessageBuilder{responseID, statusCode, duration, "", "", map[string][]string{}, bytes.Buffer{}}, nil
+	return &ResponseLogMessageBuilder{responseID, statusCode, duration, "", "", map[string][]string{}, bytes.Buffer{}, bodyObfuscator, headerObfuscator}, nil
 }

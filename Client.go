@@ -9,6 +9,7 @@ import (
 	"github.com/Ingenico-ePayments/connect-sdk-go/communicator"
 	"github.com/Ingenico-ePayments/connect-sdk-go/internal/apiresource"
 	"github.com/Ingenico-ePayments/connect-sdk-go/logging"
+	"github.com/Ingenico-ePayments/connect-sdk-go/logging/obfuscation"
 	"github.com/Ingenico-ePayments/connect-sdk-go/merchant"
 )
 
@@ -49,6 +50,16 @@ func (c *Client) WithClientMetaInfo(clientMetaInfo string) (*Client, error) {
 
 		return internalNewClient(c.apiResource.Communicator(), clientMetaInfoBase64)
 	}
+}
+
+// SetBodyObfuscator sets the body obfuscator to use.
+func (c *Client) SetBodyObfuscator(bodyObfuscator obfuscation.BodyObfuscator) {
+	c.apiResource.Communicator().SetBodyObfuscator(bodyObfuscator)
+}
+
+// SetHeaderObfuscator sets the header obfuscator to use.
+func (c *Client) SetHeaderObfuscator(headerObfuscator obfuscation.HeaderObfuscator) {
+	c.apiResource.Communicator().SetHeaderObfuscator(headerObfuscator)
 }
 
 // EnableLogging turns on logging using the given communicator logger.

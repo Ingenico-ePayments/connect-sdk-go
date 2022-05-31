@@ -20,6 +20,7 @@ import (
 	"github.com/Ingenico-ePayments/connect-sdk-go/communicator/communication"
 	sdkErrors "github.com/Ingenico-ePayments/connect-sdk-go/errors"
 	"github.com/Ingenico-ePayments/connect-sdk-go/logging"
+	"github.com/Ingenico-ePayments/connect-sdk-go/logging/obfuscation"
 )
 
 // DefaultConnection is the default implementation for the connection interface. Supports Pooling, and is thread safe.
@@ -28,6 +29,8 @@ type DefaultConnection struct {
 	underlyingTransport *http.Transport
 	logger              logging.CommunicatorLogger
 	proxyAuth           string
+	bodyObfuscator      obfuscation.BodyObfuscator
+	headerObfuscator    obfuscation.HeaderObfuscator
 }
 
 func (c *DefaultConnection) logRequest(id, body string, req *http.Request) error {
@@ -40,7 +43,7 @@ func (c *DefaultConnection) logRequest(id, body string, req *http.Request) error
 		url = *req.URL
 	}
 
-	reqMessage, err := logging.NewRequestLogMessageBuilder(id, req.Method, url)
+	reqMessage, err := logging.NewRequestLogMessageBuilderWithObfuscators(id, req.Method, url, c.bodyObfuscator, c.headerObfuscator)
 	if err != nil {
 		c.logError(id, err)
 		return err
@@ -70,7 +73,7 @@ func (c *DefaultConnection) logResponse(id string, reader io.Reader, binaryRespo
 		return nil
 	}
 
-	respMessage, err := logging.NewResponseLogMessageBuilder(id, resp.StatusCode, duration)
+	respMessage, err := logging.NewResponseLogMessageBuilderWithObfuscators(id, resp.StatusCode, duration, c.bodyObfuscator, c.headerObfuscator)
 	if err != nil {
 		c.logError(id, err)
 		return err
@@ -142,7 +145,7 @@ func NewDefaultConnection(socketTimeout, connectTimeout, keepAliveTimeout, idleT
 
 	proxyAuth := getProxyAuth(proxy)
 
-	return &DefaultConnection{client, transport, nil, proxyAuth}, nil
+	return &DefaultConnection{client, transport, nil, proxyAuth, obfuscation.DefaultBodyObfuscator(), obfuscation.DefaultHeaderObfuscator()}, nil
 }
 
 // Get sends a GET request to the Ingenico ePayments platform and calls the given response handler with the response.
@@ -300,6 +303,16 @@ func (c *DefaultConnection) CloseIdleConnections(t time.Duration) {
 // CloseExpiredConnections closes all expired HTTP connections.
 func (c *DefaultConnection) CloseExpiredConnections() {
 	// No-op, because this is done automatically for this implementation
+}
+
+// SetBodyObfuscator sets the body obfuscator to use.
+func (c *DefaultConnection) SetBodyObfuscator(bodyObfuscator obfuscation.BodyObfuscator) {
+	c.bodyObfuscator = bodyObfuscator
+}
+
+// SetHeaderObfuscator sets the header obfuscator to use.
+func (c *DefaultConnection) SetHeaderObfuscator(headerObfuscator obfuscation.HeaderObfuscator) {
+	c.headerObfuscator = headerObfuscator
 }
 
 // EnableLogging implements the logging.Capable interface
