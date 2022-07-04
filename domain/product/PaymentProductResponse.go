@@ -27,6 +27,7 @@ type PaymentProductResponse struct {
 	PaymentProduct320SpecificData *PaymentProduct320SpecificData `json:"paymentProduct320SpecificData,omitempty"`
 	PaymentProduct863SpecificData *PaymentProduct863SpecificData `json:"paymentProduct863SpecificData,omitempty"`
 	PaymentProductGroup           *string                        `json:"paymentProductGroup,omitempty"`
+	SupportsMandates              *bool                          `json:"supportsMandates,omitempty"`
 	UsesRedirectionTo3rdParty     *bool                          `json:"usesRedirectionTo3rdParty,omitempty"`
 }
 
