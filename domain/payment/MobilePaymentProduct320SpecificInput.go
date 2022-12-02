@@ -5,7 +5,8 @@ package payment
 
 // MobilePaymentProduct320SpecificInput represents class MobilePaymentProduct320SpecificInput
 type MobilePaymentProduct320SpecificInput struct {
-	ThreeDSecure *GPayThreeDSecure `json:"threeDSecure,omitempty"`
+	CardholderName *string           `json:"cardholderName,omitempty"`
+	ThreeDSecure   *GPayThreeDSecure `json:"threeDSecure,omitempty"`
 }
 
 // NewMobilePaymentProduct320SpecificInput constructs a new MobilePaymentProduct320SpecificInput

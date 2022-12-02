@@ -5,6 +5,7 @@ package payment
 
 // Merchant represents class Merchant
 type Merchant struct {
+	ConfigurationID   *string `json:"configurationId,omitempty"`
 	ContactWebsiteURL *string `json:"contactWebsiteUrl,omitempty"`
 	Seller            *Seller `json:"seller,omitempty"`
 	WebsiteURL        *string `json:"websiteUrl,omitempty"`

@@ -5,9 +5,11 @@ package definitions
 
 // MicrosoftFraudResults represents class MicrosoftFraudResults
 type MicrosoftFraudResults struct {
+	ClauseName        *string `json:"clauseName,omitempty"`
 	DeviceCountryCode *string `json:"deviceCountryCode,omitempty"`
 	DeviceID          *string `json:"deviceId,omitempty"`
 	FraudScore        *int32  `json:"fraudScore,omitempty"`
+	PolicyApplied     *string `json:"policyApplied,omitempty"`
 	TrueIPAddress     *string `json:"trueIpAddress,omitempty"`
 	UserDeviceType    *string `json:"userDeviceType,omitempty"`
 }

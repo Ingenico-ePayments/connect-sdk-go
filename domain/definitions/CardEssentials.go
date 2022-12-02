@@ -5,8 +5,9 @@ package definitions
 
 // CardEssentials represents class CardEssentials
 type CardEssentials struct {
-	CardNumber *string `json:"cardNumber,omitempty"`
-	ExpiryDate *string `json:"expiryDate,omitempty"`
+	CardNumber     *string `json:"cardNumber,omitempty"`
+	CardholderName *string `json:"cardholderName,omitempty"`
+	ExpiryDate     *string `json:"expiryDate,omitempty"`
 }
 
 // NewCardEssentials constructs a new CardEssentials
