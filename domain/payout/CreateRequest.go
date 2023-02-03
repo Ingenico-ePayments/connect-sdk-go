@@ -17,6 +17,7 @@ type CreateRequest struct {
 	CardPayoutMethodSpecificInput         *CardPayoutMethodSpecificInput         `json:"cardPayoutMethodSpecificInput,omitempty"`
 	// Deprecated: Moved to PayoutDetails
 	Customer                              *Customer                              `json:"customer,omitempty"`
+	Merchant                              *Merchant                              `json:"merchant,omitempty"`
 	// Deprecated: Moved to BankTransferPayoutMethodSpecificInput
 	PayoutDate                            *string                                `json:"payoutDate,omitempty"`
 	PayoutDetails                         *Details                               `json:"payoutDetails,omitempty"`
