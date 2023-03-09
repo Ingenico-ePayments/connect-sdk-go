@@ -169,7 +169,7 @@ func (c *DefaultConnection) PostMultipart(uri url.URL, headerList []communicatio
 	if err != nil {
 		return nil, err
 	}
-	defer r.Close()
+	defer r.Close() // #nosec G307
 	return c.sendRequest("POST", uri, headerList, r, "<binary content>", handler)
 }
 
@@ -184,7 +184,7 @@ func (c *DefaultConnection) PutMultipart(uri url.URL, headerList []communication
 	if err != nil {
 		return nil, err
 	}
-	defer r.Close()
+	defer r.Close() // #nosec G307
 	return c.sendRequest("PUT", uri, headerList, r, "<binary content>", handler)
 }
 
