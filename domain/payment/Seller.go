@@ -14,6 +14,7 @@ type Seller struct {
 	Geocode             *string              `json:"geocode,omitempty"`
 	ID                  *string              `json:"id,omitempty"`
 	InvoiceNumber       *string              `json:"invoiceNumber,omitempty"`
+	IsForeignRetailer   *bool                `json:"isForeignRetailer,omitempty"`
 	Mcc                 *string              `json:"mcc,omitempty"`
 	Name                *string              `json:"name,omitempty"`
 	PhoneNumber         *string              `json:"phoneNumber,omitempty"`
