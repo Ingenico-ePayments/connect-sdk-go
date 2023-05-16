@@ -3,6 +3,7 @@ package communicator
 import (
 	"io"
 	"net/url"
+	"os"
 	"strings"
 	"testing"
 
@@ -666,8 +667,17 @@ func TestMultipartFormDataUploadPutMultipartFormDataRequestWithBodyHandler(t *te
 }
 
 func createCommunicator() (*Communicator, error) {
+	httpBinURL := os.Getenv(("httpbin.url"))
+	if httpBinURL == "" {
+		httpBinURL = "http://httpbin.org"
+	}
+	apiEndpoint, err := url.Parse(httpBinURL)
+	if err != nil {
+		return nil, err
+	}
+
 	configuration := configuration.DefaultConfiguration("dummy", "dummy", "ingenico")
-	configuration.APIEndpoint = url.URL{Scheme: "http", Host: "httpbin.org"}
+	configuration.APIEndpoint = *apiEndpoint
 
 	builder, err := NewSessionBuilder()
 	if err != nil {
