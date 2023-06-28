@@ -7,6 +7,7 @@ package payment
 type CreationOutput struct {
 	AdditionalReference   *string `json:"additionalReference,omitempty"`
 	ExternalReference     *string `json:"externalReference,omitempty"`
+	IsCheckedRememberMe   *bool   `json:"isCheckedRememberMe,omitempty"`
 	IsNewToken            *bool   `json:"isNewToken,omitempty"`
 	Token                 *string `json:"token,omitempty"`
 	TokenizationSucceeded *bool   `json:"tokenizationSucceeded,omitempty"`

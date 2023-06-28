@@ -5,6 +5,7 @@ package payment
 
 // SchemeTokenData represents class SchemeTokenData
 type SchemeTokenData struct {
+	CardholderName  *string `json:"cardholderName,omitempty"`
 	Cryptogram      *string `json:"cryptogram,omitempty"`
 	Eci             *string `json:"eci,omitempty"`
 	NetworkToken    *string `json:"networkToken,omitempty"`

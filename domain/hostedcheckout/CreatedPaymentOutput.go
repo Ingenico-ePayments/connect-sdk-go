@@ -8,6 +8,7 @@ import "github.com/Ingenico-ePayments/connect-sdk-go/domain/payment"
 // CreatedPaymentOutput represents class CreatedPaymentOutput
 type CreatedPaymentOutput struct {
 	DisplayedData             *DisplayedData              `json:"displayedData,omitempty"`
+	IsCheckedRememberMe       *bool                       `json:"isCheckedRememberMe,omitempty"`
 	Payment                   *payment.Payment            `json:"payment,omitempty"`
 	PaymentCreationReferences *payment.CreationReferences `json:"paymentCreationReferences,omitempty"`
 	// Deprecated: Use Payment.statusOutput.statusCategory instead

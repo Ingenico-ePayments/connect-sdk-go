@@ -9,6 +9,7 @@ type References struct {
 	MerchantReference    *string `json:"merchantReference,omitempty"`
 	PaymentReference     *string `json:"paymentReference,omitempty"`
 	ProviderID           *string `json:"providerId,omitempty"`
+	ProviderMerchantID   *string `json:"providerMerchantId,omitempty"`
 	ProviderReference    *string `json:"providerReference,omitempty"`
 	ReferenceOrigPayment *string `json:"referenceOrigPayment,omitempty"`
 }
