@@ -3,9 +3,13 @@
 
 package capture
 
+import "github.com/Ingenico-ePayments/connect-sdk-go/domain/definitions"
+
 // StatusOutput represents class CaptureStatusOutput
 type StatusOutput struct {
-	StatusCode *int32 `json:"statusCode,omitempty"`
+	IsRetriable       *bool                       `json:"isRetriable,omitempty"`
+	ProviderRawOutput *[]definitions.KeyValuePair `json:"providerRawOutput,omitempty"`
+	StatusCode        *int32                      `json:"statusCode,omitempty"`
 }
 
 // NewStatusOutput constructs a new StatusOutput

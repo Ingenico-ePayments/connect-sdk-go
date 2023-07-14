@@ -9,6 +9,8 @@ import "github.com/Ingenico-ePayments/connect-sdk-go/domain/errors"
 type OrderStatusOutput struct {
 	Errors                   *[]errors.APIError `json:"errors,omitempty"`
 	IsCancellable            *bool              `json:"isCancellable,omitempty"`
+	IsRetriable              *bool              `json:"isRetriable,omitempty"`
+	ProviderRawOutput        *[]KeyValuePair    `json:"providerRawOutput,omitempty"`
 	StatusCategory           *string            `json:"statusCategory,omitempty"`
 	StatusCode               *int32             `json:"statusCode,omitempty"`
 	StatusCodeChangeDateTime *string            `json:"statusCodeChangeDateTime,omitempty"`

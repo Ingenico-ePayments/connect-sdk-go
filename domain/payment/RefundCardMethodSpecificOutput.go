@@ -5,9 +5,10 @@ package payment
 
 // RefundCardMethodSpecificOutput represents class RefundCardMethodSpecificOutput
 type RefundCardMethodSpecificOutput struct {
-	RefundProductID     *int32 `json:"refundProductId,omitempty"`
-	TotalAmountPaid     *int64 `json:"totalAmountPaid,omitempty"`
-	TotalAmountRefunded *int64 `json:"totalAmountRefunded,omitempty"`
+	AuthorisationCode   *string `json:"authorisationCode,omitempty"`
+	RefundProductID     *int32  `json:"refundProductId,omitempty"`
+	TotalAmountPaid     *int64  `json:"totalAmountPaid,omitempty"`
+	TotalAmountRefunded *int64  `json:"totalAmountRefunded,omitempty"`
 }
 
 // NewRefundCardMethodSpecificOutput constructs a new RefundCardMethodSpecificOutput
