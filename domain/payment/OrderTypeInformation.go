@@ -5,6 +5,7 @@ package payment
 
 // OrderTypeInformation represents class OrderTypeInformation
 type OrderTypeInformation struct {
+	FundingType     *string `json:"fundingType,omitempty"`
 	PurchaseType    *string `json:"purchaseType,omitempty"`
 	TransactionType *string `json:"transactionType,omitempty"`
 	UsageType       *string `json:"usageType,omitempty"`

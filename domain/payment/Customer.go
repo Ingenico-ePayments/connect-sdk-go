@@ -14,6 +14,7 @@ type Customer struct {
 	ContactDetails      *ContactDetails                 `json:"contactDetails,omitempty"`
 	Device              *CustomerDevice                 `json:"device,omitempty"`
 	FiscalNumber        *string                         `json:"fiscalNumber,omitempty"`
+	IsCompany           *bool                           `json:"isCompany,omitempty"`
 	IsPreviousCustomer  *bool                           `json:"isPreviousCustomer,omitempty"`
 	Locale              *string                         `json:"locale,omitempty"`
 	MerchantCustomerID  *string                         `json:"merchantCustomerId,omitempty"`
