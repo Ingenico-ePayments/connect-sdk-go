@@ -18,6 +18,7 @@ type PaymentProduct struct {
 	Fields                        *[]PaymentProductField         `json:"fields,omitempty"`
 	FieldsWarning                 *string                        `json:"fieldsWarning,omitempty"`
 	ID                            *int32                         `json:"id,omitempty"`
+	IsAuthenticationSupported     *bool                          `json:"isAuthenticationSupported,omitempty"`
 	IsJavaScriptRequired          *bool                          `json:"isJavaScriptRequired,omitempty"`
 	MaxAmount                     *int64                         `json:"maxAmount,omitempty"`
 	MinAmount                     *int64                         `json:"minAmount,omitempty"`

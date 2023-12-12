@@ -5,8 +5,9 @@ package definitions
 
 // FraudResults represents class FraudResults
 type FraudResults struct {
-	FraudServiceResult *string `json:"fraudServiceResult,omitempty"`
-	InAuth             *InAuth `json:"inAuth,omitempty"`
+	FraudServiceResult       *string                `json:"fraudServiceResult,omitempty"`
+	InAuth                   *InAuth                `json:"inAuth,omitempty"`
+	MicrosoftFraudProtection *MicrosoftFraudResults `json:"microsoftFraudProtection,omitempty"`
 }
 
 // NewFraudResults constructs a new FraudResults
