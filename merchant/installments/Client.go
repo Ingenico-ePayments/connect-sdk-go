@@ -1,5 +1,5 @@
 // This class was auto-generated from the API references found at
-// https://epayments-api.developer-ingenico.com/s2sapi/v1/
+// https://epayments-api.developer-ingenico.com/
 
 package installments
 
@@ -16,7 +16,7 @@ type Client struct {
 	apiResource *apiresource.APIResource
 }
 
-// GetInstallmentsInfo represents the resource /{merchantId}/installments/getInstallmentsInfo - Get Installment Info
+// GetInstallmentsInfo represents the resource /{merchantId}/installments/getInstallmentsInfo - Get installment information
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/installments/getInstallmentsInfo.html
 //
 // Can return any of the following errors:

@@ -234,7 +234,7 @@ func newStoppableListener(l net.Listener) (*stoppableListener, error) {
 	tcpL, ok := l.(*net.TCPListener)
 
 	if !ok {
-		return nil, errors.New("Cannot wrap listener")
+		return nil, errors.New("cannot wrap listener")
 	}
 
 	return &stoppableListener{tcpL, make(chan int), sync.WaitGroup{}}, nil

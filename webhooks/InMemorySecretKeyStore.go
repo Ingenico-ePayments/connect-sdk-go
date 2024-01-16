@@ -20,6 +20,7 @@ type InMemorySecretKeyStore struct{}
 
 var keyStoreMap = map[string]string{}
 var keyStoreLock = sync.RWMutex{}
+var keyStore = &InMemorySecretKeyStore{}
 
 // GetSecretKey returns the secretKey associated with the given keyID
 //
@@ -32,10 +33,7 @@ func (ks *InMemorySecretKeyStore) GetSecretKey(keyID string) (string, error) {
 	value, exists := keyStoreMap[keyID]
 
 	if !exists {
-		ske, err := NewSecretKeyNotAvailableError(keyID)
-		if err != nil {
-			return "", err
-		}
+		ske, _ := NewSecretKeyNotAvailableError(keyID)
 
 		return "", ske
 	}
@@ -82,5 +80,5 @@ func (ks *InMemorySecretKeyStore) Clear() {
 
 // NewInMemorySecretKeyStore returns the singleton instance of the InMemorySecretKeyStore
 func NewInMemorySecretKeyStore() (*InMemorySecretKeyStore, error) {
-	return &InMemorySecretKeyStore{}, nil
+	return keyStore, nil
 }

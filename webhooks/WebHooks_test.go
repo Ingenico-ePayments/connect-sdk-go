@@ -24,7 +24,7 @@ func TestCreateHelper(t *testing.T) {
 	if helper.marshaller != marshaller {
 		t.Fatalf("marshaller mismatch %v %v", helper.marshaller, marshaller)
 	}
-	if helper.secretKeyStore != store {
-		t.Fatalf("secretKeyStore mismatch %v %v", helper.secretKeyStore, store)
+	if helper.signatureValidator.SecretKeyStore() != store {
+		t.Fatalf("secretKeyStore mismatch %v %v", helper.signatureValidator.SecretKeyStore(), store)
 	}
 }

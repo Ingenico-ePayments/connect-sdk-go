@@ -1,5 +1,5 @@
 // This class was auto-generated from the API references found at
-// https://epayments-api.developer-ingenico.com/s2sapi/v1/
+// https://epayments-api.developer-ingenico.com/
 
 package payment
 
@@ -7,6 +7,7 @@ import "github.com/Ingenico-ePayments/connect-sdk-go/domain/definitions"
 
 // CardPaymentMethodSpecificInput represents class CardPaymentMethodSpecificInput
 type CardPaymentMethodSpecificInput struct {
+	AcquirerPromotionCode                  *string                               `json:"acquirerPromotionCode,omitempty"`
 	AuthorizationMode                      *string                               `json:"authorizationMode,omitempty"`
 	Card                                   *definitions.Card                     `json:"card,omitempty"`
 	CustomerReference                      *string                               `json:"customerReference,omitempty"`

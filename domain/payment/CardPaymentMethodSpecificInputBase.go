@@ -1,10 +1,11 @@
 // This class was auto-generated from the API references found at
-// https://epayments-api.developer-ingenico.com/s2sapi/v1/
+// https://epayments-api.developer-ingenico.com/
 
 package payment
 
 // CardPaymentMethodSpecificInputBase represents class CardPaymentMethodSpecificInputBase
 type CardPaymentMethodSpecificInputBase struct {
+	AcquirerPromotionCode                  *string                `json:"acquirerPromotionCode,omitempty"`
 	AuthorizationMode                      *string                `json:"authorizationMode,omitempty"`
 	CustomerReference                      *string                `json:"customerReference,omitempty"`
 	InitialSchemeTransactionID             *string                `json:"initialSchemeTransactionId,omitempty"`
