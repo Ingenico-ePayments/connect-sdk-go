@@ -17,6 +17,7 @@ type GetParams struct {
 	Locale         *string
 	Amount         *int64
 	IsRecurring    *bool
+	IsInstallments *bool
 	Hide           []string
 	ForceBasicFlow *bool
 }
@@ -49,6 +50,10 @@ func (params *GetParams) ToRequestParameters() communicator.RequestParams {
 	}
 	if params.IsRecurring != nil {
 		param, _ := communicator.NewRequestParam("isRecurring", strconv.FormatBool(*params.IsRecurring))
+		reqParams = append(reqParams, *param)
+	}
+	if params.IsInstallments != nil {
+		param, _ := communicator.NewRequestParam("isInstallments", strconv.FormatBool(*params.IsInstallments))
 		reqParams = append(reqParams, *param)
 	}
 	for _, hideElement := range params.Hide {

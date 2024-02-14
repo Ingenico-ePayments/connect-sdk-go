@@ -12,12 +12,13 @@ import (
 // FindParams represents query parameters for Get payment product groups
 // Documentation can be found at https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/go/productgroups/find.html
 type FindParams struct {
-	CountryCode  *string
-	CurrencyCode *string
-	Locale       *string
-	Amount       *int64
-	IsRecurring  *bool
-	Hide         []string
+	CountryCode    *string
+	CurrencyCode   *string
+	Locale         *string
+	Amount         *int64
+	IsRecurring    *bool
+	IsInstallments *bool
+	Hide           []string
 }
 
 // AddHide adds an element to the Hide array.
@@ -48,6 +49,10 @@ func (params *FindParams) ToRequestParameters() communicator.RequestParams {
 	}
 	if params.IsRecurring != nil {
 		param, _ := communicator.NewRequestParam("isRecurring", strconv.FormatBool(*params.IsRecurring))
+		reqParams = append(reqParams, *param)
+	}
+	if params.IsInstallments != nil {
+		param, _ := communicator.NewRequestParam("isInstallments", strconv.FormatBool(*params.IsInstallments))
 		reqParams = append(reqParams, *param)
 	}
 	for _, hideElement := range params.Hide {

@@ -27,6 +27,7 @@ func getPaymentProductGroupExample() {
 	query.Locale = newString("en_US")
 	query.Amount = newInt64(1000)
 	query.IsRecurring = newBool(true)
+	query.IsInstallments = newBool(true)
 	query.AddHide("fields")
 
 	response, err := client.Merchant("merchantId").Productgroups().Get("cards", query, nil)

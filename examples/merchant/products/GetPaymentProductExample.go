@@ -27,6 +27,7 @@ func getPaymentProductExample() {
 	query.Locale = newString("en_US")
 	query.Amount = newInt64(1000)
 	query.IsRecurring = newBool(true)
+	query.IsInstallments = newBool(true)
 	query.ForceBasicFlow = newBool(false)
 	query.AddHide("fields")
 
